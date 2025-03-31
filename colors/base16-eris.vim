@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-eris'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#0a0920', base01 = '#13133a', base02 = '#23255a', base03 = '#333773',
     \ base04 = '#4a5293', base05 = '#606bac', base06 = '#7986c5', base07 = '#9aaae5',
     \ base08 = '#f768a3', base09 = '#f768a3', base0A = '#faaea2', base0B = '#faaea2',

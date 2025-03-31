@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-atelier-savanna-light'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#ecf4ee', base01 = '#dfe7e2', base02 = '#87928a', base03 = '#78877d',
     \ base04 = '#5f6d64', base05 = '#526057', base06 = '#232a25', base07 = '#171c19',
     \ base08 = '#b16139', base09 = '#9f713c', base0A = '#a07e3b', base0B = '#489963',

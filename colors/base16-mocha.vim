@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-mocha'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#3b3228', base01 = '#534636', base02 = '#645240', base03 = '#7e705a',
     \ base04 = '#b8afad', base05 = '#d0c8c6', base06 = '#e9e1dd', base07 = '#f5eeeb',
     \ base08 = '#cb6077', base09 = '#d28b71', base0A = '#f4bc87', base0B = '#beb55b',

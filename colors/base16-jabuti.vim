@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-jabuti'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#292a37', base01 = '#343545', base02 = '#3c3e51', base03 = '#45475d',
     \ base04 = '#50526b', base05 = '#c0cbe3', base06 = '#d9e0ee', base07 = '#ffffff',
     \ base08 = '#ec6a88', base09 = '#efb993', base0A = '#e1c697', base0B = '#3fdaa4',

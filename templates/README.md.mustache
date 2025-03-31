@@ -1,0 +1,47 @@
+# tinted-nvim
+
+Neovim plugin for building Tinted Theming colorschemes with support for Neovim's
+builtin LSP and Treesitter.
+
+```lua
+-- All builtin colorschemes can be accessed with |:colorscheme|.
+vim.cmd('colorscheme base16-gruvbox-dark-soft')
+
+-- Alternatively, you can provide a table specifying your colors to the setup function.
+require('tinted-colorscheme').setup({
+    base00 = '#16161D', base01 = '#2c313c', base02 = '#3e4451', base03 = '#6c7891',
+    base04 = '#565c64', base05 = '#abb2bf', base06 = '#9a9bb3', base07 = '#c5c8e6',
+    base08 = '#e06c75', base09 = '#d19a66', base0A = '#e5c07b', base0B = '#98c379',
+    base0C = '#56b6c2', base0D = '#0184bc', base0E = '#c678dd', base0F = '#a06949',
+})
+```
+
+**Note**: If you don't see colours, try adding `vim.opt.termguicolors = true` to
+your init.lua
+
+# Advanced Usage
+
+```lua
+-- To disable highlights for supported plugin(s), call the `with_config` function **before** setting the colorscheme.
+-- These are the defaults.
+require('tinted-colorscheme').with_config({
+    telescope = true,
+    indentblankline = true,
+    notify = true,
+    ts_rainbow = true,
+    cmp = true,
+    illuminate = true,
+    dapui = true,
+})
+
+-- You can get the base16 colors **after** setting the colorscheme by name (base01, base02, etc.)
+local color = require('tinted-colorscheme').colors.base01
+```
+
+# Builtin Colorschemes
+
+```txt
+{{#schemes}}
+{{system}}-{{slug}}
+{{/schemes}}
+```

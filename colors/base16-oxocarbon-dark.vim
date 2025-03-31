@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-oxocarbon-dark'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#161616', base01 = '#262626', base02 = '#393939', base03 = '#525252',
     \ base04 = '#dde1e6', base05 = '#f2f4f8', base06 = '#ffffff', base07 = '#08bdba',
     \ base08 = '#3ddbd9', base09 = '#78a9ff', base0A = '#ee5396', base0B = '#33b1ff',

@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-windows-10-light'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#f2f2f2', base01 = '#e5e5e5', base02 = '#d9d9d9', base03 = '#cccccc',
     \ base04 = '#ababab', base05 = '#767676', base06 = '#414141', base07 = '#0c0c0c',
     \ base08 = '#c50f1f', base09 = '#f9f1a5', base0A = '#c19c00', base0B = '#13a10e',

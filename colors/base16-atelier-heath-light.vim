@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-atelier-heath-light'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#f7f3f7', base01 = '#d8cad8', base02 = '#ab9bab', base03 = '#9e8f9e',
     \ base04 = '#776977', base05 = '#695d69', base06 = '#292329', base07 = '#1b181b',
     \ base08 = '#ca402b', base09 = '#a65926', base0A = '#bb8a35', base0B = '#918b3b',

@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-gruvbox-material-light-soft'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#f2e5bc', base01 = '#ebdbb2', base02 = '#c9b99a', base03 = '#a89984',
     \ base04 = '#665c54', base05 = '#654735', base06 = '#3c3836', base07 = '#282828',
     \ base08 = '#c14a4a', base09 = '#c35e0a', base0A = '#b47109', base0B = '#6c782e',

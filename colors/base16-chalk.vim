@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-chalk'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#151515', base01 = '#202020', base02 = '#303030', base03 = '#505050',
     \ base04 = '#b0b0b0', base05 = '#d0d0d0', base06 = '#e0e0e0', base07 = '#f5f5f5',
     \ base08 = '#fb9fb1', base09 = '#eda987', base0A = '#ddb26f', base0B = '#acc267',

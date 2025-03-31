@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-atelier-cave'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#19171c', base01 = '#26232a', base02 = '#585260', base03 = '#655f6d',
     \ base04 = '#7e7887', base05 = '#8b8792', base06 = '#e2dfe7', base07 = '#efecf4',
     \ base08 = '#be4678', base09 = '#aa573c', base0A = '#a06e3b', base0B = '#2a9292',

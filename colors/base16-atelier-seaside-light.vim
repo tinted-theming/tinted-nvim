@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-atelier-seaside-light'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#f4fbf4', base01 = '#cfe8cf', base02 = '#8ca68c', base03 = '#809980',
     \ base04 = '#687d68', base05 = '#5e6e5e', base06 = '#242924', base07 = '#131513',
     \ base08 = '#e6193c', base09 = '#87711d', base0A = '#98981b', base0B = '#29a329',

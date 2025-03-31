@@ -1,1 +1,1 @@
-return require('base16-colorscheme')
+return require('tinted-colorscheme')

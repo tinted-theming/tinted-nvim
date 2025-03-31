@@ -1,6 +1,6 @@
 -- Some useful links for making your own colorscheme:
 --
--- https://github.com/chriskempson/base16
+-- https://github.com/tinted-theming/home
 -- https://colourco.de/
 -- https://color.adobe.com/create/color-wheel
 -- http://vrl.cs.brown.edu/color
@@ -104,7 +104,7 @@ function M.with_config(config)
     }, config or M.config or {})
 end
 
---- Creates a base16 colorscheme using the colors specified.
+--- Creates a tinted colorscheme using the colors specified.
 --
 -- Builtin colorschemes can be found in the M.colorschemes table.
 --
@@ -134,12 +134,12 @@ function M.setup(colors, config)
     end
 
     -- BASE16_THEME in a tmux session cannot be trusted because of how envs in tmux panes work.
-    local base16_colorscheme = nil
+    local tinted_colorscheme = nil
     if vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
         -- Only trust BASE16_THEME if not inside a tmux pane:
-        base16_colorscheme = M.colorschemes[vim.env.BASE16_THEME]
+        tinted_colorscheme = M.colorschemes[vim.env.BASE16_THEME]
     end
-    M.colors                              = colors or base16_colorscheme or
+    M.colors                              = colors or tinted_colorscheme or
         M.colorschemes['schemer-dark']
     local hi                              = M.highlight
 
@@ -667,32 +667,40 @@ function M.setup(colors, config)
     vim.g.terminal_color_4  = M.colors.base0D
     vim.g.terminal_color_5  = M.colors.base0E
     vim.g.terminal_color_6  = M.colors.base0C
-    vim.g.terminal_color_7  = M.colors.base05
-    vim.g.terminal_color_8  = M.colors.base03
-    vim.g.terminal_color_9  = M.colors.base08
-    vim.g.terminal_color_10 = M.colors.base0B
-    vim.g.terminal_color_11 = M.colors.base0A
-    vim.g.terminal_color_12 = M.colors.base0D
-    vim.g.terminal_color_13 = M.colors.base0E
-    vim.g.terminal_color_14 = M.colors.base0C
+    vim.g.terminal_color_7  = M.colors.base06
+    vim.g.terminal_color_8  = M.colors.base02
+    vim.g.terminal_color_9  = M.colors.base12 or M.colors.base08
+    vim.g.terminal_color_10 = M.colors.base14 or M.colors.base0B
+    vim.g.terminal_color_11 = M.colors.base13 or M.colors.base0A
+    vim.g.terminal_color_12 = M.colors.base16 or M.colors.base0D
+    vim.g.terminal_color_13 = M.colors.base17 or M.colors.base0E
+    vim.g.terminal_color_14 = M.colors.base15 or M.colors.base0C
     vim.g.terminal_color_15 = M.colors.base07
 
-    vim.g.base16_gui00      = M.colors.base00
-    vim.g.base16_gui01      = M.colors.base01
-    vim.g.base16_gui02      = M.colors.base02
-    vim.g.base16_gui03      = M.colors.base03
-    vim.g.base16_gui04      = M.colors.base04
-    vim.g.base16_gui05      = M.colors.base05
-    vim.g.base16_gui06      = M.colors.base06
-    vim.g.base16_gui07      = M.colors.base07
-    vim.g.base16_gui08      = M.colors.base08
-    vim.g.base16_gui09      = M.colors.base09
-    vim.g.base16_gui0A      = M.colors.base0A
-    vim.g.base16_gui0B      = M.colors.base0B
-    vim.g.base16_gui0C      = M.colors.base0C
-    vim.g.base16_gui0D      = M.colors.base0D
-    vim.g.base16_gui0E      = M.colors.base0E
-    vim.g.base16_gui0F      = M.colors.base0F
+    vim.g.tinted_gui00      = M.colors.base00
+    vim.g.tinted_gui01      = M.colors.base01
+    vim.g.tinted_gui02      = M.colors.base02
+    vim.g.tinted_gui03      = M.colors.base03
+    vim.g.tinted_gui04      = M.colors.base04
+    vim.g.tinted_gui05      = M.colors.base05
+    vim.g.tinted_gui06      = M.colors.base06
+    vim.g.tinted_gui07      = M.colors.base07
+    vim.g.tinted_gui08      = M.colors.base08
+    vim.g.tinted_gui09      = M.colors.base09
+    vim.g.tinted_gui0A      = M.colors.base0A
+    vim.g.tinted_gui0B      = M.colors.base0B
+    vim.g.tinted_gui0C      = M.colors.base0C
+    vim.g.tinted_gui0D      = M.colors.base0D
+    vim.g.tinted_gui0E      = M.colors.base0E
+    vim.g.tinted_gui0F      = M.colors.base0F
+    vim.g.tinted_gui10      = M.colors.base10
+    vim.g.tinted_gui11      = M.colors.base11
+    vim.g.tinted_gui12      = M.colors.base12
+    vim.g.tinted_gui13      = M.colors.base13
+    vim.g.tinted_gui14      = M.colors.base14
+    vim.g.tinted_gui15      = M.colors.base15
+    vim.g.tinted_gui16      = M.colors.base16
+    vim.g.tinted_gui17      = M.colors.base17
 end
 
 function M.available_colorschemes()
@@ -747,23 +755,23 @@ M.colorschemes['schemer-medium'] = {
 }
 
 M.load_from_shell = function()
-    -- tinted-theming/base16-shell uses XDG_CONFIG_PATH if present.
+    -- tinted-theming/tinted-shell uses XDG_CONFIG_PATH if present.
     local config_dir = vim.env.XDG_CONFIG_HOME
     if config_dir == nil or config_dir == '' then
         config_dir = '~/.config'
     end
 
     local shell_theme_paths = {
-        -- tinted-theming/base16-shell writes this file
+        -- tinted-theming/tinted-shell writes this file
         config_dir .. "/tinted-theming/set_theme.lua",
-        -- chriskempson/base16-shell writes this file
+        -- chriskempson/tinted-shell writes this file
         "~/.vimrc_background",
     }
 
     for _, path in pairs(shell_theme_paths) do
         local is_readable = vim.fn.filereadable(vim.fn.expand(path)) == 1
         if is_readable then
-            vim.cmd([[let base16colorspace=256]])
+            vim.cmd([[let tinted_colorspace=256]])
             vim.cmd("source " .. path)
             return path
         end

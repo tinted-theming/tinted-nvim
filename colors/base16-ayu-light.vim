@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-ayu-light'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#fafafa', base01 = '#f3f4f5', base02 = '#f8f9fa', base03 = '#abb0b6',
     \ base04 = '#828c99', base05 = '#5c6773', base06 = '#242936', base07 = '#1a1f29',
     \ base08 = '#f07178', base09 = '#fa8d3e', base0A = '#f2ae49', base0B = '#86b300',

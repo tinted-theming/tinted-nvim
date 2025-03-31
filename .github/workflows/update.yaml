@@ -1,35 +1,18 @@
-name: Update with the latest base16 schemes
+name: Update with the latest tinted-theming colorschemes
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "templates/*"
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # Every day
+    - cron: "0 0 * * *" # https://crontab.guru/every-day
 
 jobs:
-  run:
-    runs-on: "ubuntu-latest"
-    permissions:
-      # Give the default GITHUB_TOKEN write permission to commit and push the
-      # added or changed files to the repository.
-      contents: write
-    steps:
-      # tools/build.zsh requires Zsh
-      - name: Install zsh
-        run: "sudo apt-get update && sudo apt-get install zsh"
-
-      # Checkout this repo into the workspace
-      - name: "Fetch the repository code"
-        uses: "actions/checkout@v4.2.2"
-
-      # Update schemes using tinted-builder-rust
-      - name: "Update schemes"
-        uses: "tinted-theming/tinted-builder-rust@latest"
-
-      # Update other artifacts.
-      - run: "tools/build.zsh no-generate"
-        shell: 'zsh {0}'
-
-      # Commit any changes
-      - name: "Commit any changes"
-        uses: "stefanzweifel/git-auto-commit-action@v5.1.0"
-        with:
-          commit_message: "Update with the latest tinted-theming colorschemes"
+  build-and-commit:
+    uses: "tinted-theming/home/.github/workflows/shared-build-template-and-commit-themes.yml@main"
+    secrets:
+      token: ${{ secrets.BOT_ACCESS_TOKEN }}
+    with:
+      ref: ${{ github.head_ref }}

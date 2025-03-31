@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-precious-light-warm'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#fff5e5', base01 = '#ece4d6', base02 = '#d9d3c8', base03 = '#7f8080',
     \ base04 = '#5d6065', base05 = '#4e5359', base06 = '#4e5359', base07 = '#4e5359',
     \ base08 = '#b14745', base09 = '#a25600', base0A = '#876500', base0B = '#557300',

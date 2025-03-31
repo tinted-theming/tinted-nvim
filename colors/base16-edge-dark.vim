@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-edge-dark'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#262729', base01 = '#88909f', base02 = '#b7bec9', base03 = '#3e4249',
     \ base04 = '#73b3e7', base05 = '#b7bec9', base06 = '#d390e7', base07 = '#3e4249',
     \ base08 = '#e77171', base09 = '#e77171', base0A = '#dbb774', base0B = '#a1bf78',

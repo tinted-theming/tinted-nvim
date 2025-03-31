@@ -1,6 +1,6 @@
 hi clear
 let g:colors_name = 'base16-tomorrow'
-lua require('base16-colorscheme').setup({
+lua require('tinted-colorscheme').setup({
     \ base00 = '#ffffff', base01 = '#e0e0e0', base02 = '#d6d6d6', base03 = '#8e908c',
     \ base04 = '#969896', base05 = '#4d4d4c', base06 = '#282a2e', base07 = '#1d1f21',
     \ base08 = '#c82829', base09 = '#f5871f', base0A = '#eab700', base0B = '#718c00',
