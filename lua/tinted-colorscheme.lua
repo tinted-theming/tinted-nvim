@@ -52,6 +52,16 @@ local function darken(hex, pct)
     return string.format("#%s", rgb_to_hex(r, g, b))
 end
 
+local function get_tinty_theme()
+    if vim.fn.executable('tinty') == 1 then
+        local theme_name = vim.fn.system({ "tinty", "current" })
+
+        return vim.trim(theme_name or "")
+    end
+
+    return ""
+end
+
 -- This is a bit of syntactic sugar for creating highlight groups.
 --
 -- local colorscheme = require('colorscheme')
@@ -91,6 +101,7 @@ M.highlight = setmetatable({}, {
 
 function M.with_config(config)
     M.config = vim.tbl_extend("force", {
+        tinty = true,
         telescope = true,
         telescope_borders = false,
         indentblankline = true,
@@ -123,24 +134,83 @@ end
 --   map to a valid 6 digit hex color. If a string is provided, the
 --   corresponding table specifying the colorscheme will be used.
 function M.setup(colors, config)
+    local current_colorscheme_name = vim.g.tinted_current_colorscheme;
+
+    if type('colors') == 'table' or colors == '' or colors == nil then
+        colors = M.colorschemes["schemer-dark"]
+    elseif type('colors') == 'string' then
+        -- Return if the theme is being set to the same theme
+        if colors == current_colorscheme_name then
+          return
+        end
+
+        local ok, colorscheme = pcall(function()
+            vim.g.tinted_current_colorscheme = colors
+            return M.colorschemes[colors]
+        end)
+
+        if ok then
+            colors = colorscheme
+        else
+            vim.g.tinted_current_colorscheme = "schemer-dark"
+            colors = M.colorschemes["schemer-dark"]
+        end
+    end
+
     M.with_config(config)
 
-    if type(colors) == 'string' then
-        colors = M.colorschemes[colors]
+    if M.config.tinty == true then
+        local current_tinty_theme = vim.trim(get_tinty_theme())
+
+        -- If the Tinty theme is not null
+        if current_tinty_theme ~= nil and current_tinty_theme ~= '' then
+            -- Set to Tinty theme if new theme name is different to already set
+            if current_tinty_theme ~= current_colorscheme_name then
+                -- Safely get colorscheme object from Tinty theme name
+                local ok, colorscheme = pcall(function()
+                    return M.colorschemes[current_tinty_theme]
+                end)
+
+                if ok then
+                    vim.g.tinted_current_colorscheme = current_tinty_theme
+                    vim.o.termguicolors = true
+                    vim.g.tinted_colorspace = 256
+                    colors = colorscheme
+                else
+                    vim.notify(
+                        string.format("Failed to load Tinty colorscheme '%s', falling back to default", current_tinty_theme),
+                        vim.log.levels.WARN
+                    )
+                end
+            -- Return if the theme is being set to the same theme
+            else
+                return
+            end
+        else
+            vim.notify(
+                string.format("Failed to load Tinty colorscheme '%s', falling back to default", current_tinty_theme),
+                vim.log.levels.WARN
+            )
+        end
+    -- Only trust BASE16_THEME if not inside a TMUX pane due to how TMUX handles env vars
+    elseif vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
+        -- Safely get colorscheme object from BASE16_THEME env var
+        local ok, colorscheme = pcall(function()
+            return M.colorschemes[vim.env.BASE16_THEME]
+        end)
+
+        if ok then
+            vim.g.tinted_current_colorscheme = vim.env.BASE16_THEME
+            colors = colorscheme
+        end
     end
 
     if vim.fn.exists('syntax_on') then
         vim.cmd('syntax reset')
     end
 
-    -- BASE16_THEME in a tmux session cannot be trusted because of how envs in tmux panes work.
-    local tinted_colorscheme = nil
-    if vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
-        -- Only trust BASE16_THEME if not inside a tmux pane:
-        tinted_colorscheme = M.colorschemes[vim.env.BASE16_THEME]
-    end
-    M.colors                              = colors or tinted_colorscheme or
-        M.colorschemes['schemer-dark']
+    M.colors                              = colors
+
     local hi                              = M.highlight
 
     -- Vim editor colors
@@ -753,30 +823,5 @@ M.colorschemes['schemer-medium'] = {
     base0E = '#c678dd',
     base0F = '#a06949',
 }
-
-M.load_from_shell = function()
-    -- tinted-theming/tinted-shell uses XDG_CONFIG_PATH if present.
-    local config_dir = vim.env.XDG_CONFIG_HOME
-    if config_dir == nil or config_dir == '' then
-        config_dir = '~/.config'
-    end
-
-    local shell_theme_paths = {
-        -- tinted-theming/tinted-shell writes this file
-        config_dir .. "/tinted-theming/set_theme.lua",
-        -- chriskempson/tinted-shell writes this file
-        "~/.vimrc_background",
-    }
-
-    for _, path in pairs(shell_theme_paths) do
-        local is_readable = vim.fn.filereadable(vim.fn.expand(path)) == 1
-        if is_readable then
-            vim.cmd([[let tinted_colorspace=256]])
-            vim.cmd("source " .. path)
-            return path
-        end
-    end
-    return false
-end
 
 return M
