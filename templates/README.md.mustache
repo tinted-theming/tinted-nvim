@@ -5,7 +5,7 @@ builtin LSP and Treesitter.
 
 ```lua
 -- All builtin colorschemes can be accessed with |:colorscheme|.
-vim.cmd('colorscheme base16-gruvbox-dark-soft')
+vim.cmd.colorscheme('base16-gruvbox-dark-soft')
 
 -- Alternatively, you can provide a table specifying your colors to the setup function.
 require('tinted-colorscheme').setup({
@@ -25,13 +25,19 @@ your init.lua
 -- To disable highlights for supported plugin(s), call the `with_config` function **before** setting the colorscheme.
 -- These are the defaults.
 require('tinted-colorscheme').with_config({
-    telescope = true,
-    indentblankline = true,
-    notify = true,
-    ts_rainbow = true,
-    cmp = true,
-    illuminate = true,
-    dapui = true,
+    supports = {
+      tinty = true,
+      tinted_shell = false,
+    },
+    highlights = {
+      telescope = true,
+      indentblankline = true,
+      notify = true,
+      ts_rainbow = true,
+      cmp = true,
+      illuminate = true,
+      dapui = true,
+    }
 })
 
 -- You can get the base16 colors **after** setting the colorscheme by name (base01, base02, etc.)

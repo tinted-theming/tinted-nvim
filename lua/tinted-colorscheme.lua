@@ -100,8 +100,15 @@ M.highlight = setmetatable({}, {
 })
 
 function M.with_config(config)
-    M.config = vim.tbl_extend("force", {
+    if M.config == nil then
+        M.config = {}
+    end
+
+    local supports = vim.tbl_extend("force", {
         tinty = true,
+        tinted_shell = false,
+    }, config.supports or M.config.supports or {})
+    local highlights = vim.tbl_extend("force", {
         telescope = true,
         telescope_borders = false,
         indentblankline = true,
@@ -112,7 +119,11 @@ function M.with_config(config)
         lsp_semantic = true,
         mini_completion = true,
         dapui = true,
-    }, config or M.config or {})
+    }, config.highlights or M.config.highlights or {})
+    M.config = {
+        supports = supports,
+        highlights = highlights,
+    }
 end
 
 --- Creates a tinted colorscheme using the colors specified.
@@ -134,6 +145,8 @@ end
 --   map to a valid 6 digit hex color. If a string is provided, the
 --   corresponding table specifying the colorscheme will be used.
 function M.setup(colors, config)
+    M.with_config(config or {})
+
     local current_colorscheme_name = vim.g.tinted_current_colorscheme;
 
     if type('colors') == 'table' or colors == '' or colors == nil then
@@ -157,9 +170,7 @@ function M.setup(colors, config)
         end
     end
 
-    M.with_config(config)
-
-    if M.config.tinty == true then
+    if M.config.supports.tinty == true then
         local current_tinty_theme = vim.trim(get_tinty_theme())
 
         -- If the Tinty theme is not null
@@ -193,7 +204,7 @@ function M.setup(colors, config)
             )
         end
     -- Only trust BASE16_THEME if not inside a TMUX pane due to how TMUX handles env vars
-    elseif vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
+    elseif M.config.tinted_shell == true and vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
         -- Safely get colorscheme object from BASE16_THEME env var
         local ok, colorscheme = pcall(function()
             return M.colorschemes[vim.env.BASE16_THEME]
@@ -522,7 +533,7 @@ function M.setup(colors, config)
         hi['@markup.list']              = '@punctuation.special'
     end
 
-    if M.config.ts_rainbow then
+    if M.config.highlights.ts_rainbow then
         hi.rainbowcol1 = { guifg = M.colors.base06, ctermfg = M.colors.cterm06 }
         hi.rainbowcol2 = { guifg = M.colors.base09, ctermfg = M.colors.cterm09  }
         hi.rainbowcol3 = { guifg = M.colors.base0A, ctermfg = M.colors.cterm0A }
@@ -552,8 +563,8 @@ function M.setup(colors, config)
 
     hi.TreesitterContext = { guifg = nil, guibg = M.colors.base01, gui = 'italic', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
 
-    if M.config.telescope then
-        if not M.config.telescope_borders and hex_re:match_str(M.colors.base00) and hex_re:match_str(M.colors.base01) and
+    if M.config.highlights.telescope then
+        if not M.config.highlights.telescope_borders and hex_re:match_str(M.colors.base00) and hex_re:match_str(M.colors.base01) and
             hex_re:match_str(M.colors.base02) then
             local darkerbg           = darken(M.colors.base00, 0.1)
             local darkercursorline   = darken(M.colors.base01, 0.1)
@@ -582,7 +593,7 @@ function M.setup(colors, config)
         end
     end
 
-    if M.config.notify then
+    if M.config.highlights.notify then
         hi.NotifyERRORBorder = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
         hi.NotifyWARNBorder  = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
         hi.NotifyINFOBorder  = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
@@ -605,7 +616,7 @@ function M.setup(colors, config)
         hi.NotifyTRACEBody   = 'Normal'
     end
 
-    if M.config.indentblankline then
+    if M.config.highlights.indentblankline then
         hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02 }
         hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04  }
         hi.IblIndent                  = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02  }
@@ -613,7 +624,7 @@ function M.setup(colors, config)
         hi.IblScope                   = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04  }
     end
 
-    if M.config.cmp then
+    if M.config.highlights.cmp then
         hi.CmpDocumentationBorder   = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
         hi.CmpDocumentation         = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
         hi.CmpItemAbbr              = { guifg = M.colors.base05, guibg = M.colors.base01, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
@@ -645,13 +656,13 @@ function M.setup(colors, config)
         hi.CmpItemKindSnippet       = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = nil }
     end
 
-    if M.config.illuminate then
+    if M.config.highlights.illuminate then
         hi.IlluminatedWordText  = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
         hi.IlluminatedWordRead  = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
         hi.IlluminatedWordWrite = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
     end
 
-    if M.config.lsp_semantic then
+    if M.config.highlights.lsp_semantic then
         hi['@class'] = 'TSType'
         hi['@struct'] = 'TSType'
         hi['@enum'] = 'TSType'
@@ -679,11 +690,11 @@ function M.setup(colors, config)
         hi['@lsp.type.decorator'] = '@function'
     end
 
-    if M.config.mini_completion then
+    if M.config.highlights.mini_completion then
         hi.MiniCompletionActiveParameter = 'CursorLine'
     end
 
-    if M.config.dapui then
+    if M.config.highlights.dapui then
         hi.DapUINormal = 'Normal'
         hi.DapUINormal    = "Normal"
         hi.DapUIVariable  = "Normal"
