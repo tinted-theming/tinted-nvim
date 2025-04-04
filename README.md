@@ -19,6 +19,8 @@ require('tinted-colorscheme').setup({
 **Note**: If you don't see colours, try adding `vim.opt.termguicolors = true` to
 your init.lua
 
+Have a look at [Tinted Gallery] for a preview of our themes.
+
 # Advanced Usage
 
 ```lua
@@ -486,3 +488,5 @@ base24-wombat
 base24-wryan
 base24-zenburn
 ```
+
+[Tinted Gallery]: https://tinted-theming.github.io/tinted-gallery/
