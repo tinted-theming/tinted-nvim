@@ -62,6 +62,32 @@ local function get_tinty_theme()
     return ""
 end
 
+-- This function takes in a base16 palette key value and returns the base24
+-- bright variant palette key, otherwise if a base24 bright variant doesn't
+-- exist, it falls back to the key provided initially
+local function get_bright(key)
+    local normal_to_bright_key_color_map = {
+        base01 = "base02", -- Black = Bright Black
+        base02 = "base02", -- Bright Black = Bright Black
+        base03 = "base03", -- Grey = Grey
+        base04 = "base04", -- Light Grey = Light Grey
+        base05 = "base05", -- Foreground = Foreground
+        base06 = "base07", -- White = Bright White
+        base07 = "base07", -- Bright White = Bright White
+        base08 = "base12", -- Red = Bright Red
+        base09 = "base09", -- Orange = Orange
+        base0A = "base13", -- Yellow = Bright Yellow
+        base0B = "base14", -- Green = Bright Green
+        base0C = "base15", -- Cyan = Bright Cyan
+        base0D = "base16", -- Blue = Bright Blue
+        base0E = "base17", -- Purple = Bright Purple
+        base0F = "base0F", -- Brown = Brown
+    }
+    local bright_color_key = normal_to_bright_key_color_map[key]
+
+    return M.colors[bright_color_key] or M.colors[key]
+end
+
 -- This is a bit of syntactic sugar for creating highlight groups.
 --
 -- local colorscheme = require('colorscheme')
@@ -250,7 +276,7 @@ function M.setup(colors, config)
     hi.VisualNOS                          = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
     hi.WarningMsg                         = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
     hi.WildMenu                           = { guifg = M.colors.base08, guibg = M.colors.base0A, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm0A }
-    hi.Title                              = { guifg = M.colors.base0D, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
+    hi.Title                              = { guifg = get_bright("base0D"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
     hi.Conceal                            = { guifg = M.colors.base0D, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
     hi.Cursor                             = { guifg = M.colors.base00, guibg = M.colors.base05, gui = nil, guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm05 }
     hi.NonText                            = { guifg = M.colors.base03, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
@@ -264,7 +290,7 @@ function M.setup(colors, config)
     hi.ColorColumn                        = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
     hi.CursorColumn                       = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
     hi.CursorLine                         = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
-    hi.CursorLineNr                       = { guifg = M.colors.base04, guibg = M.colors.base01, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = M.colors.cterm01 }
+    hi.CursorLineNr                       = { guifg = get_bright("base04"), guibg = M.colors.base01, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = M.colors.cterm01 }
     hi.QuickFixLine                       = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
     hi.PMenu                              = { guifg = M.colors.base05, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
     hi.PMenuSel                           = { guifg = M.colors.base01, guibg = M.colors.base05, gui = nil, guisp = nil, ctermfg = M.colors.cterm01, ctermbg = M.colors.cterm05 }
@@ -341,12 +367,12 @@ function M.setup(colors, config)
     hi.SpellCap                           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0D, ctermfg = nil, ctermbg = nil }
     hi.SpellRare                          = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
 
-    hi.DiagnosticError                    = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
-    hi.DiagnosticWarn                     = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
-    hi.DiagnosticInfo                     = { guifg = M.colors.base0D, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
-    hi.DiagnosticHint                     = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = nil }
-    hi.DiagnosticUnderlineError           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base08, ctermfg = nil, ctermbg = nil }
-    hi.DiagnosticUnderlineWarning         = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
+    hi.DiagnosticError                    = { guifg = get_bright("base08"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
+    hi.DiagnosticWarn                     = { guifg = get_bright("base0E"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
+    hi.DiagnosticInfo                     = { guifg = get_bright("base0D"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
+    hi.DiagnosticHint                     = { guifg = get_bright("base0C"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = nil }
+    hi.DiagnosticUnderlineError           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = get_bright("base08"), ctermfg = nil, ctermbg = nil }
+    hi.DiagnosticUnderlineWarning         = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = get_bright("base0E"), ctermfg = nil, ctermbg = nil }
     hi.DiagnosticUnderlineWarn            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
     hi.DiagnosticUnderlineInformation     = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0F, ctermfg = nil, ctermbg = nil }
     hi.DiagnosticUnderlineHint            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0C, ctermfg = nil, ctermbg = nil }
@@ -534,13 +560,13 @@ function M.setup(colors, config)
     end
 
     if M.config.highlights.ts_rainbow then
-        hi.rainbowcol1 = { guifg = M.colors.base06, ctermfg = M.colors.cterm06 }
-        hi.rainbowcol2 = { guifg = M.colors.base09, ctermfg = M.colors.cterm09  }
-        hi.rainbowcol3 = { guifg = M.colors.base0A, ctermfg = M.colors.cterm0A }
-        hi.rainbowcol4 = { guifg = M.colors.base07, ctermfg = M.colors.cterm07  }
-        hi.rainbowcol5 = { guifg = M.colors.base0C, ctermfg = M.colors.cterm0C  }
-        hi.rainbowcol6 = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D  }
-        hi.rainbowcol7 = { guifg = M.colors.base0E, ctermfg = M.colors.cterm0E  }
+        hi.rainbowcol1 = { guifg = get_bright("base06"), ctermfg = M.colors.cterm06 }
+        hi.rainbowcol2 = { guifg = get_bright("base09"), ctermfg = M.colors.cterm09  }
+        hi.rainbowcol3 = { guifg = get_bright("base0A"), ctermfg = M.colors.cterm0A }
+        hi.rainbowcol4 = { guifg = get_bright("base07"), ctermfg = M.colors.cterm07  }
+        hi.rainbowcol5 = { guifg = get_bright("base0C"), ctermfg = M.colors.cterm0C  }
+        hi.rainbowcol6 = { guifg = get_bright("base0D"), ctermfg = M.colors.cterm0D  }
+        hi.rainbowcol7 = { guifg = get_bright("base0E"), ctermfg = M.colors.cterm0E  }
     end
 
     hi.NvimInternalError = { guifg = M.colors.base00, guibg = M.colors.base08, gui = 'none', guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm08 }
@@ -551,12 +577,12 @@ function M.setup(colors, config)
     hi.TermCursor        = { guifg = M.colors.base00, guibg = M.colors.base05, gui = 'none', guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm05 }
     hi.TermCursorNC      = { guifg = M.colors.base00, guibg = M.colors.base05, gui = nil, guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm05 }
 
-    hi.User1             = { guifg = M.colors.base08, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm02 }
-    hi.User2             = { guifg = M.colors.base0E, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = M.colors.cterm02 }
-    hi.User3             = { guifg = M.colors.base05, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
-    hi.User4             = { guifg = M.colors.base0C, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = M.colors.cterm02 }
-    hi.User5             = { guifg = M.colors.base05, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
-    hi.User6             = { guifg = M.colors.base05, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
+    hi.User1             = { guifg = get_bright("base08"), guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm02 }
+    hi.User2             = { guifg = get_bright("base09"), guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = M.colors.cterm02 }
+    hi.User3             = { guifg = get_bright("base0B"), guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
+    hi.User4             = { guifg = get_bright("base0C"), guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = M.colors.cterm02 }
+    hi.User5             = { guifg = get_bright("base0D"), guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
+    hi.User6             = { guifg = get_bright("base0E"), guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
     hi.User7             = { guifg = M.colors.base05, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
     hi.User8             = { guifg = M.colors.base00, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm02 }
     hi.User9             = { guifg = M.colors.base00, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm02 }
@@ -574,7 +600,7 @@ function M.setup(colors, config)
             hi.TelescopePromptNormal = { guifg = M.colors.base05, guibg = darkerstatusline, gui = nil, guisp = nil }
             hi.TelescopePromptPrefix = { guifg = M.colors.base08, guibg = darkerstatusline, gui = nil, guisp = nil }
             hi.TelescopeNormal       = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil }
-            hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = M.colors.base0B, gui = nil, guisp = nil }
+            hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = get_bright("base0B"), gui = nil, guisp = nil }
             hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = M.colors.base08, gui = nil, guisp = nil }
             hi.TelescopeResultsTitle = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
             hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
@@ -585,7 +611,7 @@ function M.setup(colors, config)
             hi.TelescopePromptNormal = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
             hi.TelescopePromptPrefix = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
             hi.TelescopeNormal       = { guifg = nil, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopePreviewTitle = { guifg = M.colors.base01, guibg = M.colors.base0B, gui = nil, guisp = nil }
+            hi.TelescopePreviewTitle = { guifg = M.colors.base01, guibg = get_bright("base0B"), gui = nil, guisp = nil }
             hi.TelescopePromptTitle  = { guifg = M.colors.base01, guibg = M.colors.base08, gui = nil, guisp = nil }
             hi.TelescopeResultsTitle = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
             hi.TelescopeSelection    = { guifg = nil, guibg = M.colors.base01, gui = nil, guisp = nil }
@@ -750,12 +776,12 @@ function M.setup(colors, config)
     vim.g.terminal_color_6  = M.colors.base0C
     vim.g.terminal_color_7  = M.colors.base06
     vim.g.terminal_color_8  = M.colors.base02
-    vim.g.terminal_color_9  = M.colors.base12 or M.colors.base08
-    vim.g.terminal_color_10 = M.colors.base14 or M.colors.base0B
-    vim.g.terminal_color_11 = M.colors.base13 or M.colors.base0A
-    vim.g.terminal_color_12 = M.colors.base16 or M.colors.base0D
-    vim.g.terminal_color_13 = M.colors.base17 or M.colors.base0E
-    vim.g.terminal_color_14 = M.colors.base15 or M.colors.base0C
+    vim.g.terminal_color_9  = get_bright("base08")
+    vim.g.terminal_color_10 = get_bright("base0B")
+    vim.g.terminal_color_11 = get_bright("base0A")
+    vim.g.terminal_color_12 = get_bright("base0D")
+    vim.g.terminal_color_13 = get_bright("base0E")
+    vim.g.terminal_color_14 = get_bright("base0C")
     vim.g.terminal_color_15 = M.colors.base07
 
     vim.g.tinted_gui00      = M.colors.base00
