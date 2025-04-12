@@ -21,7 +21,9 @@ your init.lua
 
 Have a look at [Tinted Gallery] for a preview of our themes.
 
-# Advanced Usage
+## Advanced Usage
+
+### Config
 
 ```lua
 -- To disable highlights for supported plugin(s), call the `with_config` function **before** setting the colorscheme.
@@ -46,7 +48,26 @@ require('tinted-colorscheme').with_config({
 local color = require('tinted-colorscheme').colors.base01
 ```
 
-# Builtin Colorschemes
+### Auto update when Tinty theme is applied
+
+```lua
+return {
+  "tinted-theming/tinted-nvim",
+  config = function()
+    local tinted = require('tinted-colorscheme')
+
+    -- Initialize
+    tinted.setup()
+
+    -- Apply Tinty colors on window focus if they have change
+    vim.api.nvim_create_autocmd("FocusGained", {
+      callback = function() tinted.setup() end
+    })
+  end
+}
+```
+
+## Builtin Colorschemes
 
 ```txt
 base16-3024
