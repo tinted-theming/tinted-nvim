@@ -150,7 +150,7 @@ function M.setup(colors, config)
     local current_colorscheme_name = vim.g.tinted_current_colorscheme;
 
     if type('colors') == 'table' or colors == '' or colors == nil then
-        colors = M.colorschemes["schemer-dark"]
+        colors = M.colorschemes["tinted-nvim-default"]
     elseif type('colors') == 'string' then
         -- Return if the theme is being set to the same theme
         if colors == current_colorscheme_name then
@@ -165,8 +165,8 @@ function M.setup(colors, config)
         if ok then
             colors = colorscheme
         else
-            vim.g.tinted_current_colorscheme = "schemer-dark"
-            colors = M.colorschemes["schemer-dark"]
+            vim.g.tinted_current_colorscheme = "tinted-nvim-default"
+            colors = M.colorschemes["tinted-nvim-default"]
         end
     end
 
@@ -796,43 +796,12 @@ setmetatable(M.colorschemes, {
     end,
 })
 
--- #16161D is called eigengrau and is kinda-ish the color your see when you
--- close your eyes. It makes for a really good background.
-M.colorschemes['schemer-dark'] = {
-    base00 = '#16161D',
-    base01 = '#3e4451',
-    base02 = '#2c313c',
-    base03 = '#565c64',
-    base04 = '#6c7891',
-    base05 = '#abb2bf',
-    base06 = '#9a9bb3',
-    base07 = '#c5c8e6',
-    base08 = '#e06c75',
-    base09 = '#d19a66',
-    base0A = '#e5c07b',
-    base0B = '#98c379',
-    base0C = '#56b6c2',
-    base0D = '#0184bc',
-    base0E = '#c678dd',
-    base0F = '#a06949',
-}
-M.colorschemes['schemer-medium'] = {
-    base00 = '#212226',
-    base01 = '#3e4451',
-    base02 = '#2c313c',
-    base03 = '#565c64',
-    base04 = '#6c7891',
-    base05 = '#abb2bf',
-    base06 = '#9a9bb3',
-    base07 = '#c5c8e6',
-    base08 = '#e06c75',
-    base09 = '#d19a66',
-    base0A = '#e5c07b',
-    base0B = '#98c379',
-    base0C = '#56b6c2',
-    base0D = '#0184bc',
-    base0E = '#c678dd',
-    base0F = '#a06949',
+-- Fallback colorscheme
+M.colorschemes['tinted-nvim-default'] = {
+    base00 = "#0F1419", base01 = "#131721", base02 = "#272D38", base03 = "#3E4B59",
+    base04 = "#BFBDB6", base05 = "#E6E1CF", base06 = "#E6E1CF", base07 = "#F3F4F5",
+    base08 = "#F07178", base09 = "#FF8F40", base0A = "#FFB454", base0B = "#B8CC52",
+    base0C = "#95E6CB", base0D = "#59C2FF", base0E = "#D2A6FF", base0F = "#E6B673",
 }
 
 return M
