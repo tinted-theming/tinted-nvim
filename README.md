@@ -3,16 +3,168 @@
 Neovim plugin for building Tinted Theming colorschemes with support for Neovim's
 builtin LSP and Treesitter.
 
+For smoothest usage, we recommend using [Tinty] in conjunction with
+`tinted-nvim`.
+
+Have a look at [Tinted Gallery] for a preview of our themes.
+
+# 🚀 Quickstart
+
+```lua
+-- Enable true color support (recommended)
+vim.opt.termguicolors = true
+
+-- Load the colorscheme
+require('tinted-colorscheme').setup('base16-ayu-dark')
+
+-- Or use any available theme via `:colorscheme`
+vim.cmd.colorscheme('base16-ayu-dark')
+```
+
+## 📦 Installation
+
+To get the most accurate colors and full Base24 support, enable true color in
+your Neovim config:
+
+```lua
+vim.opt.termguicolors = true
+```
+
+### lazy.nvim
+
+```lua
+return {
+  "tinted-theming/tinted-nvim",
+}
+```
+
+### Packer
+
+```lua
+use {
+  'tinted-theming/tinted-nvim',
+}
+```
+
+### vim-plug
+
+```lua
+Plug 'tinted-theming/tinted-nvim'
+```
+
+## 🧪 Basic Usage
+
 ```lua
 -- All builtin colorschemes can be accessed with |:colorscheme|.
-vim.cmd.colorscheme('base16-gruvbox-dark-soft')
+vim.cmd.colorscheme('base16-ayu-dark')
+```
 
--- Alternatively, you can provide a table specifying your colors to the setup function.
-require('tinted-colorscheme').setup({
-    base00 = '#16161D', base01 = '#2c313c', base02 = '#3e4451', base03 = '#6c7891',
-    base04 = '#565c64', base05 = '#abb2bf', base06 = '#9a9bb3', base07 = '#c5c8e6',
-    base08 = '#e06c75', base09 = '#d19a66', base0A = '#e5c07b', base0B = '#98c379',
-    base0C = '#56b6c2', base0D = '#0184bc', base0E = '#c678dd', base0F = '#a06949',
+## 🔧 Advanced Usage
+
+### ⚙️ Configuration Options
+
+The `require('tinted-colorscheme').setup()` function can be called with two
+optional arguments: a theme or a config table.
+
+#### Colors Parameter (optional)
+
+| Type        | Description                                                                                                    |
+| ----------- | -------------------------------------------------------------------------------------------------------------- |
+| `string`    | Name of a registered theme (e.g. "base16-ayu-dark")                                                            |
+| `table`     | A custom Base16/Base24 color table with keys from `base00` to `base17`                                         |
+| `undefined` | If omitted, will try to detect a theme from [Tinty], or fall back to "tinted-nvim-default" (`base16-ayu-dark`) |
+
+**Examples**:
+
+- `string`: `require('tinted-colorscheme').setup('base16-ayu-dark')`
+- `table`:
+  ```lua
+  require('tinted-colorscheme').setup({
+    base00 = "#0f1419", base01 = "#131721", base02 = "#272d38", base03 = "#3e4b59",
+    base04 = "#bfbdb6", base05 = "#e6e1cf", base06 = "#e6e1cf", base07 = "#f3f4f5",
+    base08 = "#f07178", base09 = "#ff8f40", base0A = "#ffb454", base0B = "#b8cc52",
+    base0C = "#95e6cb", base0D = "#59c2ff", base0E = "#d2a6ff", base0F = "#e6b673",
+  })
+  ```
+- `undefined`: `require('tinted-colorscheme').setup()`
+
+#### Config Parameter (optional)
+
+| Key          | Type    | Description                                                                       |
+| ------------ | ------- | --------------------------------------------------------------------------------- |
+| `supports`   | `table` | Controls external sources for color selection                                     |
+| `highlights` | `table` | Enables or disables plugin integrations and highlight groups (Enabled by default) |
+
+##### `supports` Options
+
+| Key            | Default | Description                                                                 |
+| -------------- | ------- | --------------------------------------------------------------------------- |
+| `tinty`        | `true`  | If `true`, attempts to use current [Tinty] theme if available               |
+| `tinted_shell` | `false` | If `true`, allows detection from `BASE16_THEME` env var (only outside tmux) |
+
+##### `highlights` Options
+
+| Key                 | Default | Description                                    |
+| ------------------- | ------- | ---------------------------------------------- |
+| `telescope`         | `true`  | Enables Telescope highlight groups             |
+| `telescope_borders` | `false` | Enables borders in Telescope                   |
+| `indentblankline`   | `true`  | Enables indent-blankline.nvim highlight groups |
+| `notify`            | `true`  | Enables nvim-notify highlights                 |
+| `ts_rainbow`        | `true`  | Enables rainbow brackets via Treesitter        |
+| `cmp`               | `true`  | Enables nvim-cmp highlight groups              |
+| `illuminate`        | `true`  | Enables vim-illuminate highlights              |
+| `lsp_semantic`      | `true`  | Enables semantic token highlights from LSP     |
+| `mini_completion`   | `true`  | Enables highlights for mini.completion         |
+| `dapui`             | `true`  | Enables highlights for nvim-dap-ui             |
+
+**Example**:
+
+```lua
+require("tinted-colorscheme").setup("base16-ayu-dark", {
+  supports = {
+    tinty = true,
+    tinted_shell = false,
+  },
+  highlights = {
+    telescope = true,
+    telescope_borders = false,
+    indentblankline = true,
+    notify = true,
+    cmp = true,
+    ts_rainbow = true,
+    illuminate = true,
+    lsp_semantic = true,
+    mini_completion = true,
+    dapui = true,
+  }
+})
+```
+
+You can access the Base16 and Base24 colors **after** setting the colorscheme by
+name (`base01`, `base02`, ..., `base17`)
+
+```lua
+local red = require('tinted-colorscheme').colors.base08
+```
+
+### 🎨 Tinty
+
+`.setup()` will use the current [Tinty] theme, which is retrieved from
+`tinty current`. If Tinty is not installed or `tinty current` does not return a
+value, "tinted-nvim-default" (`base16-ayu-dark`) will be used as a fallback
+theme.
+
+To have tinted-nvim update the theme when `tinty apply ayu-dark` is run, you
+need to tell Neovim to update and the easiest way to do this is to update the
+theme when Neovim is given focus. The following will update the theme, on window
+focus, if the theme has changed:
+
+```lua
+local tinted = require('tinted-colorscheme')
+tinted.setup()
+
+vim.api.nvim_create_autocmd("FocusGained", {
+  callback = function() tinted.setup() end
 })
 ```
 
@@ -21,7 +173,9 @@ your init.lua
 
 Have a look at [Tinted Gallery] for a preview of our themes.
 
-# Advanced Usage
+## Advanced Usage
+
+### Config
 
 ```lua
 -- To disable highlights for supported plugin(s), call the `with_config` function **before** setting the colorscheme.
@@ -42,11 +196,10 @@ require('tinted-colorscheme').with_config({
     }
 })
 
--- You can get the base16 colors **after** setting the colorscheme by name (base01, base02, etc.)
-local color = require('tinted-colorscheme').colors.base01
-```
+## 🗂️ Builtin Colorschemes
 
-# Builtin Colorschemes
+You can use any of the following schemes with `:colorscheme` (for example
+`:colorscheme base16-ayu-dark`):
 
 ```txt
 base16-3024
@@ -489,4 +642,5 @@ base24-wryan
 base24-zenburn
 ```
 
+[Tinty]: https://github.com/tinted-theming/tinty
 [Tinted Gallery]: https://tinted-theming.github.io/tinted-gallery/
