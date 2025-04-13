@@ -195,6 +195,7 @@ require('tinted-colorscheme').with_config({
       dapui = true,
     }
 })
+```
 
 ## 🗂️ Builtin Colorschemes
 
