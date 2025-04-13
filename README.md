@@ -280,6 +280,7 @@ base16-decaf
 base16-deep-oceanic-next
 base16-default-dark
 base16-default-light
+base16-digital-rain
 base16-dirtysea
 base16-dracula
 base16-edge-dark
@@ -315,9 +316,11 @@ base16-gruvbox-dark-hard
 base16-gruvbox-dark-medium
 base16-gruvbox-dark-pale
 base16-gruvbox-dark-soft
+base16-gruvbox-dark-medium
 base16-gruvbox-light-hard
 base16-gruvbox-light-medium
 base16-gruvbox-light-soft
+base16-gruvbox-light
 base16-gruvbox-material-dark-hard
 base16-gruvbox-material-dark-medium
 base16-gruvbox-material-dark-soft
@@ -343,6 +346,7 @@ base16-icy
 base16-irblack
 base16-isotope
 base16-jabuti
+base16-kanagawa-dragon
 base16-kanagawa
 base16-katy
 base16-kimber
@@ -524,6 +528,7 @@ base24-dracula
 base24-earthsong
 base24-elemental
 base24-elementary
+base24-embarcadero
 base24-encom
 base24-espresso-libre
 base24-espresso
@@ -541,6 +546,7 @@ base24-galaxy
 base24-github
 base24-grape
 base24-gruvbox-dark
+base24-gruvbox-light
 base24-hacktober
 base24-hardcore
 base24-highway
@@ -569,6 +575,7 @@ base24-material-dark
 base24-material
 base24-mathias
 base24-medailion
+base24-mission-brogue
 base24-misterioso
 base24-molokai
 base24-mona-lisa
