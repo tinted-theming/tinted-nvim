@@ -650,5 +650,11 @@ base24-wryan
 base24-zenburn
 ```
 
+## Mentions
+
+This repository is forked from [base16-nvim], special thanks to all the
+contributors for work they've done.
+
 [Tinty]: https://github.com/tinted-theming/tinty
 [Tinted Gallery]: https://tinted-theming.github.io/tinted-gallery/
+[base16-nvim]: https://github.com/RRethy/base16-nvim
