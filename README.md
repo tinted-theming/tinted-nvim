@@ -304,6 +304,7 @@ base16-flat
 base16-framer
 base16-fruit-soda
 base16-gigavolt
+base16-github-dark
 base16-github
 base16-google-dark
 base16-google-light
@@ -543,7 +544,8 @@ base24-framer
 base24-front-end-delight
 base24-fun-forrest
 base24-galaxy
-base24-github
+base24-github-dark
+base24-github-light
 base24-grape
 base24-gruvbox-dark
 base24-gruvbox-light
