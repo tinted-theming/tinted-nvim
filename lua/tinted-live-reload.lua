@@ -25,7 +25,6 @@ local function start_watcher(callback)
   if not vim.fn.filereadable(full_path) then
     return
   end
-  vim.notify(full_path, vim.log.levels.INFO)
   fwatch.watch(full_path, {
     on_event = function()
       schedule_trigger(callback)
