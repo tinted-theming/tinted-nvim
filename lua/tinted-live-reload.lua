@@ -10,7 +10,7 @@ local function check_prerequisites()
 end
 
 local function trigger_autocmd()
-  vim.cmd([[doautocmd User Base16ReloadPost]])
+  vim.cmd([[doautocmd User TintedReloadPost]])
 end
 
 local function schedule_trigger(callback)
