@@ -132,6 +132,7 @@ function M.with_config(config)
 
     local supports = vim.tbl_extend("force", {
         tinty = true,
+        live_reload = false,
         tinted_shell = false,
     }, config.supports or M.config.supports or {})
     local highlights = vim.tbl_extend("force", {
@@ -152,100 +153,11 @@ function M.with_config(config)
     }
 end
 
---- Creates a tinted colorscheme using the colors specified.
---
--- Builtin colorschemes can be found in the M.colorschemes table.
---
--- The default Vim highlight groups (including User[1-9]), highlight groups
--- pertaining to Neovim's builtin LSP, and highlight groups pertaining to
--- Treesitter will be defined.
---
--- It's worth noting that many colorschemes will specify language specific
--- highlight groups like rubyConstant or pythonInclude. However, I don't do
--- that here since these should instead be linked to an existing highlight
--- group.
---
--- @param colors (table) table with keys 'base00', 'base01', 'base02',
---   'base03', 'base04', 'base05', 'base06', 'base07', 'base08', 'base09',
---   'base0A', 'base0B', 'base0C', 'base0D', 'base0E', 'base0F'. Each key should
---   map to a valid 6 digit hex color. If a string is provided, the
---   corresponding table specifying the colorscheme will be used.
-function M.setup(colors, config)
-    M.with_config(config or {})
+local function trigger_autocmd()
+  vim.cmd([[doautocmd User TintedColorsPost]])
+end
 
-    local current_colorscheme_name = vim.g.tinted_current_colorscheme;
-
-    if type('colors') == 'table' or colors == '' or colors == nil then
-        colors = M.colorschemes["tinted-nvim-default"]
-    elseif type('colors') == 'string' then
-        -- Return if the theme is being set to the same theme
-        if colors == current_colorscheme_name then
-          return
-        end
-
-        local ok, colorscheme = pcall(function()
-            vim.g.tinted_current_colorscheme = colors
-            return M.colorschemes[colors]
-        end)
-
-        if ok then
-            colors = colorscheme
-        else
-            vim.g.tinted_current_colorscheme = "tinted-nvim-default"
-            colors = M.colorschemes["tinted-nvim-default"]
-        end
-    end
-
-    if M.config.supports.tinty == true then
-        local current_tinty_theme = vim.trim(get_tinty_theme())
-
-        -- If the Tinty theme is not null
-        if current_tinty_theme ~= nil and current_tinty_theme ~= '' then
-            -- Set to Tinty theme if new theme name is different to already set
-            if current_tinty_theme ~= current_colorscheme_name then
-                -- Safely get colorscheme object from Tinty theme name
-                local ok, colorscheme = pcall(function()
-                    return M.colorschemes[current_tinty_theme]
-                end)
-
-                if ok then
-                    vim.g.tinted_current_colorscheme = current_tinty_theme
-                    vim.o.termguicolors = true
-                    vim.g.tinted_colorspace = 256
-                    colors = colorscheme
-                else
-                    vim.notify(
-                        string.format("Failed to load Tinty colorscheme '%s', falling back to default", current_tinty_theme),
-                        vim.log.levels.WARN
-                    )
-                end
-            -- Return if the theme is being set to the same theme
-            else
-                return
-            end
-        else
-            vim.notify(
-                string.format("Failed to load Tinty colorscheme '%s', falling back to default", current_tinty_theme),
-                vim.log.levels.WARN
-            )
-        end
-    -- Only trust BASE16_THEME if not inside a TMUX pane due to how TMUX handles env vars
-    elseif M.config.tinted_shell == true and vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
-        -- Safely get colorscheme object from BASE16_THEME env var
-        local ok, colorscheme = pcall(function()
-            return M.colorschemes[vim.env.BASE16_THEME]
-        end)
-
-        if ok then
-            vim.g.tinted_current_colorscheme = vim.env.BASE16_THEME
-            colors = colorscheme
-        end
-    end
-
-    if vim.fn.exists('syntax_on') then
-        vim.cmd('syntax reset')
-    end
-
+local function set_colors(colors)
     M.colors                              = colors
 
     local hi                              = M.highlight
@@ -808,6 +720,123 @@ function M.setup(colors, config)
     vim.g.tinted_gui15      = M.colors.base15
     vim.g.tinted_gui16      = M.colors.base16
     vim.g.tinted_gui17      = M.colors.base17
+
+    trigger_autocmd()
+end
+
+local function detect_colors_from_tinty()
+        local current_tinty_theme = vim.trim(get_tinty_theme())
+
+        -- If the Tinty theme is not null
+        if current_tinty_theme ~= nil and current_tinty_theme ~= '' then
+            -- Set to Tinty theme if new theme name is different to already set
+            if current_tinty_theme ~= current_colorscheme_name then
+                -- Safely get colorscheme object from Tinty theme name
+                local ok, colorscheme = pcall(function()
+                    return M.colorschemes[current_tinty_theme]
+                end)
+
+                if ok then
+                    vim.g.tinted_current_colorscheme = current_tinty_theme
+                    vim.o.termguicolors = true
+                    vim.g.tinted_colorspace = 256
+                    return colorscheme
+                else
+                    vim.notify(
+                        string.format("Failed to load Tinty colorscheme '%s', falling back to default", current_tinty_theme),
+                        vim.log.levels.WARN
+                    )
+                end
+            -- Return if the theme is being set to the same theme
+            else
+                return
+            end
+        else
+            vim.notify(
+                string.format("Failed to load Tinty colorscheme '%s', falling back to default", current_tinty_theme),
+                vim.log.levels.WARN
+            )
+        end
+end
+
+--- Creates a tinted colorscheme using the colors specified.
+--
+-- Builtin colorschemes can be found in the M.colorschemes table.
+--
+-- The default Vim highlight groups (including User[1-9]), highlight groups
+-- pertaining to Neovim's builtin LSP, and highlight groups pertaining to
+-- Treesitter will be defined.
+--
+-- It's worth noting that many colorschemes will specify language specific
+-- highlight groups like rubyConstant or pythonInclude. However, I don't do
+-- that here since these should instead be linked to an existing highlight
+-- group.
+--
+-- @param colors (table) table with keys 'base00', 'base01', 'base02',
+--   'base03', 'base04', 'base05', 'base06', 'base07', 'base08', 'base09',
+--   'base0A', 'base0B', 'base0C', 'base0D', 'base0E', 'base0F'. Each key should
+--   map to a valid 6 digit hex color. If a string is provided, the
+--   corresponding table specifying the colorscheme will be used.
+function M.setup(colors, config)
+    M.with_config(config or {})
+
+    local current_colorscheme_name = vim.g.tinted_current_colorscheme;
+
+    if type('colors') == 'table' or colors == '' or colors == nil then
+        colors = M.colorschemes["tinted-nvim-default"]
+    elseif type('colors') == 'string' then
+        -- Return if the theme is being set to the same theme
+        if colors == current_colorscheme_name then
+          return
+        end
+
+        local ok, colorscheme = pcall(function()
+            vim.g.tinted_current_colorscheme = colors
+            return M.colorschemes[colors]
+        end)
+
+        if ok then
+            colors = colorscheme
+        else
+            vim.g.tinted_current_colorscheme = "tinted-nvim-default"
+            colors = M.colorschemes["tinted-nvim-default"]
+        end
+    end
+
+    -- Live-reload only supports reading current theme from Tinty.
+    if M.config.supports.live_reload == true and M.config.supports.tinty == false then
+        vim.notify(
+            "Live-reload feature only works with Tinty integration.",
+            vim.log.levels.WARN
+        )
+    end
+
+    if M.config.supports.tinty == true then
+        colors = detect_colors_from_tinty()
+        if M.config.supports.live_reload then
+            require("tinted-live-reload").setup_live_reload(function()
+                set_colors(detect_colors_from_tinty())
+            end)
+        end
+
+    -- Only trust BASE16_THEME if not inside a TMUX pane due to how TMUX handles env vars
+    elseif M.config.tinted_shell == true and vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
+        -- Safely get colorscheme object from BASE16_THEME env var
+        local ok, colorscheme = pcall(function()
+            return M.colorschemes[vim.env.BASE16_THEME]
+        end)
+
+        if ok then
+            vim.g.tinted_current_colorscheme = vim.env.BASE16_THEME
+            colors = colorscheme
+        end
+    end
+
+    if vim.fn.exists('syntax_on') then
+        vim.cmd('syntax reset')
+    end
+
+    set_colors(colors)
 end
 
 function M.available_colorschemes()
