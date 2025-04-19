@@ -14,6 +14,11 @@ local function schedule_trigger(callback)
 end
 
 local function start_watcher(callback)
+  if vim.g.tinted_live_reload_registered then
+    return
+  end
+  vim.g.tinted_live_reload_registered = true
+
   local fwatch = require("fwatch")
   local file_path = "~/.local/share/tinted-theming/tinty/current_scheme"
   local full_path = vim.fn.expand(file_path)
