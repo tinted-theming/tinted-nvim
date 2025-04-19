@@ -153,6 +153,10 @@ function M.with_config(config)
     }
 end
 
+local function trigger_autocmd()
+  vim.cmd([[doautocmd User TintedColorsPost]])
+end
+
 local function set_colors(colors)
     M.colors                              = colors
 
@@ -716,6 +720,8 @@ local function set_colors(colors)
     vim.g.tinted_gui15      = M.colors.base15
     vim.g.tinted_gui16      = M.colors.base16
     vim.g.tinted_gui17      = M.colors.base17
+
+    trigger_autocmd()
 end
 
 local function detect_colors_from_tinty()

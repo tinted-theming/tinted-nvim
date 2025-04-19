@@ -9,13 +9,8 @@ local function check_prerequisites()
   return true
 end
 
-local function trigger_autocmd()
-  vim.cmd([[doautocmd User TintedReloadPost]])
-end
-
 local function schedule_trigger(callback)
   vim.schedule(callback)
-  vim.schedule(trigger_autocmd)
 end
 
 local function start_watcher(callback)
@@ -38,7 +33,6 @@ M.setup_live_reload = function(callback)
     -- Required plugins aren't present. Stop.
     return
   end
-  schedule_trigger(callback)
   start_watcher(callback)
 end
 
