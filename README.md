@@ -317,7 +317,7 @@ base16-gruvbox-dark-hard
 base16-gruvbox-dark-medium
 base16-gruvbox-dark-pale
 base16-gruvbox-dark-soft
-base16-gruvbox-dark-medium
+base16-gruvbox-dark
 base16-gruvbox-light-hard
 base16-gruvbox-light-medium
 base16-gruvbox-light-soft
