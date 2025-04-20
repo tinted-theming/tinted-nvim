@@ -20,7 +20,7 @@ local function start_watcher(callback)
   vim.g.tinted_live_reload_registered = true
 
   local fwatch = require("fwatch")
-  local file_path = "~/.local/share/tinted-theming/tinty/current_scheme"
+  local file_path = vim.fn.system({ "tinty", "config", "--data-dir-path" }) .. "current_scheme"
   local full_path = vim.fn.expand(file_path)
   if not vim.fn.filereadable(full_path) then
     return
