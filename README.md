@@ -97,10 +97,11 @@ optional arguments: a theme or a config table.
 
 ##### `supports` Options
 
-| Key            | Default | Description                                                                 |
-| -------------- | ------- | --------------------------------------------------------------------------- |
-| `tinty`        | `true`  | If `true`, attempts to use current [Tinty] theme if available               |
-| `tinted_shell` | `false` | If `true`, allows detection from `BASE16_THEME` env var (only outside tmux) |
+| Key            | Default | Description                                                                                |
+| -------------- | ------- | -------------------------------------------------------------------------------------------|
+| `tinty`        | `true`  | If `true`, attempts to use current [Tinty] theme if available                              |
+| `tinted_shell` | `false` | If `true`, allows detection from `BASE16_THEME` env var (only outside tmux)                |
+| `live_reload`  | `true`  | If `true`, open Neovim instances live reloads whenever [Tinty] applies a theme system-wide |
 
 ##### `highlights` Options
 
@@ -154,25 +155,35 @@ local red = require('tinted-colorscheme').colors.base08
 value, "tinted-nvim-default" (`base16-ayu-dark`) will be used as a fallback
 theme.
 
-To have tinted-nvim update the theme when `tinty apply ayu-dark` is run, you
-need to tell Neovim to update and the easiest way to do this is to update the
-theme when Neovim is given focus. The following will update the theme, on window
-focus, if the theme has changed:
+To have tinted-nvim automatically update the theme when `tinty apply ayu-dark` is run, you can enable
+the live-reload feature.
 
 ```lua
 local tinted = require('tinted-colorscheme')
-tinted.setup()
-
-vim.api.nvim_create_autocmd("FocusGained", {
-  callback = function() tinted.setup() end
+tinted.setup(nil, {
+  supports = {
+    live_reload = true
+  }
 })
 ```
 
-**Note**: If you don't see colours, try adding `vim.opt.termguicolors = true` to
-your init.lua
+The live-reload feature depends on [fwatch.nvim]. Add this dependency in whatever manner your plugin manager allows you.
+For example, with **lazy.nvim**:
+
+```diff
+ return {
+   "tinted-theming/tinted-nvim",
++  dependencies = {
++    { "rktjmp/fwatch.nvim" },
++  }
+ }
+```
+
+> ![NOTE]
+> If you don't see colours, try adding `vim.opt.termguicolors = true` to
+> your init.lua
 
 Have a look at [Tinted Gallery] for a preview of our themes.
-
 ## Advanced Usage
 
 ### Config
@@ -184,6 +195,7 @@ require('tinted-colorscheme').with_config({
     supports = {
       tinty = true,
       tinted_shell = false,
+      live_reload = false -- If set to true, requires rktjump/fwatch.nvim as a dependency
     },
     highlights = {
       telescope = true,
@@ -194,6 +206,19 @@ require('tinted-colorscheme').with_config({
       illuminate = true,
       dapui = true,
     }
+})
+```
+
+### Autocmd
+
+```lua
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TintedColorsPost",
+  callback = function()
+    -- Do things whenever the theme changes.
+    local colors = require("tinted-colorscheme").colors
+  end,
 })
 ```
 
@@ -660,3 +685,4 @@ contributors for work they've done.
 [Tinty]: https://github.com/tinted-theming/tinty
 [Tinted Gallery]: https://tinted-theming.github.io/tinted-gallery/
 [base16-nvim]: https://github.com/RRethy/base16-nvim
+[fwatch.nvim]: https://github.com/rktjump/fwatch.nvim
