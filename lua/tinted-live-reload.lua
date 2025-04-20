@@ -20,16 +20,36 @@ local function start_watcher(callback)
   vim.g.tinted_live_reload_registered = true
 
   local fwatch = require("fwatch")
-  local file_path = vim.fn.system({ "tinty", "config", "--data-dir-path" }) .. "current_scheme"
-  local full_path = vim.fn.expand(file_path)
-  if not vim.fn.filereadable(full_path) then
-    return
-  end
-  fwatch.watch(full_path, {
-    on_event = function()
-      schedule_trigger(callback)
-    end,
-  })
+
+  -- The first line of the output is the path to the data directory.
+  -- We need to watch the "current_scheme" file in that directory.
+  -- The output is a list of lines, so we take the first line.
+  -- The path is trimmed to remove any leading or trailing whitespace.
+  -- We check if the path is not empty.
+  local job = vim.fn.jobstart(
+    { "tinty", "config", "--data-dir-path" },
+    {
+      on_stdout = function(_, data)
+        if data == nil or #data == 0 then
+          return
+        end
+        local path = vim.fn.trim(data[1])
+        if #path == 0 then
+          return
+        end
+        local file_path = path .. "current_scheme"
+        if not vim.fn.filereadable(file_path) then
+          vim.notify(string.format("File %s is not readable.", file_path), vim.log.levels.ERROR)
+          return
+        end
+        fwatch.watch(file_path, {
+          on_event = function()
+            schedule_trigger(callback)
+          end,
+        })
+      end,
+    }
+  )
 end
 
 M.setup_live_reload = function(callback)
