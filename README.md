@@ -101,7 +101,7 @@ optional arguments: a theme or a config table.
 | -------------- | ------- | -------------------------------------------------------------------------------------------|
 | `tinty`        | `true`  | If `true`, attempts to use current [Tinty] theme if available                              |
 | `tinted_shell` | `false` | If `true`, allows detection from `BASE16_THEME` env var (only outside tmux)                |
-| `live_relaod`  | `true`  | If `true`, open Neovim instances live reloads whenever [Tinty] applies a theme system-wide |
+| `live_reload`  | `true`  | If `true`, open Neovim instances live reloads whenever [Tinty] applies a theme system-wide |
 
 ##### `highlights` Options
 
@@ -181,7 +181,7 @@ For example, with **lazy.nvim**:
 
 > ![NOTE]
 > If you don't see colours, try adding `vim.opt.termguicolors = true` to
-your init.lua
+> your init.lua
 
 Have a look at [Tinted Gallery] for a preview of our themes.
 ## Advanced Usage
@@ -195,7 +195,7 @@ require('tinted-colorscheme').with_config({
     supports = {
       tinty = true,
       tinted_shell = false,
-      live_reload = false -- If set to true, requires rktjump/fwatch.nvim
+      live_reload = false -- If set to true, requires rktjump/fwatch.nvim as a dependency
     },
     highlights = {
       telescope = true,
