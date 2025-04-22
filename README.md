@@ -179,7 +179,7 @@ For example, with **lazy.nvim**:
  }
 ```
 
-> ![NOTE]
+> [!NOTE]
 > If you don't see colours, try adding `vim.opt.termguicolors = true` to
 > your init.lua
 
