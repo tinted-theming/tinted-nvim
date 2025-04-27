@@ -835,7 +835,7 @@ function M.setup(colors, config)
     if M.config.supports.tinty == true then
         -- Second, if Tinty support is enabled we'll detect the current Tinty scheme.
         -- We skip this if we already arrived at a color-table (explicitly provided or from string)
-        if not is_suitable_color_table(colors) then
+        if not is_suitable_color_table(colors_to_use) then
             colors_to_use, name = detect_colors_from_tinty()
             vim.g.tinty_current_colorscheme = name
             vim.g.colors_name = name
@@ -855,7 +855,7 @@ function M.setup(colors, config)
     end
 
     -- Third in priority is detecting colors based on BASE16_THEME env variable
-    if is_suitable_color_table(colors) == false and M.config.tinted_shell == true and vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
+    if is_suitable_color_table(colors_to_use) == false and M.config.tinted_shell == true and vim.env.TMUX == nil and vim.env.BASE16_THEME ~= nil then
         -- Only trust BASE16_THEME if not inside a TMUX pane due to how TMUX handles env vars
         -- Safely get colorscheme object from BASE16_THEME env var
         local ok, colorscheme = pcall(function()
