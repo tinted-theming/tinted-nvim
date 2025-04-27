@@ -7,26 +7,26 @@
 --
 
 --- @class SupportsConfig
---- @field tinty boolean Integrate with Tinty CLI
---- @field live_reload boolean Automatically reload with a new theme is picked via Tinty
---- @field tinted_shell boolean Load the colorscheme set by tinted-theming/tinted-shell.
+--- @field tinty? boolean Integrate with Tinty CLI
+--- @field live_reload? boolean Automatically reload with a new theme is picked via Tinty
+--- @field tinted_shell? boolean Load the colorscheme set by tinted-theming/tinted-shell.
 ---
 --- @class HighlightsConfig
---- @field telescope boolean Set highlights for Telescope
---- @field telescope_borders boolean Set highlights for Telescope borders
---- @field indentblankline boolean Set highlights for indentblankline
---- @field notify boolean Set highlights for notify
---- @field ts_rainbow boolean  Set highlights for ts_rainbow
---- @field cmp boolean  Set highlights for cmp
---- @field illuminate boolean Set highlights for illuminate
---- @field lsp_semantic boolean Set LSP semantic highlights
---- @field mini_completion boolean Set highlights for mini.completion
---- @field dapui boolean Set highlights for dapui
+--- @field telescope? boolean Set highlights for Telescope
+--- @field telescope_borders? boolean Set highlights for Telescope borders
+--- @field indentblankline? boolean Set highlights for indentblankline
+--- @field notify? boolean Set highlights for notify
+--- @field ts_rainbow? boolean  Set highlights for ts_rainbow
+--- @field cmp? boolean  Set highlights for cmp
+--- @field illuminate? boolean Set highlights for illuminate
+--- @field lsp_semantic? boolean Set LSP semantic highlights
+--- @field mini_completion? boolean Set highlights for mini.completion
+--- @field dapui? boolean Set highlights for dapui
 ---
 --- @class Config
 ---
---- @field supports SupportsConfig
---- @field highlights HighlightsConfig
+--- @field supports? SupportsConfig
+--- @field highlights? HighlightsConfig
 ---
 --- @type Config
 local default_config = {
@@ -199,7 +199,7 @@ local function attempt_load_colors_from_tinted_shell()
     end)
 
     if ok then
-        return colorscheme, theme_env
+        return colorscheme, theme_env or ""
     end
 
     return {}, ""
