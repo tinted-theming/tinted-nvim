@@ -133,6 +133,10 @@ M.highlight = setmetatable({}, {
     end
 })
 
+local function trigger_autocmd()
+  vim.cmd([[doautocmd User TintedColorsPost]])
+end
+
 ---@param colors ColorTable
 ---@param colorscheme_name string
 ---@param clear_highlights boolean
@@ -726,6 +730,8 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     vim.g.tinted_gui15      = M.colors.base15
     vim.g.tinted_gui16      = M.colors.base16
     vim.g.tinted_gui17      = M.colors.base17
+
+    trigger_autocmd()
 end
 
 return M

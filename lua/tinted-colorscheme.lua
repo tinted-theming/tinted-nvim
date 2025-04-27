@@ -75,16 +75,6 @@ local highlighter = require("tinted-highlighter")
 
 M.highlight = highlighter.highlight
 
-local function trigger_autocmd()
-  vim.cmd([[doautocmd User TintedColorsPost]])
-end
-
-M.set_colors = function (colors, name)
-   M.colors = colors
-   highlighter.set_highlights(colors, name, true, M.config.highlights);
-    trigger_autocmd()
-end
-
 local function get_tinty_theme()
     if vim.fn.executable('tinty') == 1 then
         local theme_name = vim.fn.system({ "tinty", "current" })
@@ -147,7 +137,7 @@ function M.with_config(config)
         require("tinted-live-reload").setup_live_reload(function()
             local colors, name = detect_colors_from_tinty()
             if #name > 0 then
-                M.set_colors(colors, name)
+                require("tinted-highlighter").set_highlights(colors, name, true, M.config.highlights)
             end
         end)
     end
@@ -283,7 +273,7 @@ function M.setup(colors, config)
     end
 
 
-    M.set_colors(colors_to_use, scheme_name);
+    require("tinted-highlighter").set_highlights(colors_to_use, scheme_name, true, M.config.highlights)
 end
 
 function M.available_colorschemes()
@@ -296,6 +286,15 @@ setmetatable(M.colorschemes, {
         t[key] = require(string.format('colors.%s', key))
         return t[key]
     end,
+})
+
+setmetatable(M, {
+    __index = function(_, key)
+        if key == "colors" then
+            return require("tinted-highlighter").colors
+        end
+        return nil
+    end
 })
 
 -- Fallback colorscheme
