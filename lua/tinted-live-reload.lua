@@ -44,29 +44,23 @@ local function start_watcher(callback)
           vim.notify(string.format("File %s is not readable.", file_path), vim.log.levels.ERROR)
           return
         end
-        local handle
-        handle = fwatch.watch(file_path, {
-          on_event = function(_, events)
+        fwatch.watch(file_path, {
+          on_event = function(_, events, unwatch)
             schedule_trigger(callback)
-
             -- Tinty 0.28+ will no longer update the current_scheme file in place. It will replace it
             -- with a new file which breaks this file watcher. We'll check whether the file moves,
             -- at which point we'll start a new watcher.
             if events.rename == true then
-              -- Stop the existing watcher.
-              if handle ~= nil then
-                uv.fs_event_stop(handle)
-              end
               -- Trigger the change
               vim.schedule(function()
+                -- Stop the existing watcher.
+                unwatch()
                 -- Reset the idempotency tracker
                 vim.g.tinted_live_reload_registered = false
                 -- Start a new watcher
                 start_watcher(callback)
               end)
-              return
             end
-            schedule_trigger(callback)
           end,
         })
       end,
