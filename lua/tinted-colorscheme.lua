@@ -154,8 +154,6 @@ local function attempt_load_colors_from_string(colors)
     end
 
     local ok, colorscheme = pcall(function()
-        -- TODO: Do somewhere else
-        vim.g.tinted_current_colorscheme = colors
         return M.colorschemes[colors]
     end)
 
@@ -294,7 +292,7 @@ setmetatable(M, {
             return require("tinted-highlighter").colors
         end
         return nil
-    end
+    end,
 })
 
 -- Fallback colorscheme
