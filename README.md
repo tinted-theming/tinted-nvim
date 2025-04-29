@@ -183,7 +183,7 @@ require('tinted-colorscheme').with_config({
     supports = {
       tinty = true,
       tinted_shell = false,
-      live_reload = true
+      live_reload = true,
     },
     highlights = {
       telescope = true,
@@ -197,15 +197,22 @@ require('tinted-colorscheme').with_config({
 })
 ```
 
-### Autocmd
+### Live Reload
+
+If you have both `tinty` and `live_reload` enabled, the colorscheme will automatically update whenever you change
+your theme system-wide with `tinty apply <SCHEME>`. 
+
+The user event `TintedColorsPost` is triggered whenever the colorscheme changes. This is useful for when you want to
+do something whenever the colorscheme live-reloads for example, such as applying some highlights yourself. You're able
+to access the color-table from the `tinted-colorscheme` module:
 
 ```lua
-
 vim.api.nvim_create_autocmd("User", {
   pattern = "TintedColorsPost",
   callback = function()
     -- Do things whenever the theme changes.
     local colors = require("tinted-colorscheme").colors
+    -- e.g. colors.base00, colors.base01, ... colors.base0F
   end,
 })
 ```
