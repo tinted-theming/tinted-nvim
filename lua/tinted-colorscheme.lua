@@ -32,7 +32,7 @@
 local default_config = {
     supports = {
         tinty = true,
-        live_reload = false,
+        live_reload = true,
         tinted_shell = false,
     },
     highlights = {
