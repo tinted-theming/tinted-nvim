@@ -1,5 +1,3 @@
-local uv = require("luv")
-
 local M = {}
 
 local function start_watcher(callback)
@@ -31,7 +29,7 @@ local function start_watcher(callback)
         end
 
 
-        local handle = uv.new_fs_event()
+        local handle = vim.uv.new_fs_event()
 
         if handle == nil then
           vim.notify("Unable to start watcher.", vim.log.levels.ERROR)
@@ -46,15 +44,14 @@ local function start_watcher(callback)
         }
 
         -- attach handler
-        uv.fs_event_start(handle, file_path, flags, function(_, _, events)
+        vim.uv.fs_event_start(handle, file_path, flags, function(_, _, events)
           vim.schedule(callback)
-
           -- Tinty 0.28+ will no longer update the current_scheme file in place. It will replace it
           -- with a new file which breaks this file watcher. We'll check whether the file moves,
           -- at which point we'll start a new watcher.
           if events.rename == true then
             -- Stop the existing watcher.
-            uv.fs_event_stop(handle)
+            vim.uv.fs_event_stop(handle)
             vim.schedule(function()
               -- Reset the idempotency tracker
               vim.g.tinted_live_reload_registered = false
