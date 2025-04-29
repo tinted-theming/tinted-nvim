@@ -167,18 +167,6 @@ tinted.setup(nil, {
 })
 ```
 
-The live-reload feature depends on [fwatch.nvim]. Add this dependency in whatever manner your plugin manager allows you.
-For example, with **lazy.nvim**:
-
-```diff
- return {
-   "tinted-theming/tinted-nvim",
-+  dependencies = {
-+    { "rktjmp/fwatch.nvim" },
-+  }
- }
-```
-
 > [!NOTE]
 > If you don't see colours, try adding `vim.opt.termguicolors = true` to
 > your init.lua
@@ -195,7 +183,7 @@ require('tinted-colorscheme').with_config({
     supports = {
       tinty = true,
       tinted_shell = false,
-      live_reload = false -- If set to true, requires rktjump/fwatch.nvim as a dependency
+      live_reload = true
     },
     highlights = {
       telescope = true,
@@ -685,4 +673,3 @@ contributors for work they've done.
 [Tinty]: https://github.com/tinted-theming/tinty
 [Tinted Gallery]: https://tinted-theming.github.io/tinted-gallery/
 [base16-nvim]: https://github.com/RRethy/base16-nvim
-[fwatch.nvim]: https://github.com/rktjump/fwatch.nvim
