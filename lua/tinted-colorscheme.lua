@@ -94,9 +94,6 @@ local default_config = {
 
 --- @class Module
 --- @field colors? TintedColorTable
-
---- @type Module
----@diagnostic disable-next-line: missing-fields
 local M = {}
 
 local highlighter = require("tinted-highlighter")
