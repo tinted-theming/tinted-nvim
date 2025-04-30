@@ -1,8 +1,80 @@
 local M = {}
 
+---@class TintedColorTable: ColorTable
+---@field background? string Default background color
+---@field black? string Black
+---@field bright_black? string Bright Black
+---@field grey? string Grey
+---@field bright_grey? string Bright Grey
+---@field foreground? string Foreground
+---@field white? string White
+---@field bright_white? string Bright White
+---@field red? string Red
+---@field bright_red? string Bright Red
+---@field orange? string Orange
+---@field yellow? string Yellow
+---@field bright_yellow? string Bright Yellow
+---@field green? string Green
+---@field bright_green? string Bright Green
+---@field cyan? string Cyan
+---@field bright_cyan? string Bright Cyan
+---@field blue? string Blue
+---@field bright_blue? string Bright Blue
+---@field purple? string Purple
+---@field bright_purple? string Bright Purple
+---@field dark_red? string Dark Red
+---@field brown? string Brown
+
+local color_aliases = {
+    background    = { "base00" },
+    black         = { "base01" },
+    bright_black  = { "base02" },
+    grey          = { "base03" },
+    bright_grey   = { "base04" },
+    foreground    = { "base05" },
+    white         = { "base06" },
+    bright_white  = { "base07" },
+    red           = { "base08" },
+    bright_red    = { "base12", "base08" },
+    orange        = { "base09" },
+    yellow        = { "base0A" },
+    bright_yellow = { "base13", "base0A" },
+    green         = { "base0B" },
+    bright_green  = { "base14", "base0B" },
+    cyan          = { "base0C" },
+    bright_cyan   = { "base15", "base0C" },
+    blue          = { "base0D" },
+    bright_blue   = { "base16", "base0D" },
+    purple        = { "base0E" },
+    bright_purple = { "base17", "base0E" },
+    dark_red      = { "base0F" },
+    brown         = { "base0F" },
+}
+
+---@param colors ColorTable
+---@return TintedColorTable
+local function color_table(colors)
+    ---@diagnostic disable-next-line: return-type-mismatch
+    return setmetatable(colors, {
+        __index = function(t, k)
+            local indices = color_aliases[k]
+            if indices == nil then
+                return nil
+            end
+            for _, v in ipairs(indices) do
+                local color = t[v]
+                if color ~= nil then
+                    return color
+                end
+            end
+            return nil
+        end,
+    })
+end
+
 ---@type ColorTable
 ---@diagnostic disable-next-line: missing-fields
-M.colors = {}
+M.colors = color_table({})
 
 local hex_re = vim.regex('#\\x\\x\\x\\x\\x\\x')
 
@@ -50,18 +122,8 @@ local function darken(hex, pct)
     return string.format("#%s", rgb_to_hex(r, g, b))
 end
 
-local function get_tinty_theme()
-    if vim.fn.executable('tinty') == 1 then
-        local theme_name = vim.fn.system({ "tinty", "current" })
-
-        return vim.trim(theme_name or "")
-    end
-
-    return ""
-end
-
 M.is_suitable_color_table = function(colors)
-    local keys = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F"}
+    local keys = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F" }
     for _, k in ipairs(keys) do
         if colors["base" .. k] == nil then
             return false
@@ -134,7 +196,7 @@ M.highlight = setmetatable({}, {
 })
 
 local function trigger_autocmd()
-  vim.cmd([[doautocmd User TintedColorsPost]])
+    vim.cmd([[doautocmd User TintedColorsPost]])
 end
 
 ---@param colors ColorTable

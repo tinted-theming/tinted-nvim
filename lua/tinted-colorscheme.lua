@@ -67,8 +67,33 @@ local default_config = {
 --- @field base0D string
 --- @field base0E string
 --- @field base0F string
+--- @field base10? string
+--- @field base11? string
+--- @field base12? string
+--- @field base13? string
+--- @field base14? string
+--- @field base15? string
+--- @field base16? string
+--- @field base17? string
+--- @field cterm00? string
+--- @field cterm01? string
+--- @field cterm02? string
+--- @field cterm03? string
+--- @field cterm04? string
+--- @field cterm05? string
+--- @field cterm06? string
+--- @field cterm07? string
+--- @field cterm08? string
+--- @field cterm09? string
+--- @field cterm0A? string
+--- @field cterm0B? string
+--- @field cterm0C? string
+--- @field cterm0D? string
+--- @field cterm0E? string
+--- @field cterm0F? string
 
 --- @class Module
+--- @field colors? TintedColorTable
 local M = {}
 
 local highlighter = require("tinted-highlighter")
