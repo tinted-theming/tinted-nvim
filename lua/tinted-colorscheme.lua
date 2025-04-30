@@ -73,6 +73,8 @@ local default_config = {
 --- @field base13? string
 --- @field base14? string
 --- @field base15? string
+--- @field base16? string
+--- @field base17? string
 --- @field cterm00? string
 --- @field cterm01? string
 --- @field cterm02? string
