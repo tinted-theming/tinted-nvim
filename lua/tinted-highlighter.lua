@@ -1,8 +1,54 @@
 local M = {}
 
+local color_aliases = {
+    background = {"base00"},
+    black = {"base01"},
+    bright_black     = {"base02"},
+    grey = {"base03"},
+    bright_grey = {"base04"},
+    foreground = {"base05"},
+    white = {"base06"},
+    bright_white = {"base07"},
+    red = {"base08"},
+    bright_red = {"base12", "base08"},
+    orange = {"base09"},
+    yellow = {"base0A"},
+    bright_yellow = {"base13", "base0A"},
+    green = {"base14", "base0B"},
+    bright_green = {"base0B"},
+    cyan = {"base0C"},
+    bright_cyan = {"base15", "base0C"},
+    blue = {"base0D"},
+    bright_blue = {"base16", "base0D"},
+    purple = {"base0E"},
+    bright_purple = {"base17", "base0E"},
+    dark_red = {"base0F"},
+    brown = {"base0F"},
+}
+
+---@param colors ColorTable
+---@return ColorTable
+local function color_table(colors)
+    return setmetatable(colors, {
+        __index = function(t, k)
+            local indices = color_aliases[k]
+            if indices == nil then
+                return nil
+            end
+            for _, v in ipairs(indices) do
+                local color = t[v]
+                if color ~= nil then
+                    return color
+                end
+            end
+            return nil
+        end,
+    })
+end
+
 ---@type ColorTable
 ---@diagnostic disable-next-line: missing-fields
-M.colors = {}
+M.colors = color_table({})
 
 local hex_re = vim.regex('#\\x\\x\\x\\x\\x\\x')
 
@@ -168,7 +214,7 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     end
 
 
-    M.colors                              = colors
+    M.colors                              = color_table(colors)
 
     local hi                              = M.highlight
 
