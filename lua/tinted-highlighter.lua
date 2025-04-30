@@ -122,16 +122,6 @@ local function darken(hex, pct)
     return string.format("#%s", rgb_to_hex(r, g, b))
 end
 
-local function get_tinty_theme()
-    if vim.fn.executable('tinty') == 1 then
-        local theme_name = vim.fn.system({ "tinty", "current" })
-
-        return vim.trim(theme_name or "")
-    end
-
-    return ""
-end
-
 M.is_suitable_color_table = function(colors)
     local keys = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F" }
     for _, k in ipairs(keys) do
