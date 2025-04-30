@@ -2,28 +2,28 @@ local M = {}
 
 ---@class TintedColorTable: ColorTable
 ---@field background? string Default background color
----@field black? string
----@field bright_black? string
----@field grey? string
----@field bright_grey? string
----@field foreground? string
----@field white? string
----@field bright_white? string
----@field red? string
----@field bright_red? string
----@field orange? string
----@field yellow? string
----@field bright_yellow? string
----@field green? string
----@field bright_green? string
----@field cyan? string
----@field bright_cyan? string
----@field blue? string
----@field bright_blue? string
----@field purple? string
----@field bright_purple? string
----@field dark_red? string
----@field brown? string
+---@field black? string Black
+---@field bright_black? string Bright Black
+---@field grey? string Grey
+---@field bright_grey? string Bright Grey
+---@field foreground? string Foreground
+---@field white? string White
+---@field bright_white? string Bright White
+---@field red? string Red
+---@field bright_red? string Bright Red
+---@field orange? string Orange
+---@field yellow? string Yellow
+---@field bright_yellow? string Bright Yellow
+---@field green? string Green
+---@field bright_green? string Bright Green
+---@field cyan? string Cyan
+---@field bright_cyan? string Bright Cyan
+---@field blue? string Blue
+---@field bright_blue? string Bright Blue
+---@field purple? string Purple
+---@field bright_purple? string Bright Purple
+---@field dark_red? string Dark Red
+---@field brown? string Brown
 
 local color_aliases = {
     background    = { "base00" },
