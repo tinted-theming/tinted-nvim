@@ -1,5 +1,30 @@
 local M = {}
 
+---@class TintedColorTable: ColorTable
+---@field background? string Default background color
+---@field black? string
+---@field bright_black? string
+---@field grey? string
+---@field bright_grey? string
+---@field foreground? string
+---@field white? string
+---@field bright_white? string
+---@field red? string
+---@field bright_red? string
+---@field orange? string
+---@field yellow? string
+---@field bright_yellow? string
+---@field green? string
+---@field bright_green? string
+---@field cyan? string
+---@field bright_cyan? string
+---@field blue? string
+---@field bright_blue? string
+---@field purple? string
+---@field bright_purple? string
+---@field dark_red? string
+---@field brown? string
+
 local color_aliases = {
     background = {"base00"},
     black = {"base01"},
@@ -15,7 +40,7 @@ local color_aliases = {
     yellow = {"base0A"},
     bright_yellow = {"base13", "base0A"},
     green = {"base14", "base0B"},
-    bright_green = {"base0B"},
+    bright_green = {"base14", "base0B"},
     cyan = {"base0C"},
     bright_cyan = {"base15", "base0C"},
     blue = {"base0D"},
@@ -27,8 +52,9 @@ local color_aliases = {
 }
 
 ---@param colors ColorTable
----@return ColorTable
+---@return TintedColorTable
 local function color_table(colors)
+    ---@diagnostic disable-next-line: return-type-mismatch
     return setmetatable(colors, {
         __index = function(t, k)
             local indices = color_aliases[k]
