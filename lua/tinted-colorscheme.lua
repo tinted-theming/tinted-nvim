@@ -170,7 +170,7 @@ end
 
 --- @return ColorTable, string
 local function attempt_load_colors_from_string(colors)
-    if not type(colors) == "string" then
+    if type(colors) ~= "string" then
         return {}, ""
     end
 
@@ -188,8 +188,6 @@ local function attempt_load_colors_from_string(colors)
 
     return {}, ""
 end
-
-
 
 ---@return ColorTable, string
 local function attempt_load_colors_from_tinty()
@@ -227,9 +225,6 @@ local function attempt_load_colors_from_tinted_shell()
 
     return {}, ""
 end
-
-
-
 
 --- When a color-table is provided as the `colors` param, it is applied as the colorscheme.
 ---
@@ -294,7 +289,6 @@ function M.setup(colors, config)
             vim.log.levels.WARN
         )
     end
-
 
     require("tinted-highlighter").set_highlights(colors_to_use, scheme_name, true, M.config.highlights)
 end
