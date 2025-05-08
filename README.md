@@ -167,19 +167,6 @@ tinted.setup(nil, {
 })
 ```
 
-### Lualine
-
-To Enable tinted-nvim theme for Lualine, specify lualine theme as `tinted`:
-
-```lua
-require('lualine').setup {
-  options = {
-    theme = 'tinted'
-    -- ... your lualine config
-  }
-}
-```
-
 > [!NOTE]
 > If you don't see colours, try adding `vim.opt.termguicolors = true` to
 > your init.lua
