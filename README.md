@@ -543,7 +543,7 @@ base24-cobalt-neon
 base24-cobalt2
 base24-crayon-pony-fish
 base24-cyberdyne
-base24-dark
+base24-dark-plus
 base24-deep-oceanic-next
 base24-deep
 base24-desert
@@ -599,7 +599,7 @@ base24-man-page
 base24-material-dark
 base24-material
 base24-mathias
-base24-medailion
+base24-medallion
 base24-mission-brogue
 base24-misterioso
 base24-molokai
@@ -645,8 +645,8 @@ base24-smyck
 base24-soft-server
 base24-solarized-dark-higher-contrast
 base24-solarized-dark-patched
-base24-space-grey-eighties-dull
-base24-space-grey-eighties
+base24-space-gray-eighties-dull
+base24-space-gray-eighties
 base24-spacedust
 base24-sparky
 base24-spiderman
@@ -655,7 +655,7 @@ base24-sundried
 base24-tango-adapted
 base24-tango-half-adapted
 base24-terminal-basic
-base24-thayler-bright
+base24-thayer-bright
 base24-the-hulk
 base24-toy-chest
 base24-treehouse
