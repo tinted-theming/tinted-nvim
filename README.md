@@ -223,6 +223,7 @@ You can use any of the following schemes with `:colorscheme` (for example
 `:colorscheme base16-ayu-dark`):
 
 ```txt
+base16-0x96f
 base16-3024
 base16-apathy
 base16-apprentice
@@ -502,6 +503,7 @@ base16-woodland
 base16-xcode-dusk
 base16-zenbones
 base16-zenburn
+base24-0x96f
 base24-3024-day
 base24-3024-night
 base24-adventure-time

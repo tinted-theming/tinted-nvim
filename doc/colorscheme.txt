@@ -26,6 +26,7 @@ BUILTIN COLORSCHEMES                       *tinted-nvim-builtin-colorschemes*
 Here is a list of all builtin colorschemes.
 
 >
+    base16-0x96f
     base16-3024
     base16-apathy
     base16-apprentice
@@ -305,6 +306,7 @@ Here is a list of all builtin colorschemes.
     base16-xcode-dusk
     base16-zenbones
     base16-zenburn
+    base24-0x96f
     base24-3024-day
     base24-3024-night
     base24-adventure-time
