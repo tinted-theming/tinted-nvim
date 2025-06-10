@@ -607,6 +607,7 @@ base24-misterioso
 base24-molokai
 base24-mona-lisa
 base24-monokai-vivid
+base24-mountain
 base24-night-lion-v1
 base24-night-lion-v2
 base24-night-owlish-light
