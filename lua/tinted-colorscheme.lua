@@ -290,7 +290,7 @@ function M.setup(colors, config)
         )
     end
 
-    require("tinted-highlighter").set_highlights(colors_to_use, scheme_name, true, M.config.highlights)
+    require("tinted-highlighter").set_highlights(colors_to_use, scheme_name, false, M.config.highlights)
 end
 
 function M.available_colorschemes()
