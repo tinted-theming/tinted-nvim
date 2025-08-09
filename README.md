@@ -521,8 +521,9 @@ base24-alien-blood
 base24-argonaut
 base24-arthur
 base24-atelier-sulphurpool
+base24-ayu-dark
 base24-ayu-light
-base24-ayu
+base24-ayu-mirage
 base24-banana-blueberry
 base24-batman
 base24-birds-of-paradise
