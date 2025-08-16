@@ -352,26 +352,32 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     hi.SpellRare                          = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
 
     hi.DiagnosticError                    = { guifg = get_bright("base08"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
-    hi.DiagnosticWarn                     = { guifg = get_bright("base0E"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = nil }
+    hi.DiagnosticWarn                     = { guifg = get_bright("base09"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm09, ctermbg = nil }
     hi.DiagnosticInfo                     = { guifg = get_bright("base0D"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
     hi.DiagnosticHint                     = { guifg = get_bright("base0C"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = nil }
     hi.DiagnosticUnderlineError           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = get_bright("base08"), ctermfg = nil, ctermbg = nil }
-    hi.DiagnosticUnderlineWarning         = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = get_bright("base0E"), ctermfg = nil, ctermbg = nil }
-    hi.DiagnosticUnderlineWarn            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0E, ctermfg = nil, ctermbg = nil }
-    hi.DiagnosticUnderlineInformation     = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0F, ctermfg = nil, ctermbg = nil }
-    hi.DiagnosticUnderlineHint            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base0C, ctermfg = nil, ctermbg = nil }
+    hi.DiagnosticUnderlineWarn            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = get_bright("base09"), ctermfg = nil, ctermbg = nil }
+    hi.DiagnosticUnderlineInfo            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = get_bright("base0D"), ctermfg = nil, ctermbg = nil }
+    hi.DiagnosticUnderlineHint            = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = get_bright("base0C"), ctermfg = nil, ctermbg = nil }
+    if vim.fn.has("nvim-0.9.0") == 1 then
+        hi.DiagnosticOk                       = { guifg = get_bright("base0B"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = nil }
+        hi.DiagnosticUnderlineOk              = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = get_bright("base0B"), ctermfg = nil, ctermbg = nil }
+    end
 
     hi.LspReferenceText                   = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
     hi.LspReferenceRead                   = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
     hi.LspReferenceWrite                  = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04, ctermfg = nil, ctermbg = nil }
-    hi.LspDiagnosticsDefaultError         = 'DiagnosticError'
-    hi.LspDiagnosticsDefaultWarning       = 'DiagnosticWarn'
-    hi.LspDiagnosticsDefaultInformation   = 'DiagnosticInfo'
-    hi.LspDiagnosticsDefaultHint          = 'DiagnosticHint'
-    hi.LspDiagnosticsUnderlineError       = 'DiagnosticUnderlineError'
-    hi.LspDiagnosticsUnderlineWarning     = 'DiagnosticUnderlineWarning'
-    hi.LspDiagnosticsUnderlineInformation = 'DiagnosticUnderlineInformation'
-    hi.LspDiagnosticsUnderlineHint        = 'DiagnosticUnderlineHint'
+
+    if vim.fn.has("nvim-0.6.0") == 0 then
+        hi.LspDiagnosticsDefaultError         = 'DiagnosticError'
+        hi.LspDiagnosticsDefaultWarning       = 'DiagnosticWarn'
+        hi.LspDiagnosticsDefaultInformation   = 'DiagnosticInfo'
+        hi.LspDiagnosticsDefaultHint          = 'DiagnosticHint'
+        hi.LspDiagnosticsUnderlineError       = 'DiagnosticUnderlineError'
+        hi.LspDiagnosticsUnderlineWarning     = 'DiagnosticUnderlineWarn'
+        hi.LspDiagnosticsUnderlineInformation = 'DiagnosticUnderlineInfo'
+        hi.LspDiagnosticsUnderlineHint        = 'DiagnosticUnderlineHint'
+    end
 
     hi.TSAnnotation                       = { guifg = M.colors.base0F, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0F, ctermbg = nil }
     hi.TSAttribute                        = { guifg = M.colors.base0A, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
