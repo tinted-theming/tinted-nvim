@@ -282,6 +282,10 @@ base16-charcoal-dark
 base16-charcoal-light
 base16-chicago-day
 base16-chicago-night
+base16-chinoiserie-midnight
+base16-chinoiserie-morandi
+base16-chinoiserie-night
+base16-chinoiserie
 base16-circus
 base16-classic-dark
 base16-classic-light
