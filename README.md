@@ -676,6 +676,7 @@ base24-tango-half-adapted
 base24-terminal-basic
 base24-thayer-bright
 base24-the-hulk
+base24-tomorrow-night
 base24-toy-chest
 base24-treehouse
 base24-twilight
