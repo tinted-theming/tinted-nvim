@@ -102,6 +102,7 @@ optional arguments: a theme or a config table.
 | `tinty`        | `true`  | If `true`, attempts to use current [Tinty] theme if available                              |
 | `tinted_shell` | `false` | If `true`, allows detection from `BASE16_THEME` env var (only outside tmux)                |
 | `live_reload`  | `true`  | If `true`, open Neovim instances live reloads whenever [Tinty] applies a theme system-wide |
+| `transparent`  | `false` | if `true`, Sets background to 0 opacity                                                    |
 
 ##### `highlights` Options
 
@@ -125,6 +126,7 @@ require("tinted-colorscheme").setup("base16-ayu-dark", {
   supports = {
     tinty = true,
     tinted_shell = false,
+    transparent = false,
   },
   highlights = {
     telescope = true,
