@@ -756,8 +756,7 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
         hi.DapUIStepOutNC = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
     end
 
-
-    vim.g.terminal_color_0  = M.colors.base00
+    vim.g.terminal_color_0  = M.colors.base01
     vim.g.terminal_color_1  = M.colors.base08
     vim.g.terminal_color_2  = M.colors.base0B
     vim.g.terminal_color_3  = M.colors.base0A
@@ -790,14 +789,14 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     vim.g.tinted_gui0D      = M.colors.base0D
     vim.g.tinted_gui0E      = M.colors.base0E
     vim.g.tinted_gui0F      = M.colors.base0F
-    vim.g.tinted_gui10      = M.colors.base10
-    vim.g.tinted_gui11      = M.colors.base11
-    vim.g.tinted_gui12      = M.colors.base12
-    vim.g.tinted_gui13      = M.colors.base13
-    vim.g.tinted_gui14      = M.colors.base14
-    vim.g.tinted_gui15      = M.colors.base15
-    vim.g.tinted_gui16      = M.colors.base16
-    vim.g.tinted_gui17      = M.colors.base17
+    vim.g.tinted_gui10      = get_bright("base10")
+    vim.g.tinted_gui11      = get_bright("base11")
+    vim.g.tinted_gui12      = get_bright("base12")
+    vim.g.tinted_gui13      = get_bright("base13")
+    vim.g.tinted_gui14      = get_bright("base14")
+    vim.g.tinted_gui15      = get_bright("base15")
+    vim.g.tinted_gui16      = get_bright("base16")
+    vim.g.tinted_gui17      = get_bright("base17")
 
     trigger_autocmd()
 end
