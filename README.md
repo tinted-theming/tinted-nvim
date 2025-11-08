@@ -460,6 +460,7 @@ base16-shapeshifter
 base16-silk-dark
 base16-silk-light
 base16-snazzy
+base16-soft-server
 base16-solarflare-light
 base16-solarflare
 base16-solarized-dark
@@ -662,7 +663,6 @@ base24-shaman
 base24-slate
 base24-sleepy-hollow
 base24-smyck
-base24-soft-server
 base24-solarized-dark-higher-contrast
 base24-solarized-dark-patched
 base24-space-gray-eighties-dull

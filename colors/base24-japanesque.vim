@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-japanesque'
+let g:colors_name = 'base24-japanesque'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#1d1d1d', base01 = '#343835', base02 = '#585a58', base03 = '#80827f',
     \ base04 = '#a8aaa7', base05 = '#d0d2ce', base06 = '#f9faf6', base07 = '#b1b5ae',

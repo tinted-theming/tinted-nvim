@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-solarized-dark-higher-contrast'
+let g:colors_name = 'base24-solarized-dark-higher-contrast'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#001e26', base01 = '#002731', base02 = '#006388', base03 = '#3a8298',
     \ base04 = '#74a2a9', base05 = '#aec2ba', base06 = '#e9e2cb', base07 = '#fcf4dc',

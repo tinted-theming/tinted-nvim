@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-treehouse'
+let g:colors_name = 'base24-treehouse'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#191919', base01 = '#321200', base02 = '#423625', base03 = '#4f4330',
     \ base04 = '#5c503c', base05 = '#695d47', base06 = '#776b53', base07 = '#ffc800',

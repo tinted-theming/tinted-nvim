@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-jellybeans'
+let g:colors_name = 'base24-jellybeans'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#121212', base01 = '#929292', base02 = '#bdbdbd', base03 = '#c5c5c5',
     \ base04 = '#cdcdcd', base05 = '#d5d5d5', base06 = '#dedede', base07 = '#ffffff',

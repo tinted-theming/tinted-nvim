@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-chalkboard'
+let g:colors_name = 'base24-chalkboard'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#29262f', base01 = '#000000', base02 = '#323232', base03 = '#5b5b5b',
     \ base04 = '#858585', base05 = '#afafaf', base06 = '#d9d9d9', base07 = '#ffffff',

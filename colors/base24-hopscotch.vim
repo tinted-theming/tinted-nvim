@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-hopscotch'
+let g:colors_name = 'base24-hopscotch'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#322931', base01 = '#322931', base02 = '#797379', base03 = '#898388',
     \ base04 = '#999498', base05 = '#a9a4a8', base06 = '#b9b5b8', base07 = '#ffffff',

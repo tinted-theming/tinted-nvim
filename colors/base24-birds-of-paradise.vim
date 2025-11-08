@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-birds-of-paradise'
+let g:colors_name = 'base24-birds-of-paradise'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#2a1e1d', base01 = '#573d25', base02 = '#9a6b49', base03 = '#ab8664',
     \ base04 = '#bca280', base05 = '#cdbe9b', base06 = '#dfdab7', base07 = '#fff9d4',

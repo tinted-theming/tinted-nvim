@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-space-gray-eighties-dull'
+let g:colors_name = 'base24-space-gray-eighties-dull'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#212121', base01 = '#15171c', base02 = '#555555', base03 = '#6c6d70',
     \ base04 = '#83868b', base05 = '#9a9fa6', base06 = '#b2b8c2', base07 = '#ffffff',

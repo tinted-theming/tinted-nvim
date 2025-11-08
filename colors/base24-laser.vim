@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-laser'
+let g:colors_name = 'base24-laser'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#030d18', base01 = '#616161', base02 = '#8e8e8e', base03 = '#a6a6a6',
     \ base04 = '#bfbfbf', base05 = '#d8d8d8', base06 = '#f1f1f1', base07 = '#feffff',

@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-seafoam-pastel'
+let g:colors_name = 'base24-seafoam-pastel'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#243434', base01 = '#757575', base02 = '#8a8a8a', base03 = '#9f9f9f',
     \ base04 = '#b5b5b5', base05 = '#cacaca', base06 = '#e0e0e0', base07 = '#e0e0e0',

@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-fideloper'
+let g:colors_name = 'base24-fideloper'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#282f32', base01 = '#282f32', base02 = '#092027', base03 = '#415050',
     \ base04 = '#79817a', base05 = '#b1b1a3', base06 = '#e9e2cd', base07 = '#fcf4de',

@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-floraverse'
+let g:colors_name = 'base24-floraverse'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#0e0c15', base01 = '#08002e', base02 = '#331e4d', base03 = '#634e67',
     \ base04 = '#937f82', base05 = '#c3af9d', base06 = '#f3e0b8', base07 = '#fff5db',

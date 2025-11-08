@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-material-dark'
+let g:colors_name = 'base24-material-dark'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#222221', base01 = '#212121', base02 = '#424242', base03 = '#6d6d6d',
     \ base04 = '#989898', base05 = '#c3c3c3', base06 = '#eeeeee', base07 = '#d8d8d8',

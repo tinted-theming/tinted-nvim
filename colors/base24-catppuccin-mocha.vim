@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-catppuccin-mocha'
+let g:colors_name = 'base24-catppuccin-mocha'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#1e1e2e', base01 = '#181825', base02 = '#313244', base03 = '#45475a',
     \ base04 = '#585b70', base05 = '#cdd6f4', base06 = '#f5e0dc', base07 = '#b4befe',

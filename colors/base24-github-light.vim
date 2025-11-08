@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-github-light'
+let g:colors_name = 'base24-github-light'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#eaeef2', base01 = '#d0d7de', base02 = '#afb8c1', base03 = '#8c959f',
     \ base04 = '#6e7781', base05 = '#424a53', base06 = '#32383f', base07 = '#1f2328',

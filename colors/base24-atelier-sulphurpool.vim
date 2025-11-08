@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-atelier-sulphurpool'
+let g:colors_name = 'base24-atelier-sulphurpool'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#202746', base01 = '#202746', base02 = '#6b7394', base03 = '#767d9c',
     \ base04 = '#8188a4', base05 = '#8c92ac', base06 = '#979db4', base07 = '#f5f7ff',

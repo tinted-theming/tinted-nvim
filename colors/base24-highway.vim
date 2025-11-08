@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-highway'
+let g:colors_name = 'base24-highway'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#212224', base01 = '#000000', base02 = '#5c4f49', base03 = '#807672',
     \ base04 = '#a49e9b', base05 = '#c8c5c4', base06 = '#ededed', base07 = '#fefffe',

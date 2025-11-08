@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-embarcadero'
+let g:colors_name = 'base24-embarcadero'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#252a2f', base01 = '#43474c', base02 = '#616568', base03 = '#7f8285',
     \ base04 = '#9ea0a2', base05 = '#bcbdc0', base06 = '#dadbdb', base07 = '#f8f8f8',

@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-hurtado'
+let g:colors_name = 'base24-hurtado'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#000000', base01 = '#575757', base02 = '#252525', base03 = '#4e4e4e',
     \ base04 = '#787878', base05 = '#a1a1a1', base06 = '#cbcbcb', base07 = '#dbdbdb',

@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-firefox-dev'
+let g:colors_name = 'base24-firefox-dev'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#0e1011', base01 = '#002731', base02 = '#001e26', base03 = '#374d53',
     \ base04 = '#6e7d81', base05 = '#a5acae', base06 = '#dcdcdc', base07 = '#e2e2e2',

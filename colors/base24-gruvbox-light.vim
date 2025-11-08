@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-gruvbox-light'
+let g:colors_name = 'base24-gruvbox-light'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#fbf1c7', base01 = '#ebdbb2', base02 = '#d5c4a1', base03 = '#bdae93',
     \ base04 = '#7c6f64', base05 = '#3c3836', base06 = '#282828', base07 = '#1d2021',

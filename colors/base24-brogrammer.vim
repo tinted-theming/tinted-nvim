@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-brogrammer'
+let g:colors_name = 'base24-brogrammer'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#131313', base01 = '#1f1f1f', base02 = '#2a3141', base03 = '#343d50',
     \ base04 = '#d6dae4', base05 = '#c1c8d7', base06 = '#e3e6ed', base07 = '#ffffff',

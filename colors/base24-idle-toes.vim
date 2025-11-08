@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-idle-toes'
+let g:colors_name = 'base24-idle-toes'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#323232', base01 = '#323232', base02 = '#535353', base03 = '#797979',
     \ base04 = '#a0a09f', base05 = '#c7c7c5', base06 = '#eeeeec', base07 = '#ffffff',

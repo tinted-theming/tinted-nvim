@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-mission-brogue'
+let g:colors_name = 'base24-mission-brogue'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#283139', base01 = '#3b4954', base02 = '#4d606f', base03 = '#60778a',
     \ base04 = '#788ea1', base05 = '#93a5b4', base06 = '#abb9c4', base07 = '#e7ebee',

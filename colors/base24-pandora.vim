@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-pandora'
+let g:colors_name = 'base24-pandora'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#131d42', base01 = '#000000', base02 = '#3e5548', base03 = '#66786e',
     \ base04 = '#8f9b94', base05 = '#b8beba', base06 = '#e1e1e1', base07 = '#ffffff',

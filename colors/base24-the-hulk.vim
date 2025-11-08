@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-the-hulk'
+let g:colors_name = 'base24-the-hulk'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#1b1d1e', base01 = '#1b1d1e', base02 = '#505354', base03 = '#727473',
     \ base04 = '#949592', base05 = '#b6b6b1', base06 = '#d8d8d0', base07 = '#e5e5e0',

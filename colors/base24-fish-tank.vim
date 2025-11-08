@@ -1,5 +1,5 @@
 hi clear
-let g:colors_name = 'base16-fish-tank'
+let g:colors_name = 'base24-fish-tank'
 lua require('tinted-colorscheme').setup({
     \ base00 = '#222436', base01 = '#03063c', base02 = '#6c5a30', base03 = '#8c7f63',
     \ base04 = '#aca496', base05 = '#ccc9c9', base06 = '#eceffc', base07 = '#f6ffec',
