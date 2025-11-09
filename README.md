@@ -150,14 +150,25 @@ local red = require('tinted-colorscheme').colors.base08
 
 ### 🎨 Tinty
 
-`.setup()` will use the current [Tinty] theme, which is retrieved from
-`tinty current`. If Tinty is not installed or `tinty current` does not return a
-value, "tinted-nvim-default" (`base16-ayu-dark`) will be used as a fallback
-theme.
+`.setup()` will use the current [Tinty] theme, which is retrieved from `tinty
+current` command. If Tinty is not installed or `tinty current` does not return
+a value, "tinted-nvim-default" (`base16-ayu-dark`) will be used as a fallback
+theme. Ensure you have "tinted-nvim" added to your Tinty config (usually
+`~/.config/tinted-theming/tinty/config.toml` but `tinty config --config-path`
+with print the actual path):
 
-To have tinted-nvim automatically update the theme when `tinty apply ayu-dark` is run, you can enable
-the live-reload feature.
+```toml
+[[items]]
+path = "https://github.com/tinted-theming/tinted-nvim"
+name = "tinted-nvim"
+themes-dir = "colors"
+supported-systems = ["base16", "base24"]
+```
 
+To have tinted-nvim automatically update the theme when `tinty apply ayu-dark`
+is run, you can enable the live-reload feature.
+
+**NVIM lua script:**
 ```lua
 local tinted = require('tinted-colorscheme')
 tinted.setup(nil, {
