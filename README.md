@@ -333,6 +333,8 @@ base16-everforest-dark-medium
 base16-everforest-dark-soft
 base16-everforest
 base16-flat
+base16-flexoki-dark
+base16-flexoki-light
 base16-framer
 base16-fruit-soda
 base16-gigavolt
@@ -581,6 +583,8 @@ base24-firefox-dev
 base24-fish-tank
 base24-flat
 base24-flatland
+base24-flexoki-dark
+base24-flexoki-light
 base24-floraverse
 base24-forest-blue
 base24-framer
@@ -640,6 +644,8 @@ base24-one-half-light
 base24-one-light
 base24-operator-mono-dark
 base24-pandora
+base24-papercolor-dark
+base24-papercolor-light
 base24-paul-millr
 base24-pencil-dark
 base24-pencil-light
@@ -677,6 +683,10 @@ base24-tango-half-adapted
 base24-terminal-basic
 base24-thayer-bright
 base24-the-hulk
+base24-tokyo-night-dark
+base24-tokyo-night-light
+base24-tokyo-night-moon
+base24-tokyo-night-storm
 base24-tomorrow-night
 base24-toy-chest
 base24-treehouse
