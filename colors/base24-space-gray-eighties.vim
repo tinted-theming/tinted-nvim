@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-space-gray-eighties'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#212121', base01 = '#15171c', base02 = '#555555', base03 = '#7b7a79',
     \ base04 = '#a1a09e', base05 = '#c7c6c2', base06 = '#eeece7', base07 = '#ffffff',
     \ base08 = '#ec5f67', base09 = '#fdc253', base0A = '#4d83d0', base0B = '#80a763',

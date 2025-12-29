@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-black-metal-mayhem'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#000000', base01 = '#121212', base02 = '#222222', base03 = '#333333',
     \ base04 = '#999999', base05 = '#c1c1c1', base06 = '#999999', base07 = '#c1c1c1',
     \ base08 = '#5f8787', base09 = '#aaaaaa', base0A = '#eecc6c', base0B = '#f3ecd4',

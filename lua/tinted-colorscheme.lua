@@ -51,6 +51,7 @@ local default_config = {
 
 --- @class ColorTable
 ---
+--- @field variant string
 --- @field base00 string
 --- @field base01 string
 --- @field base02 string
@@ -316,6 +317,7 @@ setmetatable(M, {
 
 -- Fallback colorscheme
 M.colorschemes['tinted-nvim-default'] = {
+    variant = "dark",
     base00 = "#0F1419",
     base01 = "#131721",
     base02 = "#272D38",

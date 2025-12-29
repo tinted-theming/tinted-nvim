@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-atelier-dune-light'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'light',
     \ base00 = '#fefbec', base01 = '#e8e4cf', base02 = '#a6a28c', base03 = '#999580',
     \ base04 = '#7d7a68', base05 = '#6e6b5e', base06 = '#292824', base07 = '#20201d',
     \ base08 = '#d73737', base09 = '#b65611', base0A = '#ae9513', base0B = '#60ac39',

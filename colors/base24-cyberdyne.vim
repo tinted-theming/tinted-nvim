@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-cyberdyne'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#151144', base01 = '#080808', base02 = '#2d2d2d', base03 = '#5e5e5e',
     \ base04 = '#8f8f8f', base05 = '#c0c0c0', base06 = '#f1f1f1', base07 = '#feffff',
     \ base08 = '#ff8272', base09 = '#d2a700', base0A = '#c1e3fe', base0B = '#00c172',

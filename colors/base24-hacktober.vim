@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-hacktober'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#141414', base01 = '#191918', base02 = '#2c2b2a', base03 = '#5d5b59',
     \ base04 = '#8e8c88', base05 = '#bfbdb7', base06 = '#f1eee7', base07 = '#ffffff',
     \ base08 = '#b34538', base09 = '#d08949', base0A = '#5389c5', base0B = '#587744',

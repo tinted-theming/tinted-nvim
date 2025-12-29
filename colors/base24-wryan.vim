@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-wryan'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#101010', base01 = '#333333', base02 = '#3d3d3d', base03 = '#505456',
     \ base04 = '#636c6f', base05 = '#768488', base06 = '#899ca1', base07 = '#c0c0c0',
     \ base08 = '#8c4665', base09 = '#7c7c99', base0A = '#477ab3', base0B = '#287373',

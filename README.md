@@ -71,7 +71,7 @@ optional arguments: a theme or a config table.
 | Type        | Description                                                                                                    |
 | ----------- | -------------------------------------------------------------------------------------------------------------- |
 | `string`    | Name of a registered theme (e.g. "base16-ayu-dark")                                                            |
-| `table`     | A custom Base16/Base24 color table with keys from `base00` to `base17`                                         |
+| `table`     | A custom Base16/Base24 color table with keys from `base00` to `base17` and its `variant`                       |
 | `undefined` | If omitted, will try to detect a theme from [Tinty], or fall back to "tinted-nvim-default" (`base16-ayu-dark`) |
 
 **Examples**:
@@ -80,6 +80,7 @@ optional arguments: a theme or a config table.
 - `table`:
   ```lua
   require('tinted-colorscheme').setup({
+    variant = "dark",
     base00 = "#0f1419", base01 = "#131721", base02 = "#272d38", base03 = "#3e4b59",
     base04 = "#bfbdb6", base05 = "#e6e1cf", base06 = "#e6e1cf", base07 = "#f3f4f5",
     base08 = "#f07178", base09 = "#ff8f40", base0A = "#ffb454", base0B = "#b8cc52",

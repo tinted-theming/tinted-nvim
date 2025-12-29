@@ -231,6 +231,7 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
 
 
     M.colors                              = colors
+    vim.o.background                      = M.colors.variant
 
     local hi                              = M.highlight
 

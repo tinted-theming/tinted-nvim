@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-cupertino'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'light',
     \ base00 = '#ffffff', base01 = '#c0c0c0', base02 = '#c0c0c0', base03 = '#808080',
     \ base04 = '#808080', base05 = '#404040', base06 = '#404040', base07 = '#5e5e5e',
     \ base08 = '#c41a15', base09 = '#eb8500', base0A = '#826b28', base0B = '#007400',

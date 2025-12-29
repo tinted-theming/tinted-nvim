@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-violet-light'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'light',
     \ base00 = '#fcf4dc', base01 = '#56595c', base02 = '#45484b', base03 = '#686a6a',
     \ base04 = '#8c8c8a', base05 = '#afaea9', base06 = '#d3d0c9', base07 = '#c8c5bd',
     \ base08 = '#c94c22', base09 = '#b4881d', base0A = '#2075c7', base0B = '#85981c',

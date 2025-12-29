@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-selenized-white'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'light',
     \ base00 = '#ffffff', base01 = '#ebebeb', base02 = '#cdcdcd', base03 = '#878787',
     \ base04 = '#878787', base05 = '#474747', base06 = '#282828', base07 = '#282828',
     \ base08 = '#bf0000', base09 = '#ba3700', base0A = '#af8500', base0B = '#008400',

@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-charcoal-light'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'light',
     \ base00 = '#cabda0', base01 = '#bcad8c', base02 = '#af9f7d', base03 = '#645538',
     \ base04 = '#110e06', base05 = '#382e1b', base06 = '#4b3e26', base07 = '#bcad8c',
     \ base08 = '#382e1b', base09 = '#110e06', base0A = '#110e06', base0B = '#110e06',

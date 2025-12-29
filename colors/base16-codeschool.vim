@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-codeschool'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#232c31', base01 = '#1c3657', base02 = '#2a343a', base03 = '#3f4944',
     \ base04 = '#84898c', base05 = '#9ea7a6', base06 = '#a7cfa3', base07 = '#b5d8f6',
     \ base08 = '#2a5491', base09 = '#43820d', base0A = '#a03b1e', base0B = '#237986',

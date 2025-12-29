@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-shapeshifter'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'light',
     \ base00 = '#f9f9f9', base01 = '#e0e0e0', base02 = '#ababab', base03 = '#555555',
     \ base04 = '#343434', base05 = '#102015', base06 = '#040404', base07 = '#000000',
     \ base08 = '#e92f2f', base09 = '#e09448', base0A = '#dddd13', base0B = '#0ed839',

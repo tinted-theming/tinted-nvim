@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-smyck'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#1b1b1b', base01 = '#000000', base02 = '#7a7a7a', base03 = '#838383',
     \ base04 = '#8d8d8d', base05 = '#969696', base06 = '#a0a0a0', base07 = '#f7f7f7',
     \ base08 = '#b74131', base09 = '#c4a400', base0A = '#8dcff0', base0B = '#7da900',

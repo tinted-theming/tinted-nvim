@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-sleepy-hollow'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#121213', base01 = '#572000', base02 = '#4e4b60', base03 = '#665e6c',
     \ base04 = '#7e7278', base05 = '#968684', base06 = '#af9a91', base07 = '#d1c7a9',
     \ base08 = '#b93934', base09 = '#b45600', base0A = '#8085ef', base0B = '#90773e',

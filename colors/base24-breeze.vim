@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-breeze'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#31363b', base01 = '#31363b', base02 = '#7f8c8d', base03 = '#9ba5a6',
     \ base04 = '#b7bebf', base05 = '#d3d7d8', base06 = '#eff0f1', base07 = '#fcfcfc',
     \ base08 = '#ed1515', base09 = '#f67400', base0A = '#3daee9', base0B = '#11d116',

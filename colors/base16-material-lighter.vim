@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-material-lighter'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'light',
     \ base00 = '#fafafa', base01 = '#e7eaec', base02 = '#cceae7', base03 = '#ccd7da',
     \ base04 = '#8796b0', base05 = '#80cbc4', base06 = '#43a39a', base07 = '#000000',
     \ base08 = '#ff5370', base09 = '#f76d47', base0A = '#ffb62c', base0B = '#91b859',
