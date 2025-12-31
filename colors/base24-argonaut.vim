@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-argonaut'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#0d0f18', base01 = '#222222', base02 = '#444444', base03 = '#727272',
     \ base04 = '#a1a1a1', base05 = '#d0d0d0', base06 = '#ffffff', base07 = '#ffffff',
     \ base08 = '#ff000f', base09 = '#ffb900', base0A = '#0092ff', base0B = '#8ce00a',

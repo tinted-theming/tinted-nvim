@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-primer-dark'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#010409', base01 = '#21262d', base02 = '#30363d', base03 = '#484f58',
     \ base04 = '#8b949e', base05 = '#b1bac4', base06 = '#c9d1d9', base07 = '#f0f6fc',
     \ base08 = '#ff7b72', base09 = '#f0883e', base0A = '#d29922', base0B = '#3fb950',

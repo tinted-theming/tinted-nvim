@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-still-alive'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'light',
     \ base00 = '#f0f0f0', base01 = '#d6d6d6', base02 = '#bdbdbd', base03 = '#a3a3a3',
     \ base04 = '#605758', base05 = '#4c383b', base06 = '#331f21', base07 = '#140c0d',
     \ base08 = '#d80000', base09 = '#f0d848', base0A = '#fff018', base0B = '#30a860',

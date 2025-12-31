@@ -1,4 +1,5 @@
 return {
+    variant = 'dark',
     base00 = '#1f2022', base01 = '#282828', base02 = '#444155', base03 = '#585858',
     base04 = '#b8b8b8', base05 = '#a3a3a3', base06 = '#e8e8e8', base07 = '#f8f8f8',
     base08 = '#f2241f', base09 = '#ffa500', base0A = '#b1951d', base0B = '#67b11d',

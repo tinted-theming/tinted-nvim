@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-danqing'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#2d302f', base01 = '#434846', base02 = '#5a605d', base03 = '#9da8a3',
     \ base04 = '#cad8d2', base05 = '#e0f0ef', base06 = '#ecf6f2', base07 = '#fcfefd',
     \ base08 = '#f9906f', base09 = '#b38a61', base0A = '#f0c239', base0B = '#8ab361',

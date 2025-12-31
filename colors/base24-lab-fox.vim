@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-lab-fox'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#2e2e2e', base01 = '#2e2e2e', base02 = '#454545', base03 = '#737373',
     \ base04 = '#a1a2a2', base05 = '#cfd0d0', base06 = '#feffff', base07 = '#feffff',
     \ base08 = '#fc6d26', base09 = '#fca121', base0A = '#db501f', base0B = '#3eb383',

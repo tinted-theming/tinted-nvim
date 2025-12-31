@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-macintosh'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#000000', base01 = '#404040', base02 = '#404040', base03 = '#808080',
     \ base04 = '#808080', base05 = '#c0c0c0', base06 = '#c0c0c0', base07 = '#ffffff',
     \ base08 = '#dd0907', base09 = '#ff6403', base0A = '#fbf305', base0B = '#1fb714',

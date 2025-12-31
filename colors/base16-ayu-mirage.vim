@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-ayu-mirage'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#1f2430', base01 = '#242936', base02 = '#323844', base03 = '#4a5059',
     \ base04 = '#707a8c', base05 = '#cccac2', base06 = '#d9d7ce', base07 = '#f3f4f5',
     \ base08 = '#f28779', base09 = '#ffad66', base0A = '#ffd173', base0B = '#d5ff80',

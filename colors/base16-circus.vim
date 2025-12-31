@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-circus'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#191919', base01 = '#202020', base02 = '#303030', base03 = '#5f5a60',
     \ base04 = '#505050', base05 = '#a7a7a7', base06 = '#808080', base07 = '#ffffff',
     \ base08 = '#dc657d', base09 = '#4bb1a7', base0A = '#c3ba63', base0B = '#84b97c',

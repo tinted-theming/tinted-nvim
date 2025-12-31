@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-night-lion-v2'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#171717', base01 = '#4c4c4c', base02 = '#555555', base03 = '#6e6e6e',
     \ base04 = '#888888', base05 = '#a1a1a1', base06 = '#bbbbbb', base07 = '#ffffff',
     \ base08 = '#bb0000', base09 = '#f2f067', base0A = '#62cae7', base0B = '#03f622',

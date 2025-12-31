@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-gruber'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#181818', base01 = '#453d41', base02 = '#484848', base03 = '#52494e',
     \ base04 = '#e4e4ef', base05 = '#f4f4ff', base06 = '#f5f5f5', base07 = '#e4e4ef',
     \ base08 = '#f43841', base09 = '#c73c3f', base0A = '#ffdd33', base0B = '#73c936',

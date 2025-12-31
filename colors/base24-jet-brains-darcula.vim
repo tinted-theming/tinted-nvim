@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-jet-brains-darcula'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#202020', base01 = '#000000', base02 = '#555555', base03 = '#6b6b6b',
     \ base04 = '#818181', base05 = '#979797', base06 = '#adadad', base07 = '#eeeeee',
     \ base08 = '#fa5355', base09 = '#c2c300', base0A = '#6d9df1', base0B = '#126e00',

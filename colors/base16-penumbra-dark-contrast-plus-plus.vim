@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-penumbra-dark-contrast-plus-plus'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#0d0f13', base01 = '#181b1f', base02 = '#3e4044', base03 = '#636363',
     \ base04 = '#aeaeae', base05 = '#dedede', base06 = '#fff7ed', base07 = '#fffdfb',
     \ base08 = '#f58c81', base09 = '#e09f47', base0A = '#a9b852', base0B = '#54c794',

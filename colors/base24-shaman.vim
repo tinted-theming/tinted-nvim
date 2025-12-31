@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-shaman'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#001014', base01 = '#012026', base02 = '#374350', base03 = '#394751',
     \ base04 = '#3b4c52', base05 = '#3d5053', base06 = '#405554', base07 = '#58fad6',
     \ base08 = '#b12f2c', base09 = '#5d8aa9', base0A = '#61d4b9', base0B = '#00a940',

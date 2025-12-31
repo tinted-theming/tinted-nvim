@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-chinoiserie-midnight'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#1d1d1d', base01 = '#282828', base02 = '#373737', base03 = '#918072',
     \ base04 = '#bdaead', base05 = '#c4cbcf', base06 = '#eee7f2', base07 = '#fffef9',
     \ base08 = '#ed5a56', base09 = '#fc8c23', base0A = '#fbb957', base0B = '#aeb831',

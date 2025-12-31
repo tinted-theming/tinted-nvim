@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-rippedcasts'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#2b2b2b', base01 = '#000000', base02 = '#666666', base03 = '#7c7c7c',
     \ base04 = '#929292', base05 = '#a8a8a8', base06 = '#bfbfbf', base07 = '#e5e5e5',
     \ base08 = '#cdaf95', base09 = '#bfbb1f', base0A = '#86bdc9', base0B = '#a7ff60',

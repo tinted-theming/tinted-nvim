@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base16-ocean'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#2b303b', base01 = '#343d46', base02 = '#4f5b66', base03 = '#65737e',
     \ base04 = '#a7adba', base05 = '#c0c5ce', base06 = '#dfe1e8', base07 = '#eff1f5',
     \ base08 = '#bf616a', base09 = '#d08770', base0A = '#ebcb8b', base0B = '#a3be8c',

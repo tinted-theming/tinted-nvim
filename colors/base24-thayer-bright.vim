@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-thayer-bright'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#1b1d1e', base01 = '#1b1d1e', base02 = '#505354', base03 = '#6f7170',
     \ base04 = '#8e8f8d', base05 = '#adada9', base06 = '#ccccc6', base07 = '#f8f8f2',
     \ base08 = '#f92672', base09 = '#f3fd21', base0A = '#3f78ff', base0B = '#4df740',

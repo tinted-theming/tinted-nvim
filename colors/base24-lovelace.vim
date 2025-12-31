@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-lovelace'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#1d1f28', base01 = '#282a36', base02 = '#414458', base03 = '#707281',
     \ base04 = '#9fa0aa', base05 = '#ceced3', base06 = '#fdfdfd', base07 = '#bebec1',
     \ base08 = '#f37f97', base09 = '#f2a272', base0A = '#556fff', base0B = '#5adecd',

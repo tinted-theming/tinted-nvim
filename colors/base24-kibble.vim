@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-kibble'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#0e100a', base01 = '#4d4d4d', base02 = '#5a5a5a', base03 = '#7c777c',
     \ base04 = '#9e959e', base05 = '#c0b3c0', base06 = '#e2d1e3', base07 = '#ffffff',
     \ base08 = '#c70031', base09 = '#d8e30e', base0A = '#97a4f7', base0B = '#29cf13',

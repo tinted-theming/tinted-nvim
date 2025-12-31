@@ -1,6 +1,7 @@
 hi clear
 let g:colors_name = 'base24-cobalt-neon'
 lua require('tinted-colorscheme').setup({
+    \ variant = 'dark',
     \ base00 = '#142838', base01 = '#142630', base02 = '#fff688', base03 = '#eeca92',
     \ base04 = '#dd9e9c', base05 = '#cc72a6', base06 = '#ba45b1', base07 = '#8ff586',
     \ base08 = '#ff2320', base09 = '#e9e75c', base0A = '#3c7dd2', base0B = '#3aa5ff',
