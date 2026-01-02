@@ -10,6 +10,7 @@
 --- @field tinty? boolean Integrate with Tinty CLI
 --- @field live_reload? boolean Automatically reload with a new theme is picked via Tinty
 --- @field tinted_shell? boolean Load the colorscheme set by tinted-theming/tinted-shell.
+--- @field transparent? boolean Set opacity to 0
 ---
 --- @class HighlightsConfig
 --- @field telescope? boolean Set highlights for Telescope
@@ -34,6 +35,7 @@ local default_config = {
         tinty = true,
         live_reload = true,
         tinted_shell = false,
+        transparent = false,
     },
     highlights = {
         telescope = true,
@@ -163,7 +165,7 @@ function M.with_config(config)
         require("tinted-live-reload").setup_live_reload(function()
             local colors, name = detect_colors_from_tinty()
             if #name > 0 then
-                require("tinted-highlighter").set_highlights(colors, name, true, M.config.highlights)
+                require("tinted-highlighter").set_highlights(colors, name, true, M.config.highlights, M.config.supports)
             end
         end)
     end
@@ -291,7 +293,7 @@ function M.setup(colors, config)
         )
     end
 
-    require("tinted-highlighter").set_highlights(colors_to_use, scheme_name, false, M.config.highlights)
+    require("tinted-highlighter").set_highlights(colors_to_use, scheme_name, false, M.config.highlights, M.config.supports)
 end
 
 function M.available_colorschemes()

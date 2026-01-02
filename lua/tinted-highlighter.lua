@@ -203,9 +203,15 @@ end
 ---@param colorscheme_name string
 ---@param clear_highlights boolean
 ---@param highlights HighlightsConfig
-M.set_highlights = function(colors, colorscheme_name, clear_highlights, highlights)
-
+---@param supports SupportsConfig
+M.set_highlights = function(colors, colorscheme_name, clear_highlights, highlights, supports)
     clear_highlights = clear_highlights or false
+
+    -- Set transparency if enabled
+    local guibg = colors.base00
+    if supports and supports.transparent == true then
+        guibg = nil
+    end
 
     if clear_highlights == true then
         vim.cmd([[hi clear]])
@@ -215,7 +221,6 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     vim.g.tinted_colorspace = 256
 
     if type(colorscheme_name) == "string" and #colorscheme_name > 0 then
-
         if clear_highlights == false then
             -- There is no case where we set the colorscheme name and where we don't highlights cleared.
             vim.cmd([[hi clear]])
@@ -236,14 +241,14 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     local hi                              = M.highlight
 
     -- Vim editor colors
-    hi.Normal                             = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
+    hi.Normal                             = { guifg = M.colors.base05, guibg = guibg, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
     hi.Bold                               = { guifg = nil, guibg = nil, gui = 'bold', guisp = nil, ctermfg = nil, ctermbg = nil }
     hi.Debug                              = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
     hi.Directory                          = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
-    hi.Error                              = { guifg = M.colors.base08, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
-    hi.ErrorMsg                           = { guifg = M.colors.base08, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
+    hi.Error                              = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
+    hi.ErrorMsg                           = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
     hi.Exception                          = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
-    hi.FoldColumn                         = { guifg = M.colors.base0C, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = M.colors.cterm00 }
+    hi.FoldColumn                         = { guifg = M.colors.base0C, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0C, ctermbg = M.colors.cterm00 }
     hi.Folded                             = { guifg = M.colors.base03, guibg = M.colors.base01, gui = nil, guisp = nil, ctermfg = M.colors.cterm03, ctermbg = M.colors.cterm01 }
     hi.IncSearch                          = { guifg = M.colors.base01, guibg = M.colors.base09, gui = 'none', guisp = nil, ctermfg = M.colors.cterm01, ctermbg = M.colors.cterm09 }
     hi.Italic                             = { guifg = nil, guibg = nil, gui = 'italic', guisp = nil, ctermfg = nil, ctermbg = nil }
@@ -262,16 +267,16 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     hi.WarningMsg                         = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
     hi.WildMenu                           = { guifg = M.colors.base08, guibg = M.colors.base0A, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm0A }
     hi.Title                              = { guifg = get_bright("base0D"), guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
-    hi.Conceal                            = { guifg = M.colors.base0D, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
+    hi.Conceal                            = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
     hi.Cursor                             = { guifg = M.colors.base00, guibg = M.colors.base05, gui = nil, guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm05 }
     hi.NonText                            = { guifg = M.colors.base03, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
-    hi.LineNr                             = { guifg = M.colors.base04, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = M.colors.cterm00 }
-    hi.SignColumn                         = { guifg = M.colors.base04, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = M.colors.cterm00 }
+    hi.LineNr                             = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = M.colors.cterm00 }
+    hi.SignColumn                         = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm04, ctermbg = M.colors.cterm00 }
     hi.StatusLine                         = { guifg = M.colors.base05, guibg = M.colors.base02, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm02 }
     hi.StatusLineNC                       = { guifg = M.colors.base04, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = M.colors.cterm04, ctermbg = M.colors.cterm01 }
     hi.WinBar                             = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = nil }
     hi.WinBarNC                           = { guifg = M.colors.base04, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm04, ctermbg = nil }
-    hi.VertSplit                          = { guifg = M.colors.base05, guibg = M.colors.base00, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
+    hi.VertSplit                          = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
     hi.ColorColumn                        = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
     hi.CursorColumn                       = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
     hi.CursorLine                         = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil, ctermfg = nil, ctermbg = M.colors.cterm01 }
@@ -313,15 +318,15 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     hi.Typedef                            = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0A, ctermbg = nil }
 
     -- Diff highlighting
-    hi.DiffAdd                            = { guifg = M.colors.base0B, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm00 }
-    hi.DiffChange                         = { guifg = M.colors.base0E, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm03, ctermbg = M.colors.cterm00 }
-    hi.DiffDelete                         = { guifg = M.colors.base08, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
-    hi.DiffText                           = { guifg = M.colors.base0D, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
-    hi.DiffAdded                          = { guifg = M.colors.base0B, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm00 }
-    hi.DiffFile                           = { guifg = M.colors.base08, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
-    hi.DiffNewFile                        = { guifg = M.colors.base0B, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm00 }
-    hi.DiffLine                           = { guifg = M.colors.base0D, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
-    hi.DiffRemoved                        = { guifg = M.colors.base08, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
+    hi.DiffAdd                            = { guifg = M.colors.base0B, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm00 }
+    hi.DiffChange                         = { guifg = M.colors.base0E, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm03, ctermbg = M.colors.cterm00 }
+    hi.DiffDelete                         = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
+    hi.DiffText                           = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
+    hi.DiffAdded                          = { guifg = M.colors.base0B, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm00 }
+    hi.DiffFile                           = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
+    hi.DiffNewFile                        = { guifg = M.colors.base0B, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm00 }
+    hi.DiffLine                           = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
+    hi.DiffRemoved                        = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
 
     -- Git highlighting
     hi.gitcommitOverflow                  = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = nil }
@@ -341,10 +346,10 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     hi.gitcommitSelectedFile              = { guifg = M.colors.base0B, guibg = nil, gui = 'bold', guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = nil }
 
     -- GitGutter highlighting
-    hi.GitGutterAdd                       = { guifg = M.colors.base0B, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm00 }
-    hi.GitGutterChange                    = { guifg = M.colors.base0E, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
-    hi.GitGutterDelete                    = { guifg = M.colors.base08, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
-    hi.GitGutterChangeDelete              = { guifg = M.colors.base09, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = M.colors.cterm00 }
+    hi.GitGutterAdd                       = { guifg = M.colors.base0B, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0B, ctermbg = M.colors.cterm00 }
+    hi.GitGutterChange                    = { guifg = M.colors.base0E, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = M.colors.cterm00 }
+    hi.GitGutterDelete                    = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm08, ctermbg = M.colors.cterm00 }
+    hi.GitGutterChangeDelete              = { guifg = M.colors.base09, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0E, ctermbg = M.colors.cterm00 }
 
     -- Spelling highlighting
     hi.SpellBad                           = { guifg = nil, guibg = nil, gui = 'undercurl', guisp = M.colors.base08, ctermfg = nil, ctermbg = nil }
@@ -552,19 +557,19 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
 
     if highlights.ts_rainbow then
         hi.rainbowcol1 = { guifg = get_bright("base06"), ctermfg = M.colors.cterm06 }
-        hi.rainbowcol2 = { guifg = get_bright("base09"), ctermfg = M.colors.cterm09  }
+        hi.rainbowcol2 = { guifg = get_bright("base09"), ctermfg = M.colors.cterm09 }
         hi.rainbowcol3 = { guifg = get_bright("base0A"), ctermfg = M.colors.cterm0A }
-        hi.rainbowcol4 = { guifg = get_bright("base07"), ctermfg = M.colors.cterm07  }
-        hi.rainbowcol5 = { guifg = get_bright("base0C"), ctermfg = M.colors.cterm0C  }
-        hi.rainbowcol6 = { guifg = get_bright("base0D"), ctermfg = M.colors.cterm0D  }
-        hi.rainbowcol7 = { guifg = get_bright("base0E"), ctermfg = M.colors.cterm0E  }
+        hi.rainbowcol4 = { guifg = get_bright("base07"), ctermfg = M.colors.cterm07 }
+        hi.rainbowcol5 = { guifg = get_bright("base0C"), ctermfg = M.colors.cterm0C }
+        hi.rainbowcol6 = { guifg = get_bright("base0D"), ctermfg = M.colors.cterm0D }
+        hi.rainbowcol7 = { guifg = get_bright("base0E"), ctermfg = M.colors.cterm0E }
     end
 
     hi.NvimInternalError = { guifg = M.colors.base00, guibg = M.colors.base08, gui = 'none', guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm08 }
 
-    hi.NormalFloat       = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
-    hi.FloatBorder       = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
-    hi.NormalNC          = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
+    hi.NormalFloat       = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
+    hi.FloatBorder       = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
+    hi.NormalNC          = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
     hi.TermCursor        = { guifg = M.colors.base00, guibg = M.colors.base05, gui = 'none', guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm05 }
     hi.TermCursorNC      = { guifg = M.colors.base00, guibg = M.colors.base05, gui = nil, guisp = nil, ctermfg = M.colors.cterm00, ctermbg = M.colors.cterm05 }
 
@@ -597,14 +602,14 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
             hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
             hi.TelescopePreviewLine  = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil }
         else
-            hi.TelescopeBorder       = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopePromptBorder = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopePromptNormal = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopePromptPrefix = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopeNormal       = { guifg = nil, guibg = M.colors.base00, gui = nil, guisp = nil }
+            hi.TelescopeBorder       = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
+            hi.TelescopePromptBorder = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
+            hi.TelescopePromptNormal = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
+            hi.TelescopePromptPrefix = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
+            hi.TelescopeNormal       = { guifg = nil, guibg = nil, gui = nil, guisp = nil }
             hi.TelescopePreviewTitle = { guifg = M.colors.base01, guibg = get_bright("base0B"), gui = nil, guisp = nil }
             hi.TelescopePromptTitle  = { guifg = M.colors.base01, guibg = M.colors.base08, gui = nil, guisp = nil }
-            hi.TelescopeResultsTitle = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
+            hi.TelescopeResultsTitle = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
             hi.TelescopeSelection    = { guifg = nil, guibg = M.colors.base01, gui = nil, guisp = nil }
             hi.TelescopePreviewLine  = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil }
         end
@@ -635,15 +640,15 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
 
     if highlights.indentblankline then
         hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02 }
-        hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04  }
-        hi.IblIndent                  = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02  }
+        hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04 }
+        hi.IblIndent                  = { guifg = M.colors.base02, gui = 'nocombine', ctermfg = M.colors.cterm02 }
         hi.IblWhitespace              = 'Whitespace'
-        hi.IblScope                   = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04  }
+        hi.IblScope                   = { guifg = M.colors.base04, gui = 'nocombine', ctermfg = M.colors.cterm04 }
     end
 
     if highlights.cmp then
-        hi.CmpDocumentationBorder   = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
-        hi.CmpDocumentation         = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
+        hi.CmpDocumentationBorder   = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
+        hi.CmpDocumentation         = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm00 }
         hi.CmpItemAbbr              = { guifg = M.colors.base05, guibg = M.colors.base01, gui = nil, guisp = nil, ctermfg = M.colors.cterm05, ctermbg = M.colors.cterm01 }
         hi.CmpItemAbbrDeprecated    = { guifg = M.colors.base03, guibg = nil, gui = 'strikethrough', guisp = nil, ctermfg = M.colors.cterm03, ctermbg = nil }
         hi.CmpItemAbbrMatch         = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil, ctermfg = M.colors.cterm0D, ctermbg = nil }
@@ -712,49 +717,49 @@ M.set_highlights = function(colors, colorscheme_name, clear_highlights, highligh
     end
 
     if highlights.dapui then
-        hi.DapUINormal = 'Normal'
-        hi.DapUINormal    = "Normal"
-        hi.DapUIVariable  = "Normal"
-        hi.DapUIScope     = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIType      = { guifg = M.colors.base0E, ctermfg = M.colors.cterm0E }
-        hi.DapUIValue     = "Normal"
-        hi.DapUIModifiedValue = { gui = "bold", guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIDecoration = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIThread    = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
-        hi.DapUIStoppedThread = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIFrameName = "Normal"
-        hi.DapUISource    = { guifg = M.colors.base0E, ctermfg = M.colors.cterm0E }
-        hi.DapUILineNumber = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIFloatNormal = "NormalFloat"
-        hi.DapUIFloatBorder = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIWatchesEmpty = { guifg = M.colors.base08, ctermfg = M.colors.cterm08 }
-        hi.DapUIWatchesValue = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
-        hi.DapUIWatchesError = { guifg = M.colors.base08, ctermfg = M.colors.cterm08 }
-        hi.DapUIBreakpointsPath = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIBreakpointsInfo = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
-        hi.DapUIBreakpointsCurrentLine = { gui = "bold", guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
-        hi.DapUIBreakpointsLine = "DapUILineNumber"
+        hi.DapUINormal                  = 'Normal'
+        hi.DapUINormal                  = "Normal"
+        hi.DapUIVariable                = "Normal"
+        hi.DapUIScope                   = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIType                    = { guifg = M.colors.base0E, ctermfg = M.colors.cterm0E }
+        hi.DapUIValue                   = "Normal"
+        hi.DapUIModifiedValue           = { gui = "bold", guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIDecoration              = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIThread                  = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
+        hi.DapUIStoppedThread           = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIFrameName               = "Normal"
+        hi.DapUISource                  = { guifg = M.colors.base0E, ctermfg = M.colors.cterm0E }
+        hi.DapUILineNumber              = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIFloatNormal             = "NormalFloat"
+        hi.DapUIFloatBorder             = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIWatchesEmpty            = { guifg = M.colors.base08, ctermfg = M.colors.cterm08 }
+        hi.DapUIWatchesValue            = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
+        hi.DapUIWatchesError            = { guifg = M.colors.base08, ctermfg = M.colors.cterm08 }
+        hi.DapUIBreakpointsPath         = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIBreakpointsInfo         = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
+        hi.DapUIBreakpointsCurrentLine  = { gui = "bold", guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
+        hi.DapUIBreakpointsLine         = "DapUILineNumber"
         hi.DapUIBreakpointsDisabledLine = { guifg = M.colors.base02, ctermfg = M.colors.cterm02 }
-        hi.DapUICurrentFrameName = "DapUIBreakpointsCurrentLine"
-        hi.DapUIStepOver  = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIStepInto  = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIStepBack  = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIStepOut   = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIStop      = { guifg = M.colors.base08, ctermfg = M.colors.cterm08 }
-        hi.DapUIPlayPause = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
-        hi.DapUIRestart   = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
-        hi.DapUIUnavailable = { guifg = M.colors.base02, ctermfg = M.colors.cterm02 }
-        hi.DapUIWinSelect = { gui = "bold", guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIEndofBuffer = "EndOfBuffer"
-        hi.DapUINormalNC  = "Normal"
-        hi.DapUIPlayPauseNC = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
-        hi.DapUIRestartNC = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
-        hi.DapUIStopNC    = { guifg = M.colors.base08, ctermfg = M.colors.cterm08 }
-        hi.DapUIUnavailableNC = { guifg = M.colors.base02, ctermfg = M.colors.cterm02 }
-        hi.DapUIStepOverNC = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIStepIntoNC = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIStepBackNC = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
-        hi.DapUIStepOutNC = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUICurrentFrameName        = "DapUIBreakpointsCurrentLine"
+        hi.DapUIStepOver                = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIStepInto                = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIStepBack                = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIStepOut                 = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIStop                    = { guifg = M.colors.base08, ctermfg = M.colors.cterm08 }
+        hi.DapUIPlayPause               = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
+        hi.DapUIRestart                 = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
+        hi.DapUIUnavailable             = { guifg = M.colors.base02, ctermfg = M.colors.cterm02 }
+        hi.DapUIWinSelect               = { gui = "bold", guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIEndofBuffer             = "EndOfBuffer"
+        hi.DapUINormalNC                = "Normal"
+        hi.DapUIPlayPauseNC             = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
+        hi.DapUIRestartNC               = { guifg = M.colors.base0B, ctermfg = M.colors.cterm0B }
+        hi.DapUIStopNC                  = { guifg = M.colors.base08, ctermfg = M.colors.cterm08 }
+        hi.DapUIUnavailableNC           = { guifg = M.colors.base02, ctermfg = M.colors.cterm02 }
+        hi.DapUIStepOverNC              = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIStepIntoNC              = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIStepBackNC              = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
+        hi.DapUIStepOutNC               = { guifg = M.colors.base0D, ctermfg = M.colors.cterm0D }
     end
 
     vim.g.terminal_color_0  = M.colors.base01
