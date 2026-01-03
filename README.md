@@ -103,7 +103,6 @@ optional arguments: a theme or a config table.
 | `tinty`        | `true`  | If `true`, attempts to use current [Tinty] theme if available                              |
 | `tinted_shell` | `false` | If `true`, allows detection from `BASE16_THEME` env var (only outside tmux)                |
 | `live_reload`  | `true`  | If `true`, open Neovim instances live reloads whenever [Tinty] applies a theme system-wide |
-| `transparent`  | `false` | if `true`, Sets background to 0 opacity                                                    |
 
 ##### `highlights` Options
 
@@ -127,7 +126,6 @@ require("tinted-colorscheme").setup("base16-ayu-dark", {
   supports = {
     tinty = true,
     tinted_shell = false,
-    transparent = false,
   },
   highlights = {
     telescope = true,
@@ -319,6 +317,7 @@ base16-dracula
 base16-edge-dark
 base16-edge-light
 base16-eighties
+base16-eldritch
 base16-embers-light
 base16-embers
 base16-emil
@@ -575,6 +574,7 @@ base24-desert
 base24-dimmed-monokai
 base24-dracula
 base24-earthsong
+base24-eldritch
 base24-elemental
 base24-elementary
 base24-embarcadero
