@@ -6,6 +6,6 @@ lua require('tinted-colorscheme').setup({
     \ base04 = '#a1abe0', base05 = '#ebfafa', base06 = '#f0f2f4', base07 = '#ffffff',
     \ base08 = '#f16c75', base09 = '#f7c67f', base0A = '#f1fc79', base0B = '#37f499',
     \ base0C = '#04d1f9', base0D = '#39ddfd', base0E = '#a48cf2', base0F = '#f265b5',
-    \ base10 = '#171928', base11 = '#0e0f1a', base12 = '#f89a9d', base13 = '#f5ffa1',
-    \ base14 = '#6fffc1', base15 = '#6ce9ff', base16 = '#f0313e', base17 = '#f58bc8'
+    \ base10 = '#171928', base11 = '#0e0f1a', base12 = '#f89a9d', base13 = '#f9e9a1',
+    \ base14 = '#6fffc1', base15 = '#6ce9ff', base16 = '#7ae9ff', base17 = '#d4b3ff'
     \})
