@@ -617,6 +617,7 @@ base24-jackie-brown
 base24-japanesque
 base24-jellybeans
 base24-jet-brains-darcula
+base24-kanagawa-dragon
 base24-kibble
 base24-lab-fox
 base24-laser
