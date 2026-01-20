@@ -106,13 +106,11 @@ require("tinted-nvim").setup({
     -- Enable/disable them as needed. This only enables highlight groups, not
     -- the plugin itself.
     integrations = {
-      telescope       = true,
-      notify          = true,
-      cmp             = true,
-      blink           = true,
-      dapui           = true,
-      illuminate      = true,
-      indentblankline = true,
+      telescope = true,
+      notify    = true,
+      cmp       = true,
+      blink     = true,
+      dapui     = true,
     },
 
     -- If enabled, the plugin will scan all lazy.nvim specs and merge any
