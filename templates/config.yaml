@@ -1,7 +1,3 @@
-colorscheme.txt:
-  filename: doc/colorscheme.txt
-  supported-systems: [list]
-
 base16.lua:
   filename: lua/tinted-nvim/palettes/{{ scheme-system }}-{{ scheme-slug }}.lua
   supported-systems: [base16]
