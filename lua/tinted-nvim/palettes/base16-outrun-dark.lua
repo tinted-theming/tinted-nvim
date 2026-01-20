@@ -1,7 +1,19 @@
 return {
-    variant = 'dark',
-    base00 = '#00002a', base01 = '#20204a', base02 = '#30305a', base03 = '#50507a',
-    base04 = '#b0b0da', base05 = '#d0d0fa', base06 = '#e0e0ff', base07 = '#f5f5ff',
-    base08 = '#ff4242', base09 = '#fc8d28', base0A = '#f3e877', base0B = '#59f176',
-    base0C = '#0ef0f0', base0D = '#66b0ff', base0E = '#f10596', base0F = '#f003ef'
+    variant = 'dark', -- variant
+    base00 = '#00002a', -- background
+    base01 = '#20204a', -- darkest_grey
+    base02 = '#30305a', -- dark_grey
+    base03 = '#50507a', -- grey
+    base04 = '#b0b0da', -- bright_grey
+    base05 = '#d0d0fa', -- foreground
+    base06 = '#e0e0ff', -- bright_white
+    base07 = '#f5f5ff', -- brightest_white
+    base08 = '#ff4242', -- red
+    base09 = '#fc8d28', -- orange
+    base0A = '#f3e877', -- yellow
+    base0B = '#59f176', -- green
+    base0C = '#0ef0f0', -- cyan
+    base0D = '#66b0ff', -- blue
+    base0E = '#f10596', -- purple
+    base0F = '#f003ef', -- dark_red
 }
