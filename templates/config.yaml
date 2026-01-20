@@ -1,13 +1,10 @@
 README.md:
-  filename: "README.md"
-  supported-systems: [list]
-
 colorscheme.txt:
   filename: doc/colorscheme.txt
   supported-systems: [list]
 
 base16.lua:
-  filename: lua/colors/{{ scheme-system }}-{{ scheme-slug }}.lua
+  filename: lua/tinted-nvim/palettes/{{ scheme-system }}-{{ scheme-slug }}.lua
   supported-systems: [base16]
 
 base16.vim:
@@ -15,7 +12,7 @@ base16.vim:
   supported-systems: [base16]
 
 base24.lua:
-  filename: lua/colors/{{ scheme-system }}-{{ scheme-slug }}.lua
+  filename: lua/tinted-nvim/palettes/{{ scheme-system }}-{{ scheme-slug }}.lua
   supported-systems: [base24]
 
 base24.vim:
