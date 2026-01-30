@@ -73,7 +73,7 @@ function M.build(palette, cfg)
         hl["@string"]                = { fg = "green" }
         hl["@string.regex"]          = { fg = "green" }
         hl["@string.escape"]         = { fg = "cyan" }
-        hl["@string.special"]        = { fg = "dark_red" }
+        hl["@string.special"]        = { fg = "green" }
         hl["@string.special.symbol"] = { link = "@symbol" }
 
         hl["@character"]             = { fg = "red" }
