@@ -43,7 +43,7 @@ function M.build(palette, cfg)
         hl.TSPunctSpecial       = { fg = "dark_red" }
         hl.TSRepeat             = { fg = "purple" }
         hl.TSString             = { fg = "green" }
-        hl.TSStringRegex        = { fg = "cyan" }
+        hl.TSStringRegex        = { fg = "green" }
         hl.TSStringEscape       = { fg = "cyan" }
         hl.TSSymbol             = { fg = "green" }
         hl.TSTag                = { fg = "red" }
@@ -71,7 +71,7 @@ function M.build(palette, cfg)
         hl["@punctuation.special"]   = { fg = "dark_red" }
 
         hl["@string"]                = { fg = "green" }
-        hl["@string.regex"]          = { fg = "cyan" }
+        hl["@string.regex"]          = { fg = "green" }
         hl["@string.escape"]         = { fg = "cyan" }
         hl["@string.special"]        = { fg = "dark_red" }
         hl["@string.special.symbol"] = { link = "@symbol" }
