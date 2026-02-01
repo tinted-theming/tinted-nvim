@@ -33,6 +33,7 @@
             pkgs.luajitPackages.luacheck
             pkgs.stylua
             pkgs.lua-language-server
+            pkgs.lemmy-help
           ];
         };
         legacyPackages = pkgs;

@@ -1,7 +1,19 @@
-*tinted-nvim.txt*  Base16/Base24 colorschemes for Neovim
+==============================================================================
+Introduction                                                       *tinted-nvim*
 
 ==============================================================================
-INTRODUCTION                                                     *tinted-nvim*
+Table of Contents                                         *tinted-nvim.contents*
+
+Introduction ····················································· |tinted-nvim|
+Installation ············································· |tinted-nvim.install|
+Usage ······················································ |tinted-nvim.usage|
+API ·························································· |tinted-nvim.api|
+Configuration ············································· |tinted-nvim.config|
+Schemes ·················································· |tinted-nvim.schemes|
+Selector ················································ |tinted-nvim.selector|
+Highlights ············································ |tinted-nvim.highlights|
+Commands ················································ |tinted-nvim.commands|
+Troubleshooting ·································· |tinted-nvim.troubleshooting|
 
 Tinted-nvim is a Neovim colorscheme plugin that bundles Base16/Base24 schemes
 from the tinted-theming project. It supports built-in and user-defined schemes,
@@ -11,25 +23,12 @@ highlights for faster startup, and an external scheme selector.
 For previewing schemes, use the Tinted Gallery or the Tinty CLI.
 
 ==============================================================================
-CONTENTS                                                   *tinted-nvim-contents*
-
-  1. Installation ................................... |tinted-nvim-install|
-  2. Usage .......................................... |tinted-nvim-usage|
-  3. Configuration .................................. |tinted-nvim-config|
-  4. Schemes ........................................ |tinted-nvim-schemes|
-  5. Selector ....................................... |tinted-nvim-selector|
-  6. Highlights ..................................... |tinted-nvim-highlights|
-  7. Commands ....................................... |tinted-nvim-commands|
-  8. API ............................................ |tinted-nvim-api|
-  9. Troubleshooting ................................ |tinted-nvim-troubleshooting|
-
-==============================================================================
-INSTALLATION                                              *tinted-nvim-install*
+Installation                                               *tinted-nvim.install*
 
 Using lazy.nvim:
->
+>lua
   {
-    "tinted-nvim",
+    "tinted-theming/tinted-nvim",
     lazy = false,
     opts = {
       -- your config overrides
@@ -38,16 +37,16 @@ Using lazy.nvim:
 <
 
 Manual setup:
->
+>lua
   require("tinted-nvim").setup({
     -- your config overrides
   })
 <
 
 ==============================================================================
-USAGE                                                      *tinted-nvim-usage*
+Usage                                                        *tinted-nvim.usage*
 
-Load a built-in scheme via |:colorscheme| (built-ins only):
+Load a built-in scheme via `:colorscheme`:
 >
   :colorscheme base16-catppuccin-frappe
 <
@@ -57,225 +56,282 @@ Load any scheme programmatically (built-in or custom):
   require("tinted-nvim").load("base16-my-custom-scheme")
 <
 
-Calling |tinted-nvim-api-load| without a scheme name resolves it via the
-selector (see |tinted-nvim-selector|) and falls back to |tinted-nvim-default|
-when the selector cannot resolve a scheme.
+Calling `load()` without a scheme name resolves it via the selector
+and falls back to `default_scheme` when the selector cannot resolve.
 
 ==============================================================================
-CONFIGURATION                                              *tinted-nvim-config*
+API                                                            *tinted-nvim.api*
 
-All configuration is done through setup():
->
+The main API functions for tinted-nvim.
+
+M.setup({opts?})                                                       *M.setup*
+    Configure the plugin. Must be called before using other APIs.
+
+    Parameters: ~
+        {opts?}  (tinted-nvim.Config)  Configuration options (see |tinted-nvim.config|)
+
+    Usage: ~
+>lua
+        require("tinted-nvim").setup({ default_scheme = "base16-nord" })
+<
+
+
+M.load({scheme_name?}, {opts?})                                         *M.load*
+    Load and apply a scheme.
+    If no scheme is given, resolve via selector, falling back to `default_scheme`.
+
+    Parameters: ~
+        {scheme_name?}  (string)                        The scheme name (e.g., "base16-nord")
+        {opts?}         ({colorscheme_event?:boolean})  Options. Set `colorscheme_event = false` to suppress the ColorScheme autocmd.
+
+    Usage: ~
+>lua
+        require("tinted-nvim").load("base16-dracula")
+<
+
+
+M.compile({scheme_name?})                                            *M.compile*
+    Compile and write the scheme artifact without applying it.
+    Use this to pre-compile schemes for faster startup.
+
+    Parameters: ~
+        {scheme_name?}  (string)  The scheme name. If omitted, resolves via selector.
+
+    Usage: ~
+>lua
+        require("tinted-nvim").compile("base16-nord")
+<
+
+
+M.clear_cache()                                                  *M.clear_cache*
+    Clear all compiled artifacts from `stdpath("state")/tinted-nvim/`.
+
+    Usage: ~
+>lua
+        require("tinted-nvim").clear_cache()
+<
+
+
+M.get_scheme()                                                    *M.get_scheme*
+    Get the current scheme name.
+
+    Returns: ~
+        (string|nil)  The current scheme name, or nil if no scheme is loaded.
+
+    Usage: ~
+>lua
+        local name = require("tinted-nvim").get_scheme()
+<
+
+
+M.get_palette()                                                  *M.get_palette*
+    Get the current Base16/Base24 palette.
+
+    Returns: ~
+        (tinted-nvim.Palette|nil)  The current palette table (base00-base0F, optionally base10-base17), or nil.
+
+    Usage: ~
+>lua
+        local palette = require("tinted-nvim").get_palette()
+<
+
+
+M.get_palette_aliases()                                  *M.get_palette_aliases*
+    Get the current palette with color aliases resolved.
+    Aliases include names like "background", "foreground", "red", "green", etc.
+
+    Returns: ~
+        (table<string,string>|nil)  A table mapping alias names to hex colors, or nil.
+
+    Usage: ~
+>lua
+        local aliases = require("tinted-nvim").get_palette_aliases()
+<
+
+
+==============================================================================
+Configuration                                               *tinted-nvim.config*
+
+All configuration is done through `setup()`. Defaults are shown below.
+
+Example:
+>lua
   require("tinted-nvim").setup({
-    -- overrides
+    default_scheme = "base16-nord",
+    compile = true,
+    ui = { transparent = true },
   })
 <
 
-Defaults are defined in `lua/tinted-nvim/config.lua`.
+tinted-nvim.Config                                          *tinted-nvim.Config*
 
-The most important options are listed below. Each option is a field in the
-setup() table.
+    Fields: ~
+        {default_scheme}           (string)                                Fallback scheme when selector cannot resolve. Default: "base16-ayu-dark"
+        {apply_scheme_on_startup}  (boolean)                               Apply scheme automatically during startup. Default: true
+        {compile}                  (boolean)                               Compile highlights for faster startup. Default: false
+        {capabilities}             (tinted-nvim.Config.Capabilities)       Terminal capability options
+        {ui}                       (tinted-nvim.Config.Ui)                 UI appearance options
+        {styles}                   (tinted-nvim.Config.Styles)             Text style overrides for syntax groups
+        {highlights}               (tinted-nvim.Config.Highlights)         Highlight configuration
+        {schemes}                  (table<string,tinted-nvim.SchemeSpec>)  Custom scheme definitions or overrides
+        {selector}                 (tinted-nvim.Config.Selector)           External scheme selector configuration
 
-Default scheme and startup behavior:
 
-  default_scheme        string   (default: "base16-ayu-dark")    *tinted-nvim-default*
-  apply_scheme_on_startup  boolean (default: true)
-  compile               boolean  (default: false)
+tinted-nvim.Config.Capabilities                *tinted-nvim.Config.Capabilities*
 
-Capabilities:
+    Fields: ~
+        {undercurl}        (boolean)  Use undercurl (falls back to underline if false). Default: false
+        {terminal_colors}  (boolean)  Set terminal colors (g:terminal_color_0..17). Default: true
 
-  capabilities.undercurl       boolean (default: false)
-    When false, undercurl is replaced by underline for environments that do not
-    support undercurls.
 
-  capabilities.terminal_colors boolean (default: true)
-    When true, sets g:terminal_color_0..g:terminal_color_17.
+tinted-nvim.Config.Ui                                    *tinted-nvim.Config.Ui*
 
-UI:
+    Fields: ~
+        {transparent}   (boolean)  Leave Normal background unset. Default: false
+        {dim_inactive}  (boolean)  Dim inactive windows. Default: false
 
-  ui.transparent         boolean (default: false)
-    When true, leave Normal background unset.
 
-  ui.dim_inactive        boolean (default: false)
-    When true, dims inactive windows.
+tinted-nvim.Config.Styles                            *tinted-nvim.Config.Styles*
 
-Styles:
+    Fields: ~
+        {comments}   (table)  Style for comments. Default: { italic = true }
+        {keywords}   (table)  Style for keywords. Default: {}
+        {functions}  (table)  Style for functions. Default: {}
+        {variables}  (table)  Style for variables. Default: {}
+        {types}      (table)  Style for types. Default: {}
 
-  styles.comments        table   (default: { italic = true })
-  styles.keywords        table   (default: {})
-  styles.functions       table   (default: {})
-  styles.variables       table   (default: {})
-  styles.types           table   (default: {})
 
-Supported style keys: italic, bold, underline, undercurl, strikethrough.
+tinted-nvim.Config.Highlights                    *tinted-nvim.Config.Highlights*
 
-Highlights:
+    Fields: ~
+        {integrations}    (table<string,boolean>)                   Enable/disable plugin integrations (telescope, notify, cmp, blink, dapui)
+        {use_lazy_specs}  (boolean)                                 Merge highlights from lazy.nvim plugin specs. Default: true
+        {overrides}       (fun(palette:tinted-nvim.Palette):table)  Function returning highlight overrides
 
-  highlights.integrations        table (default: { telescope=true, notify=true,
-                                            cmp=true, blink=true, dapui=true })
-    Enable/disable plugin highlight integrations.
 
-  highlights.use_lazy_specs      boolean (default: true)
-    When true, merges `highlights = { ... }` tables from lazy.nvim plugin specs.
+tinted-nvim.Config.Selector                        *tinted-nvim.Config.Selector*
 
-  highlights.overrides           function(palette) -> table (default: empty)
-    Returns a table of highlight overrides.
+    Fields: ~
+        {enabled}  (boolean)  Enable external selector. Default: false
+        {mode}     (string)   Selector mode: "file", "env", or "cmd". Default: "file"
+        {watch}    (boolean)  Watch file for changes (file mode only). Default: true
+        {path}     (string)   Path to scheme file. Default: "~/.local/share/tinted-theming/tinty/current_scheme"
+        {env}      (string)   Environment variable name. Default: "TINTED_THEME"
+        {cmd}      (string)   Command to run. Default: "tinty current"
 
-Schemes:
-
-  schemes                        table<string, SchemeSpec> (default: {})
-    Override existing schemes or define new ones.
-
-Selector:
-
-  selector.enabled               boolean (default: false)
-  selector.mode                  string  (default: "file")
-  selector.watch                 boolean (default: true)
-  selector.path                  string  (default: "~/.local/share/tinted-theming/tinty/current_scheme")
-  selector.env                   string  (default: "TINTED_THEME")
-  selector.cmd                   string  (default: "tinty current")
-
-See |tinted-nvim-selector| for details.
 
 ==============================================================================
-SCHEMES                                                    *tinted-nvim-schemes*
+Schemes                                                    *tinted-nvim.schemes*
 
-You can override built-in schemes or define new Base16/Base24 schemes under the
-`schemes` key:
->
-  require("tinted-nvim").setup({
-    schemes = {
-      ["base16-catppuccin-mocha"] = {
-        base08 = "#ff0000",
-        base0A = function(palette)
-          return palette.base0B
-        end,
-      },
-      ["base16-my-theme"] = {
-        variant = "dark",
-        base00 = "#000000",
-        base01 = "#111111",
-        base02 = "#222222",
-        base03 = "#333333",
-        base04 = "#444444",
-        base05 = "#cccccc",
-        base06 = "#eeeeee",
-        base07 = "#ffffff",
-        base08 = "#ff5555",
-        base09 = "#ffb86c",
-        base0A = "#f1fa8c",
-        base0B = "#50fa7b",
-        base0C = "#8be9fd",
-        base0D = "#bd93f9",
-        base0E = "#ff79c6",
-        base0F = "#ff5555",
-      },
+You can override built-in schemes or define new Base16/Base24 schemes under
+the `schemes` key:
+>lua
+require("tinted-nvim").setup({
+  schemes = {
+    -- Override specific colors of an existing scheme
+    ["base16-catppuccin-mocha"] = {
+      base08 = "#ff0000",
+      base0A = function(palette)
+        return palette.base0B
+      end,
     },
-  })
+    -- Define a completely new scheme
+    ["base16-my-theme"] = {
+      variant = "dark",
+      base00 = "#000000",
+      base01 = "#111111",
+      base02 = "#222222",
+      base03 = "#333333",
+      base04 = "#444444",
+      base05 = "#cccccc",
+      base06 = "#eeeeee",
+      base07 = "#ffffff",
+      base08 = "#ff5555",
+      base09 = "#ffb86c",
+      base0A = "#f1fa8c",
+      base0B = "#50fa7b",
+      base0C = "#8be9fd",
+      base0D = "#bd93f9",
+      base0E = "#ff79c6",
+      base0F = "#ff5555",
+    },
+  },
+})
 <
 
-Custom schemes must start with "base16-" or "base24-". To load a custom scheme,
-use |tinted-nvim-api-load|.
+Custom schemes must start with "base16-" or "base24-". To load a custom
+scheme, use `require("tinted-nvim").load("base16-my-theme")`.
 
 ==============================================================================
-SELECTOR                                                  *tinted-nvim-selector*
+Selector                                                  *tinted-nvim.selector*
 
 The selector resolves the scheme name from an external source:
 
-  selector.mode = "file"  reads the first line from selector.path
-  selector.mode = "env"   reads the value from selector.env
-  selector.mode = "cmd"   runs selector.cmd and uses stdout
+  - `mode = "file"` reads the first line from `selector.path`
+  - `mode = "env"` reads the value from `selector.env`
+  - `mode = "cmd"` runs `selector.cmd` and uses stdout
 
-When selector.enabled is false, the plugin uses |tinted-nvim-default|.
+When `selector.enabled` is false, the plugin uses `default_scheme`.
 
-If selector.watch is true and selector.mode is "file", the file is watched and
-the scheme is reloaded on changes.
+If `selector.watch` is true and `selector.mode` is "file", the file is
+watched and the scheme is reloaded on changes.
 
 ==============================================================================
-HIGHLIGHTS                                                *tinted-nvim-highlights*
+Highlights                                              *tinted-nvim.highlights*
 
 Overrides are returned as a table of highlight specs. Color values can be:
 
-  - Hex colors ("#rrggbb")
-  - "NONE"
-  - Color aliases (see |tinted-nvim-api-palette-aliases|)
-  - Transform tables: { darken = <color>, amount = <number> }
-    or { lighten = <color>, amount = <number> }
+  - Hex colors (`"#rrggbb"`)
+  - `"NONE"`
+  - Color aliases (e.g., `"red"`, `"background"`, `"foreground"`)
+  - Transform tables: `{ darken = <color>, amount = <number> }`
+    or `{ lighten = <color>, amount = <number> }`
 
 Example override:
->
-  highlights = {
-    overrides = function(palette)
-      return {
-        Normal = { bg = "#ff0000" },
-        NormalFloat = { link = "Normal" },
-        FloatBorder = { fg = palette.base03 },
-        Search = {
-          bg = { darken = palette.base07, amount = 0.3 },
-          fg = { lighten = "#00ff00", amount = 0.1 },
-        },
-      }
-    end,
-  }
+>lua
+highlights = {
+  overrides = function(palette)
+    return {
+      Normal = { bg = "#ff0000" },
+      NormalFloat = { link = "Normal" },
+      FloatBorder = { fg = palette.base03 },
+      CursorLine = { bg = "darkest_grey", fg = "foreground" },
+      Search = {
+        bg = { darken = palette.base07, amount = 0.3 },
+        fg = { lighten = "#00ff00", amount = 0.1 },
+      },
+    }
+  end,
+}
 <
 
-If highlights.use_lazy_specs is true, tables named `highlights` inside lazy.nvim
-plugin specs are merged into the final highlight table.
+If `highlights.use_lazy_specs` is true, tables named `highlights` inside
+lazy.nvim plugin specs are merged into the final highlight table.
 
 ==============================================================================
-COMMANDS                                                  *tinted-nvim-commands*
+Commands                                                  *tinted-nvim.commands*
 
-:TintedNvimCompile [scheme]                                 *:TintedNvimCompile*
+`:TintedNvimCompile [scheme]`
   Compile a scheme without applying it. If [scheme] is omitted, the selector
   resolves the scheme name.
 
-:TintedNvimClearCache                                      *:TintedNvimClearCache*
-  Delete all compiled scheme artifacts from:
-  `stdpath("state")/tinted-nvim/`.
+`:TintedNvimClearCache`
+  Delete all compiled scheme artifacts from `stdpath("state")/tinted-nvim/`.
 
 ==============================================================================
-API                                                          *tinted-nvim-api*
+Troubleshooting                                    *tinted-nvim.troubleshooting*
 
-require("tinted-nvim").setup({opts})                          *tinted-nvim-setup*
-  Configure the plugin. This must be called before using other APIs.
+Highlights not updating when `compile = true`?
+  Run `:TintedNvimClearCache` and reload the scheme.
 
-require("tinted-nvim").load([scheme])                         *tinted-nvim-api-load*
-  Load and apply a scheme. When [scheme] is omitted, resolves via the selector.
+Plugin highlights not taking effect?
+  Ensure the integration is enabled in `highlights.integrations` or defined
+  in `highlights.overrides`.
 
-require("tinted-nvim").compile([scheme])                      *tinted-nvim-api-compile*
-  Compile a scheme without applying it.
+M.defaults                                                          *M.defaults*
 
-require("tinted-nvim").clear_cache()                          *tinted-nvim-api-clear-cache*
-  Clear all compiled artifacts.
-
-require("tinted-nvim").palette                               *tinted-nvim-api-palette*
-  Current Base16/Base24 palette table.
-
-require("tinted-nvim").palette_aliases                        *tinted-nvim-api-palette-aliases*
-  Palette with color aliases resolved.
-
-require("tinted-nvim").scheme                                *tinted-nvim-api-scheme*
-  Name of the currently active scheme.
-
-==============================================================================
-TROUBLESHOOTING                                      *tinted-nvim-troubleshooting*
-
-- Highlights not updating when compile = true?
-  Run |:TintedNvimClearCache| and reload the scheme.
-
-- Plugin highlights not taking effect?
-  Ensure the integration is enabled in highlights.integrations or defined in
-  highlights.overrides.
-
-==============================================================================
-vim:tw=78:et:ft=help:norl:
+    Type: ~
+        (tinted-nvim.Config)
 
 
-
-
-
-
-
-
-
-
+vim:tw=78:ts=8:noet:ft=help:norl:

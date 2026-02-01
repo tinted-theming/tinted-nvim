@@ -1,3 +1,49 @@
+---@mod tinted-nvim Introduction
+---@toc tinted-nvim.contents
+---@brief [[
+---Tinted-nvim is a Neovim colorscheme plugin that bundles Base16/Base24 schemes
+---from the tinted-theming project. It supports built-in and user-defined schemes,
+---color aliases, transforms (darken/lighten), highlight overrides, compiled
+---highlights for faster startup, and an external scheme selector.
+---
+---For previewing schemes, use the Tinted Gallery or the Tinty CLI.
+---@brief ]]
+---@mod tinted-nvim.install Installation
+---@brief [[
+---Using lazy.nvim:
+--->lua
+---  {
+---    "tinted-theming/tinted-nvim",
+---    lazy = false,
+---    opts = {
+---      -- your config overrides
+---    }
+---  }
+---<
+---
+---Manual setup:
+--->lua
+---  require("tinted-nvim").setup({
+---    -- your config overrides
+---  })
+---<
+---@brief ]]
+---@mod tinted-nvim.usage Usage
+---@brief [[
+---Load a built-in scheme via `:colorscheme`:
+--->
+---  :colorscheme base16-catppuccin-frappe
+---<
+---
+---Load any scheme programmatically (built-in or custom):
+--->
+---  require("tinted-nvim").load("base16-my-custom-scheme")
+---<
+---
+---Calling `load()` without a scheme name resolves it via the selector
+---and falls back to `default_scheme` when the selector cannot resolve.
+---@brief ]]
+
 local M = {}
 
 local config = require("tinted-nvim.config")
