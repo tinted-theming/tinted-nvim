@@ -1,11 +1,10 @@
 # tinted-nvim
 
 Neovim colorscheme plugin that bundles all Base16/Base24 schemes from the
-[tinted-theming](https://github.com/tinted-theming/) project. For the smoothest
-workflow, use [Tinty](https://github.com/tinted-theming/tinty) alongside
+[tinted-theming] project. For the smoothest workflow, use [Tinty] alongside
 `tinted-nvim`.
 
-Preview themes in the [Tinted Gallery](https://tinted-theming.github.io/tinted-gallery/).
+Preview themes in the [Tinted Gallery].
 
 ## Features
 
@@ -61,7 +60,7 @@ Everything is configured through a single `setup()` call.
 
 **Note**: the following section is a showcase of possible configuration
 options. **Don't copy/paste this config**. It is meant for understanding. The
-default config is here: [`lua/tinted-nvim/config.lua`](lua/tinted-nvim/config.lua).
+default config is here: [lua/tinted-nvim/config.lua].
 
 ```lua
 require("tinted-nvim").setup({
@@ -222,11 +221,78 @@ require("tinted-nvim").setup({
 
 ## API
 
-- `require("tinted-nvim").palette` - the current Base16/Base24 palette.
-- `require("tinted-nvim").palette_aliases` - the palette using color aliases.
+- `require("tinted-nvim").get_scheme()` - returns the current scheme name.
+- `require("tinted-nvim").get_palette()` - returns the current Base16/Base24 palette.
+- `require("tinted-nvim").get_palette_aliases()` - returns the palette using color aliases.
 
 ## Troubleshooting
 
 - Highlights not updating when `compile = true`? Run `:TintedNvimClearCache`.
 - Plugin highlights not taking effect? Ensure the integration is enabled in
   `highlights.integrations` or defined in your `overrides`.
+
+## Contributing
+
+For general contribution information, see [CONTRIBUTING.md], which contains
+building and contributing instructions.
+
+This project uses [Nix] flakes for reproducible development environments and
+[just] as a command runner.
+
+### Setup
+
+```sh
+# Enter the development shell (provides luajit, vusted, just)
+nix develop
+
+# Or use direnv for automatic shell activation
+direnv allow # Which runs .envrc
+```
+
+### Commands
+
+```sh
+# Run all tests
+just test
+
+# Run tests matching a pattern
+just test "loads a specific test"
+
+# Run a specific test file
+just test-file tests/config_spec.lua
+```
+
+### Project structure
+
+```
+lua/tinted-nvim/
+  init.lua          # Main entry point
+  config.lua        # Default configuration
+  colors.lua        # Palette resolver
+  compile.lua       # Bytecode compilation
+  selector.lua      # External scheme selector
+  highlights/       # Highlight group builders
+  palettes/         # Built-in Base16/Base24 palettes
+  aliases.lua       # Color alias mappings
+  terminal.lua      # Terminal color mapping
+  utils.lua         # Utility functions
+tests/              # Test suite (vusted)
+```
+
+## Changelog
+
+All notable changes to this project will be documented in [CHANGELOG.md].
+
+The format is based on [Keep a Changelog], and this project adheres to
+[Semantic Versioning].
+
+[Nix]: https://nixos.org/
+[just]: https://github.com/casey/just
+[tinted-theming]: https://github.com/tinted-theming/
+[Tinty]: https://github.com/tinted-theming/tinty
+[Tinted Gallery]: https://tinted-theming.github.io/tinted-gallery/
+[lua/tinted-nvim/config.lua]: lua/tinted-nvim/config.lua
+[CHANGELOG.md]: ./CHANGELOG.md
+[Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
+[Semantic Versioning]: https://semver.org/spec/v2.0.0.html
+[CONTRIBUTING.md]: https://github.com/tinted-theming/home/blob/main/CONTRIBUTING.md
