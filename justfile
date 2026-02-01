@@ -1,11 +1,17 @@
+test filter="":
+    vusted tests/ {{ if filter != "" { "--filter=" + filter } else { "" } }}
+
+test-file file:
+    vusted {{ file }}
+
 lint:
-    luacheck lua/
+    luacheck lua/ tests/
 
 fmt:
-    stylua lua/
+    stylua lua/ tests/
 
 fmt-check:
-    stylua --check lua/
+    stylua --check lua/ tests/
 
 check:
     lua-language-server --check lua/
