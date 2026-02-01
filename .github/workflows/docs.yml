@@ -1,0 +1,36 @@
+name: Docs
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  check:
+    name: Check Vimdoc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-24.11
+
+      - name: Cache Nix store
+        uses: cachix/cachix-action@v15
+        with:
+          name: nix-community
+          skipPush: true
+
+      - name: Generate docs
+        run: nix develop --command just docs
+
+      - name: Check for uncommitted changes
+        run: |
+          if ! git diff --quiet doc/tinted-nvim.txt; then
+            echo "::error::Vimdoc is outdated. Run 'just docs' and commit the changes."
+            git diff doc/tinted-nvim.txt
+            exit 1
+          fi
