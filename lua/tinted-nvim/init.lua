@@ -1,29 +1,31 @@
-local M          = {}
+local M = {}
 
-local config     = require("tinted-nvim.config")
-local colors     = require("tinted-nvim.colors")
+local config = require("tinted-nvim.config")
+local colors = require("tinted-nvim.colors")
 local highlights = require("tinted-nvim.highlights")
-local terminal   = require("tinted-nvim.terminal")
-local compile    = require("tinted-nvim.compile")
-local selector   = require("tinted-nvim.selector")
-local aliases    = require("tinted-nvim.aliases")
+local terminal = require("tinted-nvim.terminal")
+local compile = require("tinted-nvim.compile")
+local selector = require("tinted-nvim.selector")
+local aliases = require("tinted-nvim.aliases")
+local utils = require("tinted-nvim.utils")
 
-local state      = {
-    scheme          = nil,
-    palette         = nil,
+local public_state = {
+    scheme = nil,
+    palette = nil,
     palette_aliases = nil,
 }
 
-local function ensure_setup()
-    if rawget(config, "options") == nil then
-        error("tinted-nvim: setup() must be called first")
-    end
-end
+---@mod tinted-nvim.api API
+---@brief [[
+---The main API functions for tinted-nvim.
+---@brief ]]
 
--- Configure the plugin.
----@param opts? tinted-nvim.Config
+---Configure the plugin. Must be called before using other APIs.
+---@param opts? tinted-nvim.Config Configuration options (see |tinted-nvim.config|)
+---@usage `require("tinted-nvim").setup({ default_scheme = "base16-nord" })`
 function M.setup(opts)
-    config.setup(opts)
+    config.options = vim.tbl_deep_extend("force", {}, config.defaults, opts or {})
+    utils.assert_property(config, "options", "tinted-nvim: config is required, something fundamental has gone wrong")
 
     local cfg = config.options
 
@@ -48,12 +50,14 @@ function M.setup(opts)
     end, {})
 end
 
--- Load and apply a scheme.
--- If no scheme is given, resolve via selector.
----@param scheme_name? string
----@param opts? { colorscheme_event?: boolean }
+---Load and apply a scheme.
+---If no scheme is given, resolve via selector, falling back to `default_scheme`.
+---@param scheme_name? string The scheme name (e.g., "base16-nord")
+---@param opts? { colorscheme_event?: boolean } Options. Set to false to suppress the ColorScheme autocmd.
+---@usage `require("tinted-nvim").load("base16-dracula")`
 function M.load(scheme_name, opts)
-    ensure_setup()
+    utils.assert_property(config, "options", "tinted-nvim: setup() must be called first")
+
     local cfg = config.options
     local name = scheme_name or selector.resolve(cfg)
     local fire_event = opts == nil or opts.colorscheme_event ~= false
@@ -64,14 +68,12 @@ function M.load(scheme_name, opts)
             vim.cmd("highlight clear")
         end
 
-        local palette         = compile.load(name)
-
-        vim.o.termguicolors   = true
-        vim.g.colors_name     = name
-
-        state.scheme          = name
-        state.palette         = palette
-        state.palette_aliases = aliases.build(palette)
+        local palette = compile.load(name)
+        vim.o.termguicolors = true
+        vim.g.colors_name = name
+        public_state.scheme = name
+        public_state.palette = palette
+        public_state.palette_aliases = aliases.build(palette)
 
         if fire_event then
             vim.api.nvim_exec_autocmds("ColorScheme", { pattern = name })
@@ -85,7 +87,7 @@ function M.load(scheme_name, opts)
 
     -- build effects (may error)
     local hl_defs = highlights.build(palette, cfg)
-    local term    = terminal.build(palette, cfg)
+    local term = terminal.build(palette, cfg)
 
     -- write compiled artifact if enabled
     if cfg.compile then
@@ -104,48 +106,64 @@ function M.load(scheme_name, opts)
     highlights.apply(hl_defs, term)
     terminal.apply(term)
 
-    -- commit runtime state
-    state.scheme          = name
-    state.palette         = palette
-    state.palette_aliases = aliases.build(palette)
+    -- commit runtimepublic_state
+    public_state.scheme = name
+    public_state.palette = palette
+    public_state.palette_aliases = aliases.build(palette)
 
     if fire_event then
         vim.api.nvim_exec_autocmds("ColorScheme", { pattern = name })
     end
 end
 
--- Compile and write the scheme artifact without applying it.
----@param scheme_name? string
+---Compile and write the scheme artifact without applying it.
+---Use this to pre-compile schemes for faster startup.
+---@param scheme_name? string The scheme name. If omitted, resolves via selector.
+---@usage `require("tinted-nvim").compile("base16-nord")`
 function M.compile(scheme_name)
-    ensure_setup()
-    local cfg     = config.options
-    local name    = scheme_name or selector.resolve(cfg)
+    utils.assert_property(config, "options", "tinted-nvim: setup() must be called first")
 
+    local cfg = config.options
+    local name = scheme_name or selector.resolve(cfg)
     local palette = colors.resolve(name, cfg)
     local hl_defs = highlights.build(palette, cfg)
-    local term    = terminal.build(palette, cfg)
+    local term = terminal.build(palette, cfg)
 
     compile.write(name, palette, hl_defs, term)
 end
 
--- Clear all compiled artifacts.
+---Clear all compiled artifacts from `stdpath("state")/tinted-nvim/`.
+---@usage `require("tinted-nvim").clear_cache()`
 function M.clear_cache()
     compile.clear_all()
 end
 
-setmetatable(M, {
-    __index = function(_, key)
-        ensure_setup()
-        if key == "palette" then
-            return state.palette
-        end
-        if key == "palette_aliases" then
-            return state.palette_aliases
-        end
-        if key == "scheme" then
-            return state.scheme
-        end
-    end,
-})
+---Get the current scheme name.
+---@return string|nil scheme The current scheme name, or nil if no scheme is loaded.
+---@usage `local name = require("tinted-nvim").get_scheme()`
+function M.get_scheme()
+    utils.assert_property(config, "options", "tinted-nvim: setup() must be called first")
+
+    return public_state.scheme
+end
+
+---Get the current Base16/Base24 palette.
+---@return tinted-nvim.Palette|nil palette The current palette table (base00-base0F, optionally base10-base17), or nil.
+---@usage `local palette = require("tinted-nvim").get_palette()`
+function M.get_palette()
+    utils.assert_property(config, "options", "tinted-nvim: setup() must be called first")
+
+    return public_state.palette
+end
+
+---Get the current palette with color aliases resolved.
+---Aliases include names like "background", "foreground", "red", "green", etc.
+---@return table<string, string>|nil aliases A table mapping alias names to hex colors, or nil.
+---@usage `local aliases = require("tinted-nvim").get_palette_aliases()`
+function M.get_palette_aliases()
+    utils.assert_property(config, "options", "tinted-nvim: setup() must be called first")
+
+    return public_state.palette_aliases
+end
 
 return M

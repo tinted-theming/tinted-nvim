@@ -9,12 +9,7 @@ local M = {}
 ---@return tinted-nvim.Palette
 function M.resolve(scheme, config)
     if not scheme:match("^base16%-") and not scheme:match("^base24%-") then
-        error(
-            string.format(
-                "tinted-nvim: invalid scheme name '%s' (must start with 'base16-' or 'base24-')",
-                scheme
-            )
-        )
+        error(string.format("tinted-nvim: invalid scheme-system '%s' (must start with 'base16-' or 'base24-')", scheme))
     end
 
     -- load base palette from palettes/<scheme>.lua
@@ -50,12 +45,7 @@ function M.resolve(scheme, config)
     end
 
     if palette.variant ~= "dark" and palette.variant ~= "light" then
-        error(
-            string.format(
-                "tinted-nvim: scheme '%s' is missing a valid 'variant' field ('dark' or 'light')",
-                scheme
-            )
-        )
+        error(string.format("tinted-nvim: scheme '%s' is missing a valid 'variant' field ('dark' or 'light')", scheme))
     end
 
     local is_base24 = scheme:match("^base24%-") ~= nil
@@ -64,13 +54,7 @@ function M.resolve(scheme, config)
     for i = 0, max do
         local name = string.format("base%02X", i)
         if palette[name] == nil then
-            error(
-                string.format(
-                    "tinted-nvim: scheme '%s' is missing required color '%s'",
-                    scheme,
-                    name
-                )
-            )
+            error(string.format("tinted-nvim: scheme '%s' is missing required color '%s'", scheme, name))
         end
     end
 

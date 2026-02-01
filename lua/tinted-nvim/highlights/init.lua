@@ -5,24 +5,24 @@
 --   - resolves color aliases
 --   - returns a flat table ready for nvim_set_hl()
 
-local M            = {}
+local M = {}
 
 -- Domain builders (always on)
-local core         = require("tinted-nvim.highlights.core")
-local syntax       = require("tinted-nvim.highlights.syntax")
-local treesitter   = require("tinted-nvim.highlights.treesitter")
-local lsp          = require("tinted-nvim.highlights.lsp")
-local diagnostics  = require("tinted-nvim.highlights.diagnostics")
-local aliases      = require("tinted-nvim.aliases")
-local utils        = require("tinted-nvim.utils")
+local core = require("tinted-nvim.highlights.core")
+local syntax = require("tinted-nvim.highlights.syntax")
+local treesitter = require("tinted-nvim.highlights.treesitter")
+local lsp = require("tinted-nvim.highlights.lsp")
+local diagnostics = require("tinted-nvim.highlights.diagnostics")
+local aliases = require("tinted-nvim.aliases")
+local utils = require("tinted-nvim.utils")
 
 -- Integrations (opt in)
 local integrations = {
-    telescope       = "tinted-nvim.highlights.telescope",
-    notify          = "tinted-nvim.highlights.notify",
-    cmp             = "tinted-nvim.highlights.cmp",
-    blink           = "tinted-nvim.highlights.blink",
-    dapui           = "tinted-nvim.highlights.dapui",
+    telescope = "tinted-nvim.highlights.telescope",
+    notify = "tinted-nvim.highlights.notify",
+    cmp = "tinted-nvim.highlights.cmp",
+    blink = "tinted-nvim.highlights.blink",
+    dapui = "tinted-nvim.highlights.dapui",
 }
 
 -- Resolve a single color value.

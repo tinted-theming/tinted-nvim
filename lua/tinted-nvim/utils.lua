@@ -48,4 +48,10 @@ function M.lighten(hex, amount, bg)
     return M.blend(hex, bg, amount)
 end
 
+function M.assert_property(table, property, error_message)
+    if rawget(table, property) == nil then
+        error(error_message)
+    end
+end
+
 return M

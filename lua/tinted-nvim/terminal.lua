@@ -16,18 +16,18 @@ function M.build(palette, cfg)
     local term = {}
 
     -- Standard ANSI colors
-    term[0]  = palette.base00 -- black
-    term[1]  = palette.base08 -- red
-    term[2]  = palette.base0B -- green
-    term[3]  = palette.base0A -- yellow
-    term[4]  = palette.base0D -- blue
-    term[5]  = palette.base0E -- magenta
-    term[6]  = palette.base0C -- cyan
-    term[7]  = palette.base05 -- white
+    term[0] = palette.base00 -- black
+    term[1] = palette.base08 -- red
+    term[2] = palette.base0B -- green
+    term[3] = palette.base0A -- yellow
+    term[4] = palette.base0D -- blue
+    term[5] = palette.base0E -- magenta
+    term[6] = palette.base0C -- cyan
+    term[7] = palette.base05 -- white
 
     -- Bright ANSI colors
-    term[8]  = palette.base03 -- bright black
-    term[9]  = palette.base12 or palette.base08 -- bright red
+    term[8] = palette.base03 -- bright black
+    term[9] = palette.base12 or palette.base08 -- bright red
     term[10] = palette.base14 or palette.base0B -- bright green
     term[11] = palette.base13 or palette.base0A -- bright yellow
     term[12] = palette.base16 or palette.base0D -- bright blue

@@ -101,7 +101,8 @@ function M.build(palette, cfg)
 
     hl.SpellBad = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "red" }
     hl.SpellCap = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "orange" }
-    hl.SpellLocal = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "orange" }
+    hl.SpellLocal =
+        { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "orange" }
     hl.SpellRare = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "orange" }
 
     hl.DiffAdd = { fg = "background", bg = { darken = "blue", amount = 0.4 } }
