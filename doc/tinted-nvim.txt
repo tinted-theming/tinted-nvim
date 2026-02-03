@@ -82,7 +82,7 @@ M.load({scheme_name?}, {opts?})                                         *M.load*
 
     Parameters: ~
         {scheme_name?}  (string)                        The scheme name (e.g., "base16-nord")
-        {opts?}         ({colorscheme_event?:boolean})  Options. Set `colorscheme_event = false` to suppress the ColorScheme autocmd.
+        {opts?}         ({colorscheme_event?:boolean})  Options. Set to false to suppress the ColorScheme autocmd.
 
     Usage: ~
 >lua
@@ -204,7 +204,7 @@ tinted-nvim.Config.Styles                            *tinted-nvim.Config.Styles*
 tinted-nvim.Config.Highlights                    *tinted-nvim.Config.Highlights*
 
     Fields: ~
-        {integrations}    (table<string,boolean>)                   Enable/disable plugin integrations (telescope, notify, cmp, blink, dapui)
+        {integrations}    (table<string,boolean>)                   Enable/disable plugin integrations (telescope, notify, cmp, blink, dapui, lualine)
         {use_lazy_specs}  (boolean)                                 Merge highlights from lazy.nvim plugin specs. Default: true
         {overrides}       (fun(palette:tinted-nvim.Palette):table)  Function returning highlight overrides
 
