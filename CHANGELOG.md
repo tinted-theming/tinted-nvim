@@ -10,7 +10,7 @@
 - **File watcher**: Automatically reload scheme when selector file changes (with `watch = true`)
 - **Color transforms**: `darken` and `lighten` functions for fine-tuning colors in highlight overrides
 - **Color aliases**: Use semantic names like `red`, `background`, `foreground` instead of `base08`, `base00`, `base05`
-- **Highlight integrations**: Built-in support for telescope, notify, cmp, blink, dapui
+- **Highlight integrations**: Built-in support for telescope, notify, cmp, blink, dapui, lualine
 - **Lazy.nvim highlight specs**: Define highlights in plugin specs with `use_lazy_specs = true`
 - **User-defined schemes**: Create custom Base16/Base24 schemes in config
 - **Scheme overrides**: Override specific colors of existing schemes

@@ -110,6 +110,7 @@ require("tinted-nvim").setup({
       cmp       = true,
       blink     = true,
       dapui     = true,
+      lualine   = true,
     },
 
     -- If enabled, the plugin will scan all lazy.nvim specs and merge any

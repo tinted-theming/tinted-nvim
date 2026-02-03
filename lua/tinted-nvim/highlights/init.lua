@@ -23,6 +23,7 @@ local integrations = {
     cmp = "tinted-nvim.highlights.cmp",
     blink = "tinted-nvim.highlights.blink",
     dapui = "tinted-nvim.highlights.dapui",
+    lualine = "tinted-nvim.highlights.lualine",
 }
 
 -- Resolve a single color value.

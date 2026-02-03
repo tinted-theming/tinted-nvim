@@ -41,7 +41,7 @@ local M = {}
 ---@field types table Style for types. Default: {}
 
 ---@class tinted-nvim.Config.Highlights
----@field integrations table<string, boolean> Enable/disable plugin integrations (telescope, notify, cmp, blink, dapui)
+---@field integrations table<string, boolean> Enable/disable plugin integrations (telescope, notify, cmp, blink, dapui, lualine)
 ---@field use_lazy_specs boolean Merge highlights from lazy.nvim plugin specs. Default: true
 ---@field overrides fun(palette: tinted-nvim.Palette): table Function returning highlight overrides
 
@@ -194,6 +194,7 @@ M.defaults = {
             cmp = true,
             blink = true,
             dapui = true,
+            lualine = true,
         },
         use_lazy_specs = true,
 
