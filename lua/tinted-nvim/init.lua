@@ -115,7 +115,9 @@ function M.load(scheme_name, opts)
         end
 
         local palette = compile.load(name)
-        vim.o.termguicolors = true
+        if cfg.capabilities.truecolor ~= false then
+            vim.o.termguicolors = true
+        end
         vim.g.colors_name = name
         public_state.scheme = name
         public_state.palette = palette
@@ -145,7 +147,9 @@ function M.load(scheme_name, opts)
         vim.cmd("highlight clear")
     end
 
-    vim.o.termguicolors = true
+    if cfg.capabilities.truecolor ~= false then
+        vim.o.termguicolors = true
+    end
     vim.g.colors_name = name
 
     -- apply highlights and terminal colors

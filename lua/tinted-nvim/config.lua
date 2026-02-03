@@ -26,6 +26,7 @@ local M = {}
 ---@field selector tinted-nvim.Config.Selector External scheme selector configuration
 
 ---@class tinted-nvim.Config.Capabilities
+---@field truecolor boolean Enable truecolor support (sets 'termguicolors'). Default: true
 ---@field undercurl boolean Use undercurl (falls back to underline if false). Default: false
 ---@field terminal_colors boolean Set terminal colors (g:terminal_color_0..17). Default: true
 
@@ -153,6 +154,15 @@ local M = {}
 
 ---@mod tinted-nvim.troubleshooting Troubleshooting
 ---@brief [[
+---Your terminal does not support truecolor?
+---  This plugin is optimized for truecolor terminals. If you are in a
+---  non-truecolor terminal, set `capabilities.truecolor = false` to fall back
+---  to terminal ANSI colors. If you use `tinted-terminal` or `tinted-shell`,
+---  your terminal ANSI colors match the Base16/Base24 palette, so colors stay
+---  consistent. Transforms (darken/lighten) and custom RGB overrides do not
+---  have `cterm` equivalents, so those highlight groups are not defined and
+---  colors may look off.
+---
 ---Highlights not updating when `compile = true`?
 ---  Run `:TintedNvimClearCache` and reload the scheme.
 ---
@@ -170,6 +180,7 @@ M.defaults = {
     compile = false,
 
     capabilities = {
+        truecolor = true,
         undercurl = false,
         terminal_colors = true,
     },

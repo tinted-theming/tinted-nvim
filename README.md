@@ -74,6 +74,10 @@ require("tinted-nvim").setup({
   compile = true,
 
   capabilities = {
+    -- Enable truecolor support (sets `termguicolors`).
+    -- If false, cterm colors are used where available.
+    truecolor = true,
+
     -- Some terminal emulators cannot draw undercurls. When disabling
     -- undercurls globally, it falls back to underline.
     undercurl = false,
@@ -227,6 +231,13 @@ require("tinted-nvim").setup({
 - `require("tinted-nvim").get_palette_aliases()` - returns the palette using color aliases.
 
 ## Troubleshooting
+
+- Truecolor support: this plugin is optimized for truecolor terminals. If you
+  are in a non-truecolor terminal, set `capabilities.truecolor = false` to fall
+  back to terminal ANSI colors. If you use [tinted-terminal](https://github.com/tinted-theming/tinted-terminal) or
+  [tinted-shell](https://github.com/tinted-theming/tinted-shell), your terminal ANSI colors match the Base16/Base24 palette, so
+  colors stay consistent. Transforms (darken/lighten) and custom RGB overrides
+  do not have `cterm` equivalents, so those highlight groups are skipped.
 
 - Highlights not updating when `compile = true`? Run `:TintedNvimClearCache`.
 - Plugin highlights not taking effect? Ensure the integration is enabled in
