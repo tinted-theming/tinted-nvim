@@ -120,6 +120,31 @@ local M = {}
 ---  - Transform tables: `{ darken = <color>, amount = <number> }`
 ---    or `{ lighten = <color>, amount = <number> }`
 ---
+---Complete color alias list:
+---
+---  - `background`
+---  - `darkest_grey`
+---  - `dark_grey`
+---  - `grey`
+---  - `bright_grey`
+---  - `foreground`
+---  - `bright_white`
+---  - `brightest_white`
+---  - `red`
+---  - `bright_red`
+---  - `orange`
+---  - `yellow`
+---  - `bright_yellow`
+---  - `green`
+---  - `bright_green`
+---  - `cyan`
+---  - `bright_cyan`
+---  - `blue`
+---  - `bright_blue`
+---  - `purple`
+---  - `bright_purple`
+---  - `dark_red`
+---
 ---Example override:
 --->lua
 ---highlights = {

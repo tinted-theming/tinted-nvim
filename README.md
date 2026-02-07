@@ -218,6 +218,32 @@ require("tinted-nvim").setup({
 })
 ```
 
+<details>
+<summary>Complete color alias list</summary>
+<code>background</code><br>
+<code>darkest_grey</code><br>
+<code>dark_grey</code><br>
+<code>grey</code><br>
+<code>bright_grey</code><br>
+<code>foreground</code><br>
+<code>bright_white</code><br>
+<code>brightest_white</code><br>
+<code>red</code><br>
+<code>bright_red</code><br>
+<code>orange</code><br>
+<code>yellow</code><br>
+<code>bright_yellow</code><br>
+<code>green</code><br>
+<code>bright_green</code><br>
+<code>cyan</code><br>
+<code>bright_cyan</code><br>
+<code>blue</code><br>
+<code>bright_blue</code><br>
+<code>purple</code><br>
+<code>bright_purple</code><br>
+<code>dark_red</code>
+</details>
+
 ## Commands
 
 - `:TintedNvimCompile [scheme]` - Compile a scheme. If no argument, compile the
