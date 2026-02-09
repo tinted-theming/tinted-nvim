@@ -34,12 +34,19 @@ local M = {}
 ---@field transparent boolean Leave Normal background unset. Default: false
 ---@field dim_inactive boolean Dim inactive windows. Default: false
 
+---@class tinted-nvim.Config.StyleAttrs
+---@field italic? boolean
+---@field bold? boolean
+---@field underline? boolean
+---@field undercurl? boolean
+---@field strikethrough? boolean
+
 ---@class tinted-nvim.Config.Styles
----@field comments table Style for comments. Default: { italic = true }
----@field keywords table Style for keywords. Default: {}
----@field functions table Style for functions. Default: {}
----@field variables table Style for variables. Default: {}
----@field types table Style for types. Default: {}
+---@field comments tinted-nvim.Config.StyleAttrs
+---@field keywords tinted-nvim.Config.StyleAttrs
+---@field functions tinted-nvim.Config.StyleAttrs
+---@field variables tinted-nvim.Config.StyleAttrs
+---@field types tinted-nvim.Config.StyleAttrs
 
 ---@class tinted-nvim.Config.Highlights
 ---@field integrations table<string, boolean> Enable/disable plugin integrations (telescope, notify, cmp, blink, dapui, lualine)
@@ -48,7 +55,7 @@ local M = {}
 
 ---@class tinted-nvim.Config.Selector
 ---@field enabled boolean Enable external selector. Default: false
----@field mode string Selector mode: "file", "env", or "cmd". Default: "file"
+---@field mode "file"|"env"|"cmd" Selector mode. Default: "file"
 ---@field watch boolean Watch file for changes (file mode only). Default: true
 ---@field path string Path to scheme file. Default: "~/.local/share/tinted-theming/tinty/current_scheme"
 ---@field env string Environment variable name. Default: "TINTED_THEME"
