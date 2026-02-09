@@ -67,7 +67,6 @@ M.cterm = {
 ---@param name string The alias name (e.g., "red", "background")
 ---@param palette tinted-nvim.Palette The palette to resolve from
 ---@return string|nil color The hex color value, or nil if not found
----@return string|nil base_key The base key that matched (e.g., "base08")
 function M.resolve(name, palette)
     local keys = M.map[name]
 
@@ -79,7 +78,7 @@ function M.resolve(name, palette)
     for _, base in ipairs(keys) do
         local color = palette[base]
         if color then
-            return color, base
+            return color
         end
     end
 

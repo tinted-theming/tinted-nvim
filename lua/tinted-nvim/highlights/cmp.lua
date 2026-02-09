@@ -1,39 +1,41 @@
 local M = {}
 
 ---@param palette tinted-nvim.Palette
+---@param aliases table<string, string>
 ---@param cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(palette, cfg)
+function M.build(palette, aliases, cfg)
+    local a = aliases
     return {
         CmpDocumentationBorder = { link = "FloatBorder" },
-        CmpDocumentation = { fg = "foreground" },
-        CmpItemAbbr = { fg = "foreground", bg = "darkest_grey" },
-        CmpItemAbbrDeprecated = { fg = "grey", strikethrough = true },
-        CmpItemAbbrMatch = { fg = "blue" },
-        CmpItemAbbrMatchFuzzy = { fg = "blue" },
-        CmpItemKindDefault = { fg = "foreground" },
-        CmpItemMenu = { fg = "bright_grey" },
-        CmpItemKindKeyword = { fg = "purple" },
-        CmpItemKindVariable = { fg = "red" },
-        CmpItemKindConstant = { fg = "orange" },
-        CmpItemKindReference = { fg = "red" },
-        CmpItemKindValue = { fg = "orange" },
-        CmpItemKindFunction = { fg = "blue" },
-        CmpItemKindMethod = { fg = "blue" },
-        CmpItemKindConstructor = { fg = "blue" },
-        CmpItemKindClass = { fg = "yellow" },
-        CmpItemKindInterface = { fg = "yellow" },
-        CmpItemKindStruct = { fg = "yellow" },
-        CmpItemKindEvent = { fg = "yellow" },
-        CmpItemKindEnum = { fg = "yellow" },
-        CmpItemKindUnit = { fg = "yellow" },
-        CmpItemKindModule = { fg = "foreground" },
-        CmpItemKindProperty = { fg = "red" },
-        CmpItemKindField = { fg = "red" },
-        CmpItemKindTypeParameter = { fg = "yellow" },
-        CmpItemKindEnumMember = { fg = "yellow" },
-        CmpItemKindOperator = { fg = "foreground" },
-        CmpItemKindSnippet = { fg = "bright_grey" },
+        CmpDocumentation = { fg = a.foreground },
+        CmpItemAbbr = { fg = a.foreground, bg = a.darkest_grey },
+        CmpItemAbbrDeprecated = { fg = a.grey, strikethrough = true },
+        CmpItemAbbrMatch = { fg = a.blue },
+        CmpItemAbbrMatchFuzzy = { fg = a.blue },
+        CmpItemKindDefault = { fg = a.foreground },
+        CmpItemMenu = { fg = a.bright_grey },
+        CmpItemKindKeyword = { fg = a.purple },
+        CmpItemKindVariable = { fg = a.red },
+        CmpItemKindConstant = { fg = a.orange },
+        CmpItemKindReference = { fg = a.red },
+        CmpItemKindValue = { fg = a.orange },
+        CmpItemKindFunction = { fg = a.blue },
+        CmpItemKindMethod = { fg = a.blue },
+        CmpItemKindConstructor = { fg = a.blue },
+        CmpItemKindClass = { fg = a.yellow },
+        CmpItemKindInterface = { fg = a.yellow },
+        CmpItemKindStruct = { fg = a.yellow },
+        CmpItemKindEvent = { fg = a.yellow },
+        CmpItemKindEnum = { fg = a.yellow },
+        CmpItemKindUnit = { fg = a.yellow },
+        CmpItemKindModule = { fg = a.foreground },
+        CmpItemKindProperty = { fg = a.red },
+        CmpItemKindField = { fg = a.red },
+        CmpItemKindTypeParameter = { fg = a.yellow },
+        CmpItemKindEnumMember = { fg = a.yellow },
+        CmpItemKindOperator = { fg = a.foreground },
+        CmpItemKindSnippet = { fg = a.bright_grey },
     }
 end
 

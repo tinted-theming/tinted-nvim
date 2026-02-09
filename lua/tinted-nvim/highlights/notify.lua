@@ -1,15 +1,17 @@
 local M = {}
 
 ---@param palette tinted-nvim.Palette
+---@param aliases table<string, string>
 ---@param cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(palette, cfg)
+function M.build(palette, aliases, cfg)
+    local a = aliases
     return {
-        NotifyERRORBorder = { fg = "red" },
-        NotifyWARNBorder = { fg = "purple" },
-        NotifyINFOBorder = { fg = "foreground" },
-        NotifyDEBUGBorder = { fg = "cyan" },
-        NotifyTRACEBorder = { fg = "cyan" },
+        NotifyERRORBorder = { fg = a.red },
+        NotifyWARNBorder = { fg = a.purple },
+        NotifyINFOBorder = { fg = a.foreground },
+        NotifyDEBUGBorder = { fg = a.cyan },
+        NotifyTRACEBorder = { fg = a.cyan },
 
         NotifyERRORIcon = { link = "NotifyERRORBorder" },
         NotifyWARNIcon = { link = "NotifyWARNBorder" },

@@ -1,34 +1,36 @@
 local M = {}
 
 ---@param palette tinted-nvim.Palette
+---@param aliases table<string, string>
 ---@param cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(palette, cfg)
+function M.build(palette, aliases, cfg)
+    local a = aliases
     local hl = {
-        DiagnosticError = { fg = "red" },
-        DiagnosticWarn = { fg = "orange" },
-        DiagnosticInfo = { fg = "yellow" },
-        DiagnosticHint = { fg = "blue" },
+        DiagnosticError = { fg = a.red },
+        DiagnosticWarn = { fg = a.orange },
+        DiagnosticInfo = { fg = a.yellow },
+        DiagnosticHint = { fg = a.blue },
 
         DiagnosticUnderlineError = {
             underline = not cfg.capabilities.undercurl,
             undercurl = cfg.capabilities.undercurl,
-            sp = "red",
+            sp = a.red,
         },
         DiagnosticUnderlineWarn = {
             underline = not cfg.capabilities.undercurl,
             undercurl = cfg.capabilities.undercurl,
-            sp = "orange",
+            sp = a.orange,
         },
         DiagnosticUnderlineInfo = {
             underline = not cfg.capabilities.undercurl,
             undercurl = cfg.capabilities.undercurl,
-            sp = "yellow",
+            sp = a.yellow,
         },
         DiagnosticUnderlineHint = {
             underline = not cfg.capabilities.undercurl,
             undercurl = cfg.capabilities.undercurl,
-            sp = "blue",
+            sp = a.blue,
         },
 
         DiagnosticFloatingError = { link = "DiagnosticError" },
@@ -47,9 +49,9 @@ function M.build(palette, cfg)
         DiagnosticVirtualTextHint = { link = "DiagnosticHint" },
     }
     if vim.fn.has("nvim-0.9.0") == 1 then
-        hl.DiagnosticOk = { fg = "bright_green" }
+        hl.DiagnosticOk = { fg = a.bright_green }
         hl.DiagnosticUnderlineOk =
-            { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "bright_green" }
+            { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.bright_green }
         hl.DiagnosticFloatingOk = { link = "DiagnosticOk" }
         hl.DiagnosticSignOk = { link = "DiagnosticOk" }
         hl.DiagnosticVirtualTextOk = { link = "DiagnosticOk" }

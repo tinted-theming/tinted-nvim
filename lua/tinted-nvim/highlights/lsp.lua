@@ -1,15 +1,17 @@
 local M = {}
 
 ---@param palette tinted-nvim.Palette
+---@param aliases table<string, string>
 ---@param cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(palette, cfg)
+function M.build(palette, aliases, cfg)
+    local a = aliases
     local hl = {}
 
     -- LSP references
-    hl.LspReferenceText = { underline = true, sp = "bright_grey" }
-    hl.LspReferenceRead = { underline = true, sp = "bright_grey" }
-    hl.LspReferenceWrite = { underline = true, sp = "bright_grey" }
+    hl.LspReferenceText = { underline = true, sp = a.bright_grey }
+    hl.LspReferenceRead = { underline = true, sp = a.bright_grey }
+    hl.LspReferenceWrite = { underline = true, sp = a.bright_grey }
 
     -- Inlay hints
     hl.LspInlayHint = { link = "Comment" }

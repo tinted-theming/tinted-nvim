@@ -118,6 +118,7 @@ end
 ---@return table<string, tinted-nvim.Highlight>
 function M.build(palette, cfg)
     local result = {}
+    local palette_aliases = aliases.build(palette)
 
     -- helper to merge domain output
     local function merge(tbl)
@@ -127,18 +128,18 @@ function M.build(palette, cfg)
     end
 
     -- core domains
-    merge(core.build(palette, cfg))
-    merge(syntax.build(palette, cfg))
-    merge(treesitter.build(palette, cfg))
-    merge(lsp.build(palette, cfg))
-    merge(diagnostics.build(palette, cfg))
+    merge(core.build(palette, palette_aliases, cfg))
+    merge(syntax.build(palette, palette_aliases, cfg))
+    merge(treesitter.build(palette, palette_aliases, cfg))
+    merge(lsp.build(palette, palette_aliases, cfg))
+    merge(diagnostics.build(palette, palette_aliases, cfg))
 
     -- integrations
     local enabled = cfg.highlights and cfg.highlights.integrations or {}
     for name, module_path in pairs(integrations) do
         if enabled[name] then
             local mod = require(module_path)
-            merge(mod.build(palette, cfg))
+            merge(mod.build(palette, palette_aliases, cfg))
         end
     end
 

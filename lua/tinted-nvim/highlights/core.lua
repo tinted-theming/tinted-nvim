@@ -3,118 +3,120 @@ local utils = require("tinted-nvim.utils")
 local M = {}
 
 ---@param palette tinted-nvim.Palette
+---@param aliases table<string, string>
 ---@param cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(palette, cfg)
+function M.build(palette, aliases, cfg)
+    local a = aliases
     local hl = {}
 
-    hl.Normal = { fg = "foreground", bg = (cfg.ui and cfg.ui.transparent) and "NONE" or "background" }
+    hl.Normal = { fg = a.foreground, bg = (cfg.ui and cfg.ui.transparent) and "NONE" or a.background }
     if cfg.ui and cfg.ui.dim_inactive then
         local bg = (cfg.ui and cfg.ui.transparent) and "NONE" or utils.blend(palette.base00, "#000000", 0.2)
-        hl.NormalNC = { fg = "dark_grey", bg = bg }
+        hl.NormalNC = { fg = a.dark_grey, bg = bg }
     else
         hl.NormalNC = { link = "Normal" }
     end
 
-    hl.Cursor = { fg = "background", bg = "foreground" }
+    hl.Cursor = { fg = a.background, bg = a.foreground }
     hl.lCursor = { link = "Cursor" }
     hl.CursorIM = { link = "Cursor" }
-    hl.CursorLine = { bg = { darken = "darkest_grey", amount = 0.6 } }
+    hl.CursorLine = { bg = { darken = a.darkest_grey, amount = 0.6 } }
     hl.CursorColumn = { link = "CursorLine" }
     hl.CursorLineNr = { link = "LineNr" }
 
-    hl.LineNr = { fg = "dark_grey" }
+    hl.LineNr = { fg = a.dark_grey }
     hl.LineNrAbove = { link = "LineNr" }
     hl.LineNrBelow = { link = "LineNr" }
-    hl.SignColumn = { fg = "bright_grey" }
+    hl.SignColumn = { fg = a.bright_grey }
 
-    hl.ColorColumn = { bg = "darkest_grey" }
+    hl.ColorColumn = { bg = a.darkest_grey }
 
-    hl.WinSeparator = { fg = "dark_grey" }
+    hl.WinSeparator = { fg = a.dark_grey }
     hl.VertSplit = { link = "WinSeparator" }
 
-    hl.StatusLine = { fg = "foreground", bg = "dark_grey" }
+    hl.StatusLine = { fg = a.foreground, bg = a.dark_grey }
     hl.StatusLineNC = { link = "StatusLine" }
 
-    hl.WinBar = { fg = "foreground" }
-    hl.WinBarNC = { fg = "bright_grey" }
+    hl.WinBar = { fg = a.foreground }
+    hl.WinBarNC = { fg = a.bright_grey }
 
-    hl.TabLine = { fg = "bright_grey", bg = "darkest_grey" }
-    hl.TabLineSel = { fg = "green", bg = "darkest_grey" }
+    hl.TabLine = { fg = a.bright_grey, bg = a.darkest_grey }
+    hl.TabLineSel = { fg = a.green, bg = a.darkest_grey }
 
-    hl.Visual = { bg = "darkest_grey" }
+    hl.Visual = { bg = a.darkest_grey }
 
-    hl.MatchParen = { bg = "dark_grey" }
+    hl.MatchParen = { bg = a.dark_grey }
 
-    hl.Search = { fg = "darkest_grey", bg = "yellow" }
+    hl.Search = { fg = a.darkest_grey, bg = a.yellow }
     hl.CurSearch = { link = "Search" }
-    hl.IncSearch = { fg = "darkest_grey", bg = "orange" }
+    hl.IncSearch = { fg = a.darkest_grey, bg = a.orange }
 
-    hl.Substitute = { fg = "darkest_grey", bg = "yellow" }
+    hl.Substitute = { fg = a.darkest_grey, bg = a.yellow }
 
-    hl.Pmenu = { bg = (cfg.ui and cfg.ui.transparent) and "NONE" or "background" }
-    hl.PmenuSel = { bg = "darkest_grey" }
-    hl.PmenuThumb = { bg = "dark_grey" }
+    hl.Pmenu = { bg = (cfg.ui and cfg.ui.transparent) and "NONE" or a.background }
+    hl.PmenuSel = { bg = a.darkest_grey }
+    hl.PmenuThumb = { bg = a.dark_grey }
     hl.PmenuKind = { link = "Pmenu" }
     hl.PmenuKindSel = { link = "PmenuSel" }
     hl.PmenuExtra = { link = "Pmenu" }
     hl.PmenuExtraSel = { link = "PmenuSel" }
-    hl.PmenuSbar = { bg = "dark_grey" }
+    hl.PmenuSbar = { bg = a.dark_grey }
     hl.PmenuBorder = { link = "FloatBorder" }
 
-    hl.NonText = { fg = "darkest_grey" }
-    hl.SpecialKey = { fg = "grey" }
+    hl.NonText = { fg = a.darkest_grey }
+    hl.SpecialKey = { fg = a.grey }
     hl.Whitespace = { link = "NonText" }
     hl.EndOfBuffer = { link = "NonText" }
 
-    hl.Folded = { fg = "grey" }
+    hl.Folded = { fg = a.grey }
     hl.FoldColumn = { link = "LineNr" }
 
-    hl.Directory = { fg = "blue" }
+    hl.Directory = { fg = a.blue }
 
-    hl.Title = { fg = "bright_blue" }
+    hl.Title = { fg = a.bright_blue }
 
-    hl.Error = { fg = "red" }
-    hl.ErrorMsg = { fg = "red" }
-    hl.WarningMsg = { fg = "red" }
+    hl.Error = { fg = a.red }
+    hl.ErrorMsg = { fg = a.red }
+    hl.WarningMsg = { fg = a.red }
 
-    hl.ModeMsg = { fg = "green" }
-    hl.MoreMsg = { fg = "green" }
-    hl.Question = { fg = "blue" }
+    hl.ModeMsg = { fg = a.green }
+    hl.MoreMsg = { fg = a.green }
+    hl.Question = { fg = a.blue }
 
-    hl.Conceal = { fg = "blue" }
+    hl.Conceal = { fg = a.blue }
 
-    hl.WildMenu = { fg = "red", bg = "yellow" }
+    hl.WildMenu = { fg = a.red, bg = a.yellow }
 
-    hl.Underlined = { fg = "red" }
+    hl.Underlined = { fg = a.red }
     hl.Ignore = { link = "NonText" }
 
     hl.TermCursor = { link = "Cursor" }
     hl.TermCursorNC = { link = "Cursor" }
 
     hl.NormalFloat = { link = "Normal" }
-    hl.FloatBorder = { fg = "grey" }
+    hl.FloatBorder = { fg = a.grey }
     hl.FloatTitle = { link = "Title" }
     hl.FloatFooter = { link = "NonText" }
 
-    hl.QuickFixLine = { bg = "dark_grey" }
+    hl.QuickFixLine = { bg = a.dark_grey }
 
-    hl.SpellBad = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "red" }
-    hl.SpellCap = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "orange" }
+    hl.SpellBad = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.red }
+    hl.SpellCap = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.orange }
     hl.SpellLocal =
-        { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "orange" }
-    hl.SpellRare = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = "orange" }
+        { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.orange }
+    hl.SpellRare = { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.orange }
 
-    hl.DiffAdd = { fg = "background", bg = { darken = "blue", amount = 0.4 } }
+    hl.DiffAdd = { fg = a.background, bg = { darken = a.blue, amount = 0.4 } }
     hl.DiffText = { link = "DiffAdd" }
     hl.DiffChange = { link = "Cursorline" }
     hl.DiffDelete = { link = "NonText" }
 
-    hl.MsgArea = { fg = "foreground" }
-    hl.MsgSeparator = { fg = "bright_grey" }
+    hl.MsgArea = { fg = a.foreground }
+    hl.MsgSeparator = { fg = a.bright_grey }
 
-    hl.debugPC = { bg = "dark_grey" }
-    hl.debugBreakpoint = { fg = "red", bg = "dark_grey" }
+    hl.debugPC = { bg = a.dark_grey }
+    hl.debugBreakpoint = { fg = a.red, bg = a.dark_grey }
 
     return hl
 end
