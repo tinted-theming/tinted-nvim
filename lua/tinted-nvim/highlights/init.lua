@@ -41,50 +41,50 @@ local function resolve_color(value, palette)
 
         local base = resolve_color(target, palette)
         if base == "NONE" then
-            return "NONE", nil
+            return "NONE"
         end
-        if type(base) ~= "string" or not base:match("^#%x%x%x%x%x%x$") then
+        if not utils.is_hex(base) then
             error("tinted-nvim: color transform requires a hex color")
         end
         if value.darken then
             local background = palette.base00
-            if type(background) ~= "string" or not background:match("^#%x%x%x%x%x%x$") then
+            if not utils.is_hex(background) then
                 error("tinted-nvim: background color could not be resolved")
             end
-            return utils.darken(base, amount, background), nil
+            return utils.darken(base, amount, background)
         end
         local foreground = palette.base05
-        if type(foreground) ~= "string" or not foreground:match("^#%x%x%x%x%x%x$") then
+        if not utils.is_hex(foreground) then
             error("tinted-nvim: foreground color could not be resolved")
         end
-        return utils.lighten(base, amount, foreground), nil
+        return utils.lighten(base, amount, foreground)
     end
 
     if type(value) ~= "string" then
-        return value, nil
+        return value
     end
 
     local lower = value:lower()
     if lower == "none" then
-        return "NONE", nil
+        return "NONE"
     end
 
     -- hex color
-    if value:match("^#%x%x%x%x%x%x$") then
-        return value, nil
+    if utils.is_hex(value) then
+        return value
     end
 
     -- alias
-    local color, base_key = aliases.resolve(value, palette)
+    local color = aliases.resolve(value, palette)
     if color then
-        return color, base_key
+        return color
     end
 
     error("tinted-nvim: color '" .. value .. "' is not a hex or alias")
 end
 
 -- Resolve aliases in a highlight spec.
-local function resolve_spec(spec, palette)
+local function resolve_spec(spec, palette, hex_to_cterm)
     if spec.link then
         return spec
     end
@@ -92,13 +92,14 @@ local function resolve_spec(spec, palette)
     local out = {}
     for k, v in pairs(spec) do
         if k == "fg" or k == "bg" then
-            local color, base_key = resolve_color(v, palette)
+            local color = resolve_color(v, palette)
             out[k] = color
-            -- Only add cterm colors when we can map a baseXX alias to ANSI.
-            if base_key and aliases.cterm[base_key] then
+            -- Add cterm colors when we can map a resolved hex color to an ANSI slot.
+            if utils.is_hex(color) then
+                local cterm = hex_to_cterm[color:lower()]
                 local cterm_key = k == "fg" and "ctermfg" or "ctermbg"
-                if out[cterm_key] == nil then
-                    out[cterm_key] = aliases.cterm[base_key]
+                if cterm and out[cterm_key] == nil then
+                    out[cterm_key] = cterm
                 end
             end
         elseif k == "sp" then
@@ -159,9 +160,10 @@ function M.build(palette, cfg)
     end
 
     -- resolve aliases
+    local hex_to_cterm = utils.build_hex_to_cterm_map(palette, aliases.cterm)
     local resolved = {}
     for group, spec in pairs(result) do
-        resolved[group] = resolve_spec(spec, palette)
+        resolved[group] = resolve_spec(spec, palette, hex_to_cterm)
     end
 
     return resolved

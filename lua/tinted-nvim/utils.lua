@@ -54,4 +54,29 @@ function M.assert_property(table, property, error_message)
     end
 end
 
+---@param color any
+---@return boolean
+function M.is_hex(color)
+    return type(color) == "string" and color:match("^#%x%x%x%x%x%x$") ~= nil
+end
+
+---Build reverse lookup from hex color to ANSI cterm index.
+---@param palette tinted-nvim.Palette
+---@param cterm_map table<string, integer|nil>
+---@return table<string, integer>
+function M.build_hex_to_cterm_map(palette, cterm_map)
+    local out = {}
+
+    for base_key, cterm in pairs(cterm_map or {}) do
+        if type(cterm) == "number" then
+            local color = palette[base_key]
+            if M.is_hex(color) and out[color:lower()] == nil then
+                out[color:lower()] = cterm
+            end
+        end
+    end
+
+    return out
+end
+
 return M
