@@ -7,8 +7,8 @@ if vim and vim.g and not vim.g[warned_key] then
     vim.g[warned_key] = true
     vim.notify_once(
         "Deprecated module 'tinted-colorscheme' was loaded.\n"
-            .. "This plugin was renamed to 'tinted-nvim' and its API has changed.\n"
-            .. "See :h tinted-nvim for documentation.",
+        .. "This plugin was renamed to 'tinted-nvim' and its API has changed.\n"
+        .. "See :h tinted-nvim for documentation.",
         vim.log.levels.WARN
     )
 end
