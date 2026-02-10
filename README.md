@@ -68,40 +68,40 @@ require("tinted-nvim").setup({
   default_scheme = "base16-ayu-dark",
 
   -- Apply a scheme automatically during startup.
-  apply_scheme_on_startup = true,
+  apply_scheme_on_startup = true, -- default `true`
 
   -- Compile the scheme for faster startup.
-  compile = true,
+  compile = true, -- default `false`
 
   capabilities = {
     -- Enable truecolor support (sets `termguicolors`).
     -- If false, cterm colors are used where available.
-    truecolor = true,
+    truecolor = true, -- default `true`
 
     -- Some terminal emulators cannot draw undercurls. When disabling
     -- undercurls globally, it falls back to underline.
-    undercurl = false,
+    undercurl = false, -- default `false`
 
     -- Set vim.g.terminal_color_0 .. vim.g.terminal_color_17.
-    terminal_colors = true,
+    terminal_colors = true, -- defualt `true`
   },
 
   ui = {
     -- If true, Normal background is left unset (transparent).
-    transparent = false,
+    transparent = false, -- default `false`
 
     -- Dim background of inactive windows.
-    dim_inactive = false,
+    dim_inactive = false, -- default `false`
   },
 
   -- Change text attributes for certain highlight groups.
   -- Supported attributes: italic, bold, underline, undercurl, strikethrough.
   styles = {
-    comments  = { italic = true },
-    keywords  = { bold = true },
-    functions = { underline = true },
-    variables = { italic = true, underline = true },
-    types     = { bold = true, underline = true, strikethrough = false },
+    comments  = { italic = true }, -- default `{ italic = true }`
+    keywords  = { bold = true }, -- default `{}`
+    functions = { underline = true }, -- default `{}`
+    variables = { italic = true, underline = true }, -- default `{}`
+    types     = { bold = true, underline = true, strikethrough = false }, -- default `{}`
   },
 
   highlights = {
@@ -109,12 +109,12 @@ require("tinted-nvim").setup({
     -- Enable/disable them as needed. This only enables highlight groups, not
     -- the plugin itself.
     integrations = {
-      telescope = true,
-      notify    = true,
-      cmp       = true,
-      blink     = true,
-      dapui     = true,
-      lualine   = true,
+      telescope = true, -- default `true`
+      notify    = true, -- default `true`
+      cmp       = true, -- default `true`
+      blink     = true, -- default `true`
+      dapui     = true, -- default `true`
+      lualine   = true, -- default `true`
     },
 
     -- If enabled, the plugin will scan all lazy.nvim specs and merge any
@@ -129,7 +129,7 @@ require("tinted-nvim").setup({
     --     Todo = { fg = "yellow", bg = "#00ff00", bold = true },
     --   },
     -- }
-    use_lazy_specs = true,
+    use_lazy_specs = true, -- default `true`
 
     -- This callback function lets you override highlight groups (just like
     -- `use_lazy_specs` does).
@@ -162,7 +162,7 @@ require("tinted-nvim").setup({
     end,
   },
 
-  schemes = {
+  schemes = { -- default `{}`
     -- Override specific colors of an existing scheme.
     ["base16-catppuccin-mocha"] = {
       -- Override with explicit color.
@@ -198,22 +198,22 @@ require("tinted-nvim").setup({
 
   -- External scheme selector (resolves scheme names only).
   selector = {
-    enabled = true,
+    enabled = true, -- default `false`
 
     -- "file" | "env" | "cmd"
-    mode = "file",
+    mode = "file", -- default `file`
 
     -- Expects a file that only contains the scheme name.
-    path = "~/.local/share/tinted-theming/tinty/current_scheme",
+    path = "~/.local/share/tinted-theming/tinty/current_scheme", -- default ` "~/.local/share/tinted-theming/tinty/current_scheme"`
 
     -- Reads the scheme name from an environment variable.
-    env = "TINTED_THEME",
+    env = "TINTED_THEME", -- default `"TINTED_THEME"`
 
     -- Executes a command that returns the scheme name.
-    cmd = "tinty current",
+    cmd = "tinty current", -- default `"tinty current"`
 
     -- In "file" mode: watch the file, and reload the scheme on changes.
-    watch = true,
+    watch = true, -- default `true`
   },
 })
 ```
@@ -290,6 +290,9 @@ direnv allow # Which runs .envrc
 ### Commands
 
 ```sh
+# List all justfile commands
+just list
+
 # Run all tests
 just test
 
@@ -298,6 +301,12 @@ just test "loads a specific test"
 
 # Run a specific test file
 just test-file tests/config_spec.lua
+
+# Update tinted-nvim.txt NeoVim docs file
+just docs
+
+# Format files with stylelua
+just fmt
 ```
 
 ### Project structure
