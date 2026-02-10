@@ -7,34 +7,34 @@
 -- gui and cterm values via standard Neovim highlight definitions
 local theme = {
     normal = {
-        a = 'LualineNormalA',
-        b = 'LualineNormalB',
-        c = 'LualineNormalC',
+        a = "LualineNormalA",
+        b = "LualineNormalB",
+        c = "LualineNormalC",
     },
     insert = {
-        a = 'LualineInsertA',
-        b = 'LualineInsertB',
-        c = 'LualineInsertC',
+        a = "LualineInsertA",
+        b = "LualineInsertB",
+        c = "LualineInsertC",
     },
     visual = {
-        a = 'LualineVisualA',
-        b = 'LualineVisualB',
-        c = 'LualineVisualC',
+        a = "LualineVisualA",
+        b = "LualineVisualB",
+        c = "LualineVisualC",
     },
     replace = {
-        a = 'LualineReplaceA',
-        b = 'LualineReplaceB',
-        c = 'LualineReplaceC',
+        a = "LualineReplaceA",
+        b = "LualineReplaceB",
+        c = "LualineReplaceC",
     },
     command = {
-        a = 'LualineCommandA',
-        b = 'LualineCommandB',
-        c = 'LualineCommandC',
+        a = "LualineCommandA",
+        b = "LualineCommandB",
+        c = "LualineCommandC",
     },
     inactive = {
-        a = 'LualineInactiveA',
-        b = 'LualineInactiveB',
-        c = 'LualineInactiveC',
+        a = "LualineInactiveA",
+        b = "LualineInactiveB",
+        c = "LualineInactiveC",
     },
 }
 
