@@ -74,8 +74,6 @@ jobs:
           fi
 
   docs:
-    needs:
-      - build-and-commit
     uses: ./.github/workflows/docs.yml
     with:
       trigger_event: "pull_request"
