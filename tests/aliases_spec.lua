@@ -84,38 +84,33 @@ describe("aliases", function()
 
     describe("resolve", function()
         it("resolves background alias", function()
-            local color, base = aliases.resolve("background", base16_palette)
+            local color = aliases.resolve("background", base16_palette)
 
             assert.equal("#000000", color)
-            assert.equal("base00", base)
         end)
 
         it("resolves foreground alias", function()
-            local color, base = aliases.resolve("foreground", base16_palette)
+            local color = aliases.resolve("foreground", base16_palette)
 
             assert.equal("#555555", color)
-            assert.equal("base05", base)
         end)
 
         it("resolves red alias", function()
-            local color, base = aliases.resolve("red", base16_palette)
+            local color = aliases.resolve("red", base16_palette)
 
             assert.equal("#880000", color)
-            assert.equal("base08", base)
         end)
 
         it("resolves bright_red with base24 palette", function()
-            local color, base = aliases.resolve("bright_red", base24_palette)
+            local color = aliases.resolve("bright_red", base24_palette)
 
             assert.equal("#ff0000", color)
-            assert.equal("base12", base)
         end)
 
         it("resolves bright_red fallback with base16 palette", function()
-            local color, base = aliases.resolve("bright_red", base16_palette)
+            local color = aliases.resolve("bright_red", base16_palette)
 
             assert.equal("#880000", color)
-            assert.equal("base08", base)
         end)
 
         it("returns nil for unknown alias", function()

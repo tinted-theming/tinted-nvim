@@ -72,3 +72,10 @@ jobs:
             echo "  - colors/*.vim"
             exit 1
           fi
+
+  docs:
+    needs:
+      - build-and-commit
+    uses: ./.github/workflows/docs.yml
+    with:
+      trigger_event: "pull_request"

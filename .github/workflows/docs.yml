@@ -1,10 +1,14 @@
 name: Docs
 
 on:
-  push:
-    branches: main
-  pull_request:
-    branches: main
+  workflow_call:
+    inputs:
+      trigger_event:
+        type: string
+        required: true
+
+permissions:
+    contents: write
 
 jobs:
   check:
@@ -28,9 +32,20 @@ jobs:
         run: nix develop --command just docs
 
       - name: Check for uncommitted changes
+        if: ${{ inputs.trigger_event == 'pull_request' }}
         run: |
           if ! git diff --quiet doc/tinted-nvim.txt; then
             echo "::error::Vimdoc is outdated. Run 'just docs' and commit the changes."
             git diff doc/tinted-nvim.txt
             exit 1
           fi
+
+      - name: Commit the changes
+        if: ${{ inputs.trigger_event == 'push' }}
+        id: auto_commit
+        uses: stefanzweifel/git-auto-commit-action@ac8823709a85c7ce090849ac3e5fe24d006f6e18 # v5.0.1
+        with:
+          commit_message: "Updated tinted-nvim.txt documentation [skip ci]"
+          commit_user_name: tinted-theming-bot
+          commit_user_email: tintedtheming@proton.me
+          commit_author: tinted-theming-bot <tintedtheming@proton.me>
