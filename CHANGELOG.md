@@ -4,7 +4,7 @@
 
 Nothing yet.
 
-## [0.2.0] - 2026-02-01
+## [1.0.0] - 2026-02-14
 
 ### Added
 
@@ -60,6 +60,6 @@ Nothing yet.
 
 All work done before a version system was implemented.
 
-[Unreleased]: https://github.com/tinted-theming/tinted-nvim/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/tinted-theming/tinted-nvim/compare/v0.1.0...v0.2.0
+[Unreleased]: https://github.com/tinted-theming/tinted-nvim/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/tinted-theming/tinted-nvim/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/tinted-theming/tinted-nvim/releases/tag/v0.1.0

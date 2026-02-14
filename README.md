@@ -6,10 +6,10 @@ Neovim colorscheme plugin that bundles all Base16/Base24 schemes from the
 
 Preview themes in the [Tinted Gallery].
 
-Note: `v0.2.0` was released recently; some APIs changed. See [CHANGELOG.md] for
+Note: `v1.0.0` was released recently; some APIs changed. See [CHANGELOG.md] for
 migration notes.
 
-If `v0.2.0` causes issues, and you don't want to fix them right away, you can
+If `v1.0.0` causes issues, and you don't want to fix them right away, you can
 pin to `v0.1.x` in your plugin manager:
 
 - lazy.nvim
