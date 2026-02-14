@@ -6,6 +6,51 @@ Neovim colorscheme plugin that bundles all Base16/Base24 schemes from the
 
 Preview themes in the [Tinted Gallery].
 
+Note: `v0.2.0` was released recently; some APIs changed. See [CHANGELOG.md] for
+migration notes.
+
+If `v0.2.0` causes issues, and you don't want to fix them right away, you can
+pin to `v0.1.x` in your plugin manager:
+
+- lazy.nvim
+
+```lua
+{ "tinted-theming/tinted-nvim", version = "0.1.*", priority = 1000, lazy = false }
+-- or: { "tinted-theming/tinted-nvim", tag = "v0.1.0", priority = 1000, lazy = false }
+```
+
+- packer.nvim
+
+```lua
+use { "tinted-theming/tinted-nvim", tag = "v0.1.0" }
+```
+
+For in-editor help, see: `:h tinted-nvim`.
+
+## Quick Start
+
+- lazy.nvim:
+
+```lua
+{
+  "tinted-theming/tinted-nvim",
+  priority = 1000, -- load colorscheme early
+  lazy = false,    -- apply on startup
+  opts = {
+    default_scheme = "base16-ayu-dark", -- pick any bundled Base16/Base24
+    -- compile = true, -- optional: precompile for faster startup
+  },
+}
+```
+
+- Manual:
+
+```lua
+require("tinted-nvim").setup({
+  default_scheme = "base16-ayu-dark",
+})
+```
+
 ## Features
 
 - Base16/Base24 palette support with built-in and user-defined schemes
@@ -24,7 +69,8 @@ Preview themes in the [Tinted Gallery].
 
 ```lua
 {
-  "tinted-nvim",
+  "tinted-theming/tinted-nvim",
+  priority = 1000,
   lazy = false,
   opts = {
     -- your config overrides
@@ -83,7 +129,7 @@ require("tinted-nvim").setup({
     undercurl = false, -- default `false`
 
     -- Set vim.g.terminal_color_0 .. vim.g.terminal_color_17.
-    terminal_colors = true, -- defualt `true`
+    terminal_colors = true, -- default `true`
   },
 
   ui = {
@@ -302,10 +348,10 @@ just test "loads a specific test"
 # Run a specific test file
 just test-file tests/config_spec.lua
 
-# Update tinted-nvim.txt NeoVim docs file
+# Update tinted-nvim.txt Neovim docs file
 just docs
 
-# Format files with stylelua
+# Format files with stylua
 just fmt
 ```
 
@@ -333,6 +379,10 @@ All notable changes to this project will be documented in [CHANGELOG.md].
 The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning].
 
+## License
+
+See [LICENSE].
+
 [Nix]: https://nixos.org/
 [just]: https://github.com/casey/just
 [tinted-theming]: https://github.com/tinted-theming/
@@ -343,3 +393,4 @@ The format is based on [Keep a Changelog], and this project adheres to
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 [CONTRIBUTING.md]: https://github.com/tinted-theming/home/blob/main/CONTRIBUTING.md
+[LICENSE]: ./LICENSE

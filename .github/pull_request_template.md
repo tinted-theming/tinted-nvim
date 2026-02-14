@@ -9,6 +9,7 @@
 - [ ] I have run `just lint` and fixed any issues
 - [ ] I have run `just test` and all tests pass
 - [ ] I have updated CHANGELOG.md (if applicable)
+- [ ] I have added this change under the [Unreleased] section in CHANGELOG.md
 
 ## Test plan
 

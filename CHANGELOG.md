@@ -1,6 +1,10 @@
 # Changelog
 
-## [0.1.0] - 2026-02-01
+## [Unreleased]
+
+Nothing yet.
+
+## [0.2.0] - 2026-02-01
 
 ### Added
 
@@ -22,6 +26,18 @@
 - **Test suite**: Comprehensive tests using vusted
 - **Type annotations**: LuaDoc comments throughout codebase
 
+### Breaking
+
+- Configuration moved to a new `setup()` options structure; legacy option keys/layout changed.
+- Public API moved from fields to functions, e.g. use `get_palette()`, `get_scheme()` instead of property access.
+- Palette files relocated to `lua/tinted-nvim/palettes/`; integrations refactored into `lua/tinted-nvim/highlights/`.
+- Colorscheme application is via `require("tinted-nvim").load()`; compiled artifacts now live under `stdpath("state")/tinted-nvim/`.
+
+### Migration
+
+- See README “Configuration” and “Usage” sections for updated examples.
+- If needed, temporarily pin to `0.1.x` as shown in the README.
+
 ### Changed
 
 - **Module structure**: Moved from `lua/tinted-colorscheme.lua` monolith to `lua/tinted-nvim/` directory with separate modules
@@ -39,3 +55,11 @@
 - Proper `vim.g.colors_name` handling
 - ColorScheme autocmd firing with suppression option
 - Base24 bright color fallbacks to Base16 equivalents
+
+## [0.1.0]
+
+All work done before a version system was implemented.
+
+[Unreleased]: https://github.com/tinted-theming/tinted-nvim/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/tinted-theming/tinted-nvim/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/tinted-theming/tinted-nvim/releases/tag/v0.1.0
