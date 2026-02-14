@@ -14,7 +14,7 @@ fmt-check:
     stylua --check lua/ tests/
 
 check:
-    lua-language-server --check lua/
+    lua-language-server --check lua/ --configpath $(pwd)/.luarc.json
 
 docs:
     lemmy-help lua/tinted-nvim/init.lua lua/tinted-nvim/config.lua > doc/tinted-nvim.txt

@@ -13,4 +13,4 @@ read_globals = {
 unused_args = false
 
 -- Max line length
-max_line_length = 120
+max_line_length = 140

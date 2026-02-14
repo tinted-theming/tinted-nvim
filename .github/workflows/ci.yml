@@ -30,6 +30,9 @@ jobs:
       - name: Check formatting
         run: nix develop --command just fmt-check
 
+      - name: run lua-language-server check
+        run: nix develop --command just check
+
   test:
     name: Tests
     runs-on: ubuntu-latest

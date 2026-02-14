@@ -1,10 +1,10 @@
 local M = {}
 
----@param palette tinted-nvim.Palette
+---@param _palette tinted-nvim.Palette
 ---@param aliases table<string, string>
----@param cfg tinted-nvim.Config
+---@param _cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(palette, aliases, cfg)
+function M.build(_palette, aliases, _cfg)
     local a = aliases
     return {
         NotifyERRORBorder = { fg = a.red },

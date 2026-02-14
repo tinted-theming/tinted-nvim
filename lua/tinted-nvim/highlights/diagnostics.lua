@@ -1,10 +1,10 @@
 local M = {}
 
----@param palette tinted-nvim.Palette
+---@param _palette tinted-nvim.Palette
 ---@param aliases table<string, string>
 ---@param cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(palette, aliases, cfg)
+function M.build(_palette, aliases, cfg)
     local a = aliases
     local hl = {
         DiagnosticError = { fg = a.red },
@@ -51,7 +51,7 @@ function M.build(palette, aliases, cfg)
     if vim.fn.has("nvim-0.9.0") == 1 then
         hl.DiagnosticOk = { fg = a.bright_green }
         hl.DiagnosticUnderlineOk =
-            { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.bright_green }
+        { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.bright_green }
         hl.DiagnosticFloatingOk = { link = "DiagnosticOk" }
         hl.DiagnosticSignOk = { link = "DiagnosticOk" }
         hl.DiagnosticVirtualTextOk = { link = "DiagnosticOk" }
