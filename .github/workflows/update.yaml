@@ -12,7 +12,18 @@ on:
 jobs:
   build-and-commit:
     uses: "tinted-theming/home/.github/workflows/shared-build-template-and-commit-themes.yml@main"
+    if: ${{ github.actor != 'tinted-theming-bot' && !contains(github.event.head_commit.message, '[skip ci]') }}
     secrets:
       token: ${{ secrets.BOT_ACCESS_TOKEN }}
     with:
       ref: ${{ github.head_ref }}
+
+  docs:
+    needs:
+      - build-and-commit
+    uses: ./.github/workflows/docs.yml
+    if: ${{ github.actor != 'tinted-theming-bot' && !contains(github.event.head_commit.message, '[skip ci]') }}
+    permissions:
+      contents: write
+    with:
+      trigger_event: "push"

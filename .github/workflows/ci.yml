@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  lint:
+    name: Lint and Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-24.11
+
+      - name: Cache Nix store
+        uses: cachix/cachix-action@v15
+        with:
+          name: nix-community
+          skipPush: true
+
+      - name: Run luacheck
+        run: nix develop --command just lint
+
+      - name: Check formatting
+        run: nix develop --command just fmt-check
+
+      - name: run lua-language-server check
+        run: nix develop --command just check
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-24.11
+
+      - name: Cache Nix store
+        uses: cachix/cachix-action@v15
+        with:
+          name: nix-community
+          skipPush: true
+
+      - name: Run tests
+        run: nix develop --command just test
+
+  # Ensure generated files are not included in PR since these will be built on merge to main
+  check-generated:
+    name: Check Generated Files
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for changes to generated files
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'lua/tinted-nvim/palettes/*.lua' 'colors/*.vim')
+          if [ -n "$CHANGED" ]; then
+            echo "::error::Generated files should not be modified in PRs:"
+            echo "$CHANGED"
+            echo ""
+            echo "These files are auto-generated. Please revert changes to:"
+            echo "  - lua/tinted-nvim/palettes/*.lua"
+            echo "  - colors/*.vim"
+            exit 1
+          fi
+
+  docs:
+    uses: ./.github/workflows/docs.yml
+    with:
+      trigger_event: "pull_request"

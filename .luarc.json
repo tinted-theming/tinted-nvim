@@ -1,0 +1,32 @@
+{
+    "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+    "runtime": {
+        "version": "LuaJIT"
+    },
+    "diagnostics": {
+        "globals": [
+            "vim",
+            "describe",
+            "it",
+            "before_each",
+            "after_each",
+            "spy",
+            "mock",
+            "stub"
+        ],
+        "disable": [
+            "undefined-doc-param",
+            "undefined-doc-class",
+            "need-check-nil",
+            "param-type-mismatch",
+            "redundant-parameter"
+        ]
+    },
+    "workspace": {
+        "library": [
+            "${3rd}/busted/library",
+            "${3rd}/luassert/library"
+        ],
+        "checkThirdParty": false
+    }
+}

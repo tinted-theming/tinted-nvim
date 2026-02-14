@@ -1,9 +1,1 @@
-hi clear
-let g:colors_name = 'base16-everforest-dark-soft'
-lua require('tinted-colorscheme').setup({
-    \ variant = 'dark',
-    \ base00 = '#333c43', base01 = '#3a464c', base02 = '#4d5960', base03 = '#859289',
-    \ base04 = '#9da9a0', base05 = '#d3c6aa', base06 = '#ddd8be', base07 = '#f3ead3',
-    \ base08 = '#e67e80', base09 = '#e69875', base0A = '#dbbc7f', base0B = '#a7c080',
-    \ base0C = '#83c092', base0D = '#7fbbb3', base0E = '#d699b6', base0F = '#9da9a0'
-    \})
+lua require("tinted-nvim").load("base16-everforest-dark-soft", { colorscheme_event = false })
