@@ -2,7 +2,9 @@
 
 ## [Unreleased]
 
-Nothing yet.
+### Fixed
+
+- Fix merge
 
 ## [1.0.0] - 2026-02-14
 

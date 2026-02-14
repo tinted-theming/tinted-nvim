@@ -51,7 +51,7 @@ function M.build(_palette, aliases, cfg)
     if vim.fn.has("nvim-0.9.0") == 1 then
         hl.DiagnosticOk = { fg = a.bright_green }
         hl.DiagnosticUnderlineOk =
-        { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.bright_green }
+            { underline = not cfg.capabilities.undercurl, undercurl = cfg.capabilities.undercurl, sp = a.bright_green }
         hl.DiagnosticFloatingOk = { link = "DiagnosticOk" }
         hl.DiagnosticSignOk = { link = "DiagnosticOk" }
         hl.DiagnosticVirtualTextOk = { link = "DiagnosticOk" }
