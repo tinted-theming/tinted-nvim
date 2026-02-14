@@ -1,9 +1,0 @@
-return {
-    variant = 'dark',
-    base00 = '#212121', base01 = '#313131', base02 = '#4f4f4f', base03 = '#6f6f6f',
-    base04 = '#8c8c8c', base05 = '#a6a6a6', base06 = '#bfbfbf', base07 = '#d9d9d9',
-    base08 = '#d35a5f', base09 = '#e5af89', base0A = '#e5d289', base0B = '#afba66',
-    base0C = '#91beb6', base0D = '#a0b9d5', base0E = '#bf92d5', base0F = '#692d2f',
-    base10 = '#2d2f2f', base11 = '#161717', base12 = '#d3222e', base13 = '#e4bd39',
-    base14 = '#aabb39', base15 = '#5fbfad', base16 = '#6599d5', base17 = '#aa52d5'
-}

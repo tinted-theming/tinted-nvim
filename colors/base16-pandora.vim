@@ -1,9 +1,1 @@
-hi clear
-let g:colors_name = 'base16-pandora'
-lua require('tinted-colorscheme').setup({
-    \ variant = 'dark',
-    \ base00 = '#131213', base01 = '#2f1823', base02 = '#472234', base03 = '#ffbee3',
-    \ base04 = '#9b2a46', base05 = '#f15c99', base06 = '#81506a', base07 = '#632227',
-    \ base08 = '#b00b69', base09 = '#ff9153', base0A = '#ffcc00', base0B = '#9ddf69',
-    \ base0C = '#714ca6', base0D = '#008080', base0E = '#a24030', base0F = '#a24030'
-    \})
+lua require("tinted-nvim").load("base16-pandora", { colorscheme_event = false })

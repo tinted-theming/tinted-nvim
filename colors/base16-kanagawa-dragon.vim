@@ -1,9 +1,1 @@
-hi clear
-let g:colors_name = 'base16-kanagawa-dragon'
-lua require('tinted-colorscheme').setup({
-    \ variant = 'dark',
-    \ base00 = '#181616', base01 = '#282727', base02 = '#393836', base03 = '#625e5a',
-    \ base04 = '#737c73', base05 = '#c5c9c5', base06 = '#c8c093', base07 = '#c5c9c5',
-    \ base08 = '#c4746e', base09 = '#b6927b', base0A = '#c4b28a', base0B = '#8a9a7b',
-    \ base0C = '#8ea4a2', base0D = '#8ba4b0', base0E = '#a292a3', base0F = '#b98d7b'
-    \})
+lua require("tinted-nvim").load("base16-kanagawa-dragon", { colorscheme_event = false })

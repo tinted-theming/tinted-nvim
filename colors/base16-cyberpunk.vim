@@ -1,9 +1,1 @@
-hi clear
-let g:colors_name = 'base16-cyberpunk'
-lua require('tinted-colorscheme').setup({
-    \ variant = 'dark',
-    \ base00 = '#000000', base01 = '#2b2b2b', base02 = '#383838', base03 = '#4f4f4f',
-    \ base04 = '#8b8989', base05 = '#dcdccc', base06 = '#f8f8f8', base07 = '#ffffff',
-    \ base08 = '#ff0000', base09 = '#ffa500', base0A = '#ffff00', base0B = '#61ce3c',
-    \ base0C = '#93e0e3', base0D = '#4c83ff', base0E = '#ff1493', base0F = '#ff8c00'
-    \})
+lua require("tinted-nvim").load("base16-cyberpunk", { colorscheme_event = false })

@@ -1,11 +1,1 @@
-hi clear
-let g:colors_name = 'base24-ayu-mirage'
-lua require('tinted-colorscheme').setup({
-    \ variant = 'dark',
-    \ base00 = '#1f2430', base01 = '#242936', base02 = '#323844', base03 = '#4a5059',
-    \ base04 = '#707a8c', base05 = '#cccac2', base06 = '#d9d7ce', base07 = '#f3f4f5',
-    \ base08 = '#f28779', base09 = '#ffad66', base0A = '#ffd173', base0B = '#d5ff80',
-    \ base0C = '#95e6cb', base0D = '#73d0ff', base0E = '#d4bfff', base0F = '#f27983',
-    \ base10 = '#171b24', base11 = '#1a1f29', base12 = '#ff6666', base13 = '#ffcc66',
-    \ base14 = '#87d963', base15 = '#5ccfe6', base16 = '#80b0ff', base17 = '#b692ff'
-    \})
+lua require("tinted-nvim").load("base24-ayu-mirage", { colorscheme_event = false })
