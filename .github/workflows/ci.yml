@@ -25,13 +25,13 @@ jobs:
           skipPush: true
 
       - name: Run luacheck
-        run: nix develop --command just lint
+        run: nix develop .#ci --command just lint
 
       - name: Check formatting
-        run: nix develop --command just fmt-check
+        run: nix develop .#ci --command just fmt-check
 
       - name: run lua-language-server check
-        run: nix develop --command just check
+        run: nix develop .#ci --command just check
 
   test:
     name: Tests
@@ -51,7 +51,7 @@ jobs:
           skipPush: true
 
       - name: Run tests
-        run: nix develop --command just test
+        run: nix develop .#ci --command just test
 
   # Ensure generated files are not included in PR since these will be built on merge to main
   check-generated:

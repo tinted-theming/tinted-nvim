@@ -36,6 +36,18 @@
             pkgs.lemmy-help
           ];
         };
+        devShells.ci = pkgs.mkShell {
+          buildInputs = [
+            pkgs.just
+            pkgs.luajit
+            pkgs.luajitPackages.vusted
+            pkgs.luajitPackages.luacheck
+            pkgs.stylua
+            pkgs.lua-language-server
+            pkgs.lemmy-help
+            pkgs.neovim
+          ];
+        };
         legacyPackages = pkgs;
       };
     });
