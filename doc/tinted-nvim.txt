@@ -192,14 +192,24 @@ tinted-nvim.Config.Ui                                    *tinted-nvim.Config.Ui*
         {dim_inactive}  (boolean)  Dim inactive windows. Default: false
 
 
+tinted-nvim.Config.StyleAttrs                    *tinted-nvim.Config.StyleAttrs*
+
+    Fields: ~
+        {italic?}         (boolean)
+        {bold?}           (boolean)
+        {underline?}      (boolean)
+        {undercurl?}      (boolean)
+        {strikethrough?}  (boolean)
+
+
 tinted-nvim.Config.Styles                            *tinted-nvim.Config.Styles*
 
     Fields: ~
-        {comments}   (table)  Style for comments. Default: { italic = true }
-        {keywords}   (table)  Style for keywords. Default: {}
-        {functions}  (table)  Style for functions. Default: {}
-        {variables}  (table)  Style for variables. Default: {}
-        {types}      (table)  Style for types. Default: {}
+        {comments}   (tinted-nvim.Config.StyleAttrs)
+        {keywords}   (tinted-nvim.Config.StyleAttrs)
+        {functions}  (tinted-nvim.Config.StyleAttrs)
+        {variables}  (tinted-nvim.Config.StyleAttrs)
+        {types}      (tinted-nvim.Config.StyleAttrs)
 
 
 tinted-nvim.Config.Highlights                    *tinted-nvim.Config.Highlights*
@@ -214,11 +224,7 @@ tinted-nvim.Config.Selector                        *tinted-nvim.Config.Selector*
 
     Fields: ~
         {enabled}  (boolean)  Enable external selector. Default: false
-        {mode}     (string)   Selector mode: "file", "env", or "cmd". Default: "file"
-        {watch}    (boolean)  Watch file for changes (file mode only). Default: true
-        {path}     (string)   Path to scheme file. Default: "~/.local/share/tinted-theming/tinty/current_scheme"
-        {env}      (string)   Environment variable name. Default: "TINTED_THEME"
-        {cmd}      (string)   Command to run. Default: "tinty current"
+        {mode}     ()
 
 
 ==============================================================================
