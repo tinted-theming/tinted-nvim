@@ -29,7 +29,7 @@ jobs:
           skipPush: true
 
       - name: Generate docs
-        run: nix develop --command just docs
+        run: nix develop .#ci --command just docs
 
       - name: Check for uncommitted changes
         if: ${{ inputs.trigger_event == 'pull_request' }}
