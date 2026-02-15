@@ -290,6 +290,25 @@ require("tinted-nvim").setup({
 <code>dark_red</code>
 </details>
 
+## Tinty
+
+1. Add `selector.enabled = true` for tinty support.
+1. Run `tinty config --data-dir-path`, if that value returns something other
+   than `~/.local/share/tinted-theming/tinty/`, you should include a
+   `selector.path` option and append that value with `current_scheme`.
+
+```lua
+require("tinted-nvim").setup({
+    selector = {
+        enabled = true,
+        path = "/path/tinty/config/data-dir-path/provides/current_scheme", -- Example string value, don't use this
+    },
+})
+```
+
+This will use the current [Tinty] theme, which is retrieved from `tinty
+current` command.
+
 ## Commands
 
 - `:TintedNvimCompile [scheme]` - Compile a scheme. If no argument, compile the
