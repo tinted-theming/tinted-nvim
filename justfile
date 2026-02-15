@@ -18,6 +18,9 @@ check:
 
 docs:
     lemmy-help lua/tinted-nvim/init.lua lua/tinted-nvim/config.lua > doc/tinted-nvim.txt
+    # Runs Neovim in non-interactive batch mode, with no config/state, to
+    # generate help tags for doc/
+    nvim -N -u NONE -i NONE -n -E -s -V1 -c "helptags $(pwd)/doc" +quit!
 
 list:
     @just --list
