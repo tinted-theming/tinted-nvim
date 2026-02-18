@@ -1,10 +1,10 @@
 return {
     variant = "light", -- variant
     base00 = "#eff1f5", -- background
-    base01 = "#ccd0da", -- darkest_grey
-    base02 = "#bcc0cc", -- dark_grey
-    base03 = "#9ca0b0", -- grey
-    base04 = "#6c6f85", -- bright_grey
+    base01 = "#e6e9ef", -- darkest_grey
+    base02 = "#ccd0da", -- dark_grey
+    base03 = "#bcc0cc", -- grey
+    base04 = "#acb0be", -- bright_grey
     base05 = "#4c4f69", -- foreground
     base06 = "#dc8a78", -- bright_white
     base07 = "#7287fd", -- brightest_white
