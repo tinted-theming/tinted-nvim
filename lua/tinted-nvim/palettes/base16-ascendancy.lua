@@ -8,7 +8,7 @@ return {
     base05 = "#d5c7a1", -- foreground
     base06 = "#ebdbb2", -- bright_white
     base07 = "#fbf1c7", -- brightest_white
-    base08 = "#c03900", -- red
+    base08 = "#d05000", -- red
     base09 = "#fe8019", -- orange
     base0A = "#ffcc1b", -- yellow
     base0B = "#b8bb26", -- green
