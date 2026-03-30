@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- **Background**: Automatically set `vim.o.background` to `variant` in palettes
+
 ### Fixed
 
 - Fix merge

@@ -110,6 +110,24 @@ describe("init", function()
             assert.is_true(vim.o.termguicolors)
         end)
 
+        it("sets background (light)", function()
+            vim.o.background = "dark"
+
+            tinted.setup({ apply_scheme_on_startup = false })
+            tinted.load("base16-ayu-light")
+
+            assert.equal("light", vim.o.background)
+        end)
+
+        it("sets background (dark)", function()
+            vim.o.background = "light"
+
+            tinted.setup({ apply_scheme_on_startup = false })
+            tinted.load("base16-ayu-dark")
+
+            assert.equal("dark", vim.o.background)
+        end)
+
         it("clears existing highlights", function()
             vim.g.colors_name = "old-scheme"
 
