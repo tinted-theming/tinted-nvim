@@ -6,6 +6,7 @@
 
 - Fix merge
 - Remove old help docs file
+- Change lualine section C highlight to use foreground color
 
 ## [1.0.0] - 2026-02-14
 

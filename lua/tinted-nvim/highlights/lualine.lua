@@ -18,7 +18,7 @@ function M.build(_palette, aliases, _cfg)
 
     hl.LualineVisualA = { fg = a.background, bg = a.yellow, bold = true }
     hl.LualineVisualB = { fg = a.foreground, bg = a.dark_grey }
-    hl.LualineVisualC = { fg = a.background, bg = a.darkest_grey }
+    hl.LualineVisualC = { fg = a.foreground, bg = a.darkest_grey }
 
     hl.LualineReplaceA = { fg = a.background, bg = a.red, bold = true }
     hl.LualineReplaceB = { fg = a.foreground, bg = a.dark_grey }
@@ -26,7 +26,7 @@ function M.build(_palette, aliases, _cfg)
 
     hl.LualineCommandA = { fg = a.background, bg = a.green, bold = true }
     hl.LualineCommandB = { fg = a.foreground, bg = a.dark_grey }
-    hl.LualineCommandC = { fg = a.background, bg = a.darkest_grey }
+    hl.LualineCommandC = { fg = a.foreground, bg = a.darkest_grey }
 
     hl.LualineInactiveA = { fg = a.grey, bg = a.darkest_grey, bold = true }
     hl.LualineInactiveB = { fg = a.grey, bg = a.darkest_grey }
