@@ -119,6 +119,7 @@ function M.load(scheme_name, opts)
             vim.o.termguicolors = true
         end
         vim.g.colors_name = name
+        vim.o.background = palette.variant
         public_state.scheme = name
         public_state.palette = palette
         public_state.palette_aliases = aliases.build(palette)
@@ -155,6 +156,7 @@ function M.load(scheme_name, opts)
     -- apply highlights and terminal colors
     highlights.apply(hl_defs, term)
     terminal.apply(term)
+    vim.o.background = palette.variant
 
     -- commit runtimepublic_state
     public_state.scheme = name
