@@ -10,12 +10,12 @@ function M.build(_palette, aliases, _cfg)
 
     -- LSP references
     hl.LspReferenceText = { bg = a.dark_grey }
-    hl.LspReferenceRead = { link = 'LspReferenceText' }
-    hl.LspReferenceWrite = { link = 'LspReferenceText' }
+    hl.LspReferenceRead = { link = "LspReferenceText" }
+    hl.LspReferenceWrite = { link = "LspReferenceText" }
 
     -- Inlay hints
     hl.LspInlayHint = { link = "Comment" }
-    hl.LspSignatureActiveParameter = { link = 'LspReferenceText' }
+    hl.LspSignatureActiveParameter = { link = "LspReferenceText" }
     hl.LspCodeLens = { link = "Comment" }
 
     if vim.fn.has("nvim-0.9.0") == 1 then
