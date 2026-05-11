@@ -36,10 +36,13 @@ return {
         gray = {
             dim = "#{{ base02-hex }}",
             normal = "#{{ base03-hex }}",
-            -- base06 (bright_white) is unused by tinted-nvim highlights; left unmapped.
+            -- base04 ("Light Gray" per base16 spec) lives in gray.bright.
+            bright = "#{{ base04-hex }}",
         },
         white = {
-            dim = "#{{ base04-hex }}",
+            -- base06 ("Lighter White") occupies the white.dim slot — slot identifier,
+            -- not a strict luminance semantic.
+            dim = "#{{ base06-hex }}",
             normal = "#{{ base05-hex }}",
             bright = "#{{ base07-hex }}",
         },
