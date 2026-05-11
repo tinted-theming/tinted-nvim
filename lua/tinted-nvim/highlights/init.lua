@@ -48,13 +48,13 @@ local function resolve_color(value, palette)
             error("tinted-nvim: color transform requires a hex color")
         end
         if value.darken then
-            local background = palette.base00
+            local background = palette.ui.global.background.normal
             if not utils.is_hex(background) then
                 error("tinted-nvim: background color could not be resolved")
             end
             return utils.darken(base, amount, background)
         end
-        local foreground = palette.base05
+        local foreground = palette.ui.global.foreground.normal
         if not utils.is_hex(foreground) then
             error("tinted-nvim: foreground color could not be resolved")
         end
@@ -118,6 +118,11 @@ end
 ---@param cfg tinted-nvim.Config
 ---@return table<string, tinted-nvim.Highlight>
 function M.build(palette, cfg)
+    -- Ensure palette is in canonical form (tree + legacy slots) regardless of
+    -- whether it came from colors.resolve or was constructed directly (e.g. tests).
+    local colors = require("tinted-nvim.colors")
+    palette = colors.normalize(palette)
+
     local result = {}
     local palette_aliases = aliases.build(palette)
 

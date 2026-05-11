@@ -14,7 +14,9 @@ describe("colors", function()
                 function()
                     colors.resolve(scheme_system, {})
                 end,
-                "tinted-nvim: invalid scheme-system '" .. scheme_system .. "' (must start with 'base16-' or 'base24-')"
+                "tinted-nvim: invalid scheme-system '"
+                    .. scheme_system
+                    .. "' (must start with 'base16-', 'base24-', or 'tinted8-')"
             )
         end)
 
