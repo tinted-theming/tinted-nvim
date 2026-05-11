@@ -34,7 +34,7 @@ function M.build(palette, _aliases, cfg)
     hl.LineNr = { fg = ui.gutter.foreground }
     hl.LineNrAbove = { link = "LineNr" }
     hl.LineNrBelow = { link = "LineNr" }
-    hl.SignColumn = { fg = pal.white.dim }
+    hl.SignColumn = { fg = pal.gray.bright }
 
     hl.ColorColumn = { bg = ui.highlight.line.background }
 
@@ -137,7 +137,7 @@ function M.build(palette, _aliases, cfg)
     hl.DiffDelete = { link = "NonText" }
 
     hl.MsgArea = { fg = ui.global.foreground.normal }
-    hl.MsgSeparator = { fg = pal.white.dim }
+    hl.MsgSeparator = { fg = pal.gray.bright }
 
     hl.debugPC = { bg = pal.gray.dim }
     hl.debugBreakpoint = { fg = pal.red.normal, bg = pal.gray.dim }

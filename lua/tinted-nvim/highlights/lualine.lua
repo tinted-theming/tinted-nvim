@@ -11,7 +11,7 @@ function M.build(palette, _aliases, _cfg)
 
     hl.LualineNormalA = { fg = ui.global.background.normal, bg = pal.gray.normal, bold = true }
     hl.LualineNormalB = { fg = ui.global.foreground.normal, bg = pal.gray.dim }
-    hl.LualineNormalC = { fg = pal.white.dim, bg = pal.black.bright }
+    hl.LualineNormalC = { fg = pal.gray.bright, bg = pal.black.bright }
 
     hl.LualineInsertA = { fg = ui.global.background.normal, bg = pal.blue.normal, bold = true }
     hl.LualineInsertB = { fg = ui.global.foreground.normal, bg = pal.gray.dim }

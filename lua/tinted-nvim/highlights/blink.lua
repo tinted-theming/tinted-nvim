@@ -9,7 +9,7 @@ function M.build(palette, _aliases, _cfg)
     return {
         BlinkCmpMenu = { link = "Pmenu" },
         BlinkCmpMenuSelection = { link = "PmenuSel" },
-        BlinkCmpLabel = { fg = pal.white.dim },
+        BlinkCmpLabel = { fg = pal.gray.bright },
         BlinkCmpLabelMatch = { fg = pal.blue.normal },
         BlinkCmpLabelDetail = { link = "PmenuExtra" },
         BlinkCmpLabelDescription = { link = "PmenuExtra" },

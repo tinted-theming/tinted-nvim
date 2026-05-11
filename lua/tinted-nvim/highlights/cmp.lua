@@ -15,7 +15,7 @@ function M.build(palette, _aliases, _cfg)
         CmpItemAbbrMatch = { fg = pal.blue.normal },
         CmpItemAbbrMatchFuzzy = { fg = pal.blue.normal },
         CmpItemKindDefault = { fg = ui.global.foreground.normal },
-        CmpItemMenu = { fg = pal.white.dim },
+        CmpItemMenu = { fg = pal.gray.bright },
         CmpItemKindKeyword = { fg = pal.magenta.normal },
         CmpItemKindVariable = { fg = pal.red.normal },
         CmpItemKindConstant = { fg = pal.orange.normal },
@@ -36,7 +36,7 @@ function M.build(palette, _aliases, _cfg)
         CmpItemKindTypeParameter = { fg = pal.yellow.normal },
         CmpItemKindEnumMember = { fg = pal.yellow.normal },
         CmpItemKindOperator = { fg = ui.global.foreground.normal },
-        CmpItemKindSnippet = { fg = pal.white.dim },
+        CmpItemKindSnippet = { fg = pal.gray.bright },
     }
 end
 

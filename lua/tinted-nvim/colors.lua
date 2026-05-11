@@ -34,8 +34,11 @@ local function synthesize_tree(palette, system)
     local synthesized = {}
     synthesized.palette = {
         black = { normal = s.base00, bright = s.base01 },
-        gray = { dim = s.base02, normal = s.base03 },
-        white = { dim = s.base04, normal = s.base05, bright = s.base07 },
+        -- base04 is spec-designated "Light Gray", not a white variant — it lives in gray.bright.
+        gray = { dim = s.base02, normal = s.base03, bright = s.base04 },
+        -- base06 ("Lighter White") occupies the white.dim slot. Name vs. luminance
+        -- is a slot-identifier convention here, not a strict semantic claim.
+        white = { dim = s.base06, normal = s.base05, bright = s.base07 },
         red = { normal = s.base08, bright = is_base24 and s.base12 or s.base08 },
         orange = { normal = s.base09, bright = s.base09 },
         yellow = { normal = s.base0A, bright = is_base24 and s.base13 or s.base0A },
@@ -158,9 +161,9 @@ local function ensure_legacy_slots(palette, system)
     fill("base01", "black", "bright")
     fill("base02", "gray", "dim")
     fill("base03", "gray", "normal")
-    fill("base04", "white", "dim")
+    fill("base04", "gray", "bright")
     fill("base05", "white", "normal")
-    fill("base06", "white", "bright")
+    fill("base06", "white", "dim")
     fill("base07", "white", "bright")
     fill("base08", "red", "normal")
     fill("base09", "orange", "normal")
