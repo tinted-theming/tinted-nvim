@@ -8,7 +8,6 @@ local M = {}
 ---@return tinted-nvim.Highlights
 function M.build(palette, _aliases, cfg)
     local ui = palette.ui
-    local sx = palette.syntax
     local pal = palette.palette
     local hl = {}
 

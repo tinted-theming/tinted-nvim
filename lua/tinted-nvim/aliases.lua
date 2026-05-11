@@ -12,36 +12,36 @@ local M = {}
 -- or `colors.normalize`, so these paths resolve consistently across all three
 -- scheme systems.
 M.map = {
-    background      = "palette.black.normal",     -- base00
-    darkest_grey    = "palette.black.bright",     -- base01
-    dark_grey       = "palette.gray.dim",         -- base02
-    grey            = "palette.gray.normal",      -- base03
-    bright_grey     = "palette.gray.bright",      -- base04 (Light Gray per base16 spec)
-    foreground      = "palette.white.normal",     -- base05
-    bright_white    = "palette.white.dim",        -- base06 (Lighter White; uses .dim slot)
-    brightest_white = "palette.white.bright",     -- base07
+    background = "palette.black.normal", -- base00
+    darkest_grey = "palette.black.bright", -- base01
+    dark_grey = "palette.gray.dim", -- base02
+    grey = "palette.gray.normal", -- base03
+    bright_grey = "palette.gray.bright", -- base04 (Light Gray per base16 spec)
+    foreground = "palette.white.normal", -- base05
+    bright_white = "palette.white.dim", -- base06 (Lighter White; uses .dim slot)
+    brightest_white = "palette.white.bright", -- base07
 
-    red             = "palette.red.normal",       -- base08
-    bright_red      = "palette.red.bright",       -- base12 (base24) / base08 (base16, spec-collapsed)
+    red = "palette.red.normal", -- base08
+    bright_red = "palette.red.bright", -- base12 (base24) / base08 (base16, spec-collapsed)
 
-    orange          = "palette.orange.normal",    -- base09
+    orange = "palette.orange.normal", -- base09
 
-    yellow          = "palette.yellow.normal",    -- base0A
-    bright_yellow   = "palette.yellow.bright",    -- base13 / base0A
+    yellow = "palette.yellow.normal", -- base0A
+    bright_yellow = "palette.yellow.bright", -- base13 / base0A
 
-    green           = "palette.green.normal",     -- base0B
-    bright_green    = "palette.green.bright",     -- base14 / base0B
+    green = "palette.green.normal", -- base0B
+    bright_green = "palette.green.bright", -- base14 / base0B
 
-    cyan            = "palette.cyan.normal",      -- base0C
-    bright_cyan     = "palette.cyan.bright",      -- base15 / base0C
+    cyan = "palette.cyan.normal", -- base0C
+    bright_cyan = "palette.cyan.bright", -- base15 / base0C
 
-    blue            = "palette.blue.normal",      -- base0D
-    bright_blue     = "palette.blue.bright",      -- base16 slot / base0D
+    blue = "palette.blue.normal", -- base0D
+    bright_blue = "palette.blue.bright", -- base16 slot / base0D
 
-    purple          = "palette.magenta.normal",   -- base0E
-    bright_purple   = "palette.magenta.bright",   -- base17 / base0E
+    purple = "palette.magenta.normal", -- base0E
+    bright_purple = "palette.magenta.bright", -- base17 / base0E
 
-    dark_red        = "palette.brown.normal",     -- base0F
+    dark_red = "palette.brown.normal", -- base0F
 }
 
 -- cterm palette indices for base16/24 (ANSI slots). Unchanged by the tree
