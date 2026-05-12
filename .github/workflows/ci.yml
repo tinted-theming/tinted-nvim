@@ -34,6 +34,9 @@ jobs:
       - name: run lua-language-server check
         run: nix develop .#ci --command just check
 
+      - name: run parity check
+        run: nix develop .#ci --command just verify-parity
+
   test:
     name: Tests
     runs-on: ubuntu-latest
