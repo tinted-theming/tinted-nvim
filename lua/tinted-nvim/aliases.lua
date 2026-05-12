@@ -44,35 +44,40 @@ M.map = {
     dark_red = "palette.brown.normal", -- base0F
 }
 
--- cterm palette indices for base16/24 (ANSI slots). Unchanged by the tree
--- migration: this is a hex → ANSI lookup keyed on the legacy slot, used by
--- utils.build_hex_to_cterm_map to attach ctermfg/ctermbg to resolved highlights.
+-- Tree-path → ANSI cterm slot. Used by utils.build_hex_to_cterm_map to attach
+-- ctermfg/ctermbg to resolved highlights. Keyed on canonical tree paths;
+-- base10/base11 (no ANSI slot) are simply absent.
+--
+-- Note: per the base16 styling spec, `palette.gray.normal` is ANSI 8 (Bright
+-- Black) and `palette.gray.bright` is ANSI 20 (Light Gray). Tinted8-native
+-- schemes route their gray color through these paths via ensure_legacy_slots'
+-- inverse — meaning we treat the scheme's gray as Bright Black for terminal
+-- mapping purposes, regardless of upstream system. This is a deliberate
+-- "base16-convention everywhere" choice; revisit if tinted8's own ANSI
+-- convention (palette.black.bright = ANSI 8) becomes load-bearing.
 M.cterm = {
-    base00 = 0,
-    base01 = 18,
-    base02 = 19,
-    base03 = 8,
-    base04 = 20,
-    base05 = 7,
-    base06 = 21,
-    base07 = 15,
-    base08 = 1,
-    base09 = 16,
-    base0A = 3,
-    base0B = 2,
-    base0C = 6,
-    base0D = 4,
-    base0E = 5,
-    base0F = 17,
-    -- base24 extended slots
-    base10 = nil, -- no ANSI slot
-    base11 = nil, -- no ANSI slot
-    base12 = 9,
-    base13 = 11,
-    base14 = 10,
-    base15 = 14,
-    base16 = 12,
-    base17 = 13,
+    ["palette.black.normal"]   = 0,
+    ["palette.black.bright"]   = 18,  -- base01 (256-color extension)
+    ["palette.gray.dim"]       = 19,  -- base02
+    ["palette.gray.normal"]    = 8,   -- base03 = ANSI Bright Black
+    ["palette.gray.bright"]    = 20,  -- base04 = Light Gray (256-color)
+    ["palette.white.dim"]      = 21,  -- base06 (256-color)
+    ["palette.white.normal"]   = 7,
+    ["palette.white.bright"]   = 15,
+    ["palette.red.normal"]     = 1,
+    ["palette.orange.normal"]  = 16,  -- base09 (256-color)
+    ["palette.yellow.normal"]  = 3,
+    ["palette.green.normal"]   = 2,
+    ["palette.cyan.normal"]    = 6,
+    ["palette.blue.normal"]    = 4,
+    ["palette.magenta.normal"] = 5,
+    ["palette.brown.normal"]   = 17,  -- base0F (256-color)
+    ["palette.red.bright"]     = 9,
+    ["palette.yellow.bright"]  = 11,
+    ["palette.green.bright"]   = 10,
+    ["palette.cyan.bright"]    = 14,
+    ["palette.blue.bright"]    = 12,
+    ["palette.magenta.bright"] = 13,
 }
 
 ---Traverse a dotted path inside a palette table.
