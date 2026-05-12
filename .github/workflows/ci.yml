@@ -34,9 +34,6 @@ jobs:
       - name: run lua-language-server check
         run: nix develop .#ci --command just check
 
-      - name: run parity check
-        run: nix develop .#ci --command just verify-parity
-
   test:
     name: Tests
     runs-on: ubuntu-latest
@@ -56,6 +53,10 @@ jobs:
 
       - name: Run tests
         run: nix develop .#ci --command just test
+
+      - name: run parity check
+        run: nix develop .#ci --command just verify-parity
+
 
   # Ensure generated files are not included in PR since these will be built on merge to main
   check-generated:

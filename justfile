@@ -32,6 +32,7 @@ verify-parity:
     BASELINE=e128f82
     WORKTREE=/tmp/tinted-nvim-pre-migration-$$
     REPO=$(pwd)
+    git fetch origin
     if ! git rev-parse --verify --quiet "${BASELINE}^{commit}" >/dev/null; then
         echo "error: baseline commit ${BASELINE} is not reachable (shallow clone?)" >&2
         exit 1
