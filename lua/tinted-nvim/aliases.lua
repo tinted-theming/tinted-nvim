@@ -56,27 +56,27 @@ M.map = {
 -- "base16-convention everywhere" choice; revisit if tinted8's own ANSI
 -- convention (palette.black.bright = ANSI 8) becomes load-bearing.
 M.cterm = {
-    ["palette.black.normal"]   = 0,
-    ["palette.black.bright"]   = 18,  -- base01 (256-color extension)
-    ["palette.gray.dim"]       = 19,  -- base02
-    ["palette.gray.normal"]    = 8,   -- base03 = ANSI Bright Black
-    ["palette.gray.bright"]    = 20,  -- base04 = Light Gray (256-color)
-    ["palette.white.dim"]      = 21,  -- base06 (256-color)
-    ["palette.white.normal"]   = 7,
-    ["palette.white.bright"]   = 15,
-    ["palette.red.normal"]     = 1,
-    ["palette.orange.normal"]  = 16,  -- base09 (256-color)
-    ["palette.yellow.normal"]  = 3,
-    ["palette.green.normal"]   = 2,
-    ["palette.cyan.normal"]    = 6,
-    ["palette.blue.normal"]    = 4,
+    ["palette.black.normal"] = 0,
+    ["palette.black.bright"] = 18, -- base01 (256-color extension)
+    ["palette.gray.dim"] = 19, -- base02
+    ["palette.gray.normal"] = 8, -- base03 = ANSI Bright Black
+    ["palette.gray.bright"] = 20, -- base04 = Light Gray (256-color)
+    ["palette.white.dim"] = 21, -- base06 (256-color)
+    ["palette.white.normal"] = 7,
+    ["palette.white.bright"] = 15,
+    ["palette.red.normal"] = 1,
+    ["palette.orange.normal"] = 16, -- base09 (256-color)
+    ["palette.yellow.normal"] = 3,
+    ["palette.green.normal"] = 2,
+    ["palette.cyan.normal"] = 6,
+    ["palette.blue.normal"] = 4,
     ["palette.magenta.normal"] = 5,
-    ["palette.brown.normal"]   = 17,  -- base0F (256-color)
-    ["palette.red.bright"]     = 9,
-    ["palette.yellow.bright"]  = 11,
-    ["palette.green.bright"]   = 10,
-    ["palette.cyan.bright"]    = 14,
-    ["palette.blue.bright"]    = 12,
+    ["palette.brown.normal"] = 17, -- base0F (256-color)
+    ["palette.red.bright"] = 9,
+    ["palette.yellow.bright"] = 11,
+    ["palette.green.bright"] = 10,
+    ["palette.cyan.bright"] = 14,
+    ["palette.blue.bright"] = 12,
     ["palette.magenta.bright"] = 13,
 }
 
