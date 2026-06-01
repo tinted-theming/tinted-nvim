@@ -11,6 +11,7 @@
 - Fix merge
 - Remove old help docs file
 - Change lualine section C highlight to use foreground color
+- Fix low-contrast highlights from `snacks.nvim`
 
 ## [1.0.0] - 2026-02-14
 
