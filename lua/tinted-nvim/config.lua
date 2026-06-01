@@ -238,6 +238,7 @@ M.defaults = {
             blink = true,
             dapui = true,
             lualine = true,
+            snacks = true,
         },
         use_lazy_specs = true,
 
