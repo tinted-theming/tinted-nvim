@@ -8,14 +8,14 @@ function M.build(_palette, aliases, _cfg)
     local a = aliases
     return {
         -- Dashboard
-        SnacksDashboardDir = { fg = a.blue },
+        SnacksDashboardDir = { link = "Directory" },
         SnacksDashboardFile = { fg = a.white, bold = true },
         SnacksDashboardDesc = { fg = a.white, bold = true },
 
         -- Picker
-        SnacksPickerDir = { fg = a.blue },
+        SnacksPickerDir = { link = "Directory" },
         SnacksPickerFile = { link = "Normal" },
-        SnacksPickerMatch = { fg = a.bright_blue, bold = true },
+        SnacksPickerMatch = { link = "IncSearch" },
     }
 end
 
