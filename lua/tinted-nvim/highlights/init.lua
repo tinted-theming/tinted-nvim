@@ -24,6 +24,7 @@ local integrations = {
     blink = "tinted-nvim.highlights.blink",
     dapui = "tinted-nvim.highlights.dapui",
     lualine = "tinted-nvim.highlights.lualine",
+    snacks = "tinted-nvim.highlights.snacks",
 }
 
 -- Resolve a single color value.
