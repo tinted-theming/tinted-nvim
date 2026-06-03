@@ -25,16 +25,25 @@ docs:
 list:
     @just --list
 
-# Verify current highlight tables match pre-migration baseline (commit e128f82) byte-for-byte.
+# Verify current highlight tables match the pre-migration baseline byte-for-byte.
+#
+# The baseline SHA must live on `main` (or another permanent branch) so that
+# rebases of feature branches do not orphan it. f7d101d is the last "real"
+# (non-CI-palette-regen) commit on main before the tinted8 work began. The
+# CI auto-regen commits on main since then only touch palette files, not
+# highlights, so f7d101d's highlight output is still the canonical baseline.
 verify-parity:
     #!/usr/bin/env bash
     set -euo pipefail
-    BASELINE=e128f82
+    BASELINE=f7d101d
     WORKTREE=/tmp/tinted-nvim-pre-migration-$$
     REPO=$(pwd)
-    git fetch origin
+    # Best-effort fetch in case the baseline isn't in the local clone yet.
+    # Don't fail the recipe if we're offline or lack credentials — fall back
+    # to whatever is already local.
+    git fetch origin --quiet 2>/dev/null || true
     if ! git rev-parse --verify --quiet "${BASELINE}^{commit}" >/dev/null; then
-        echo "error: baseline commit ${BASELINE} is not reachable (shallow clone?)" >&2
+        echo "error: baseline commit ${BASELINE} is not reachable (shallow clone? missing from main?)" >&2
         exit 1
     fi
     cleanup() { git worktree remove --force "${WORKTREE}" >/dev/null 2>&1 || true; }
