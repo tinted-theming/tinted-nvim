@@ -5,6 +5,7 @@
 ### Added
 
 - **Background**: Automatically set `vim.o.background` to `variant` in palettes
+- **Diff**: Preserve foreground values e.g. syntax highlighting
 
 ### Fixed
 
