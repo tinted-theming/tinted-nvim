@@ -128,12 +128,25 @@ function M.build(palette, _aliases, cfg)
     }
 
     hl.DiffAdd = {
-        fg = ui.global.background.normal,
-        bg = { darken = pal.blue.normal, amount = 0.4 },
+        bg = { darken = pal.green.normal, amount = 0.75 },
     }
-    hl.DiffText = { link = "DiffAdd" }
-    hl.DiffChange = { link = "Cursorline" }
-    hl.DiffDelete = { link = "NonText" }
+    hl.DiffText = {
+        bg = { darken = pal.blue.normal, amount = 0.75 },
+    }
+
+    hl.DiffChange = {
+        bg = { darken = ui.highlight.line.background, amount = 0.5 },
+    }
+    hl.DiffDelete = {
+        bg = { darken = pal.red.normal, amount = 0.9 },
+        fg = pal.gray.dim,
+    }
+
+    if vim.fn.has("nvim-0.12.0") == 1 then
+        hl.DiffTextAdd = {
+            link = "DiffAdd",
+        }
+    end
 
     hl.MsgArea = { fg = ui.global.foreground.normal }
     hl.MsgSeparator = { fg = pal.gray.bright }
