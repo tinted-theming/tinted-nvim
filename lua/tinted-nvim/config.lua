@@ -130,10 +130,10 @@ local M = {}
 ---Complete color alias list:
 ---
 ---  - `background`
----  - `darkest_grey`
----  - `dark_grey`
----  - `grey`
----  - `bright_grey`
+---  - `darkest_gray`
+---  - `dark_gray`
+---  - `gray`
+---  - `bright_gray`
 ---  - `foreground`
 ---  - `bright_white`
 ---  - `brightest_white`
@@ -160,7 +160,7 @@ local M = {}
 ---      Normal = { bg = "#ff0000" },
 ---      NormalFloat = { link = "Normal" },
 ---      FloatBorder = { fg = palette.base03 },
----      CursorLine = { bg = "darkest_grey", fg = "foreground" },
+---      CursorLine = { bg = "darkest_gray", fg = "foreground" },
 ---      Search = {
 ---        bg = { darken = palette.base07, amount = 0.3 },
 ---        fg = { lighten = "#00ff00", amount = 0.1 },

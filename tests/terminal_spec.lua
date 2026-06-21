@@ -79,7 +79,7 @@ describe("terminal", function()
             }
             local result = terminal.build(base16_palette, cfg)
 
-            assert.equal("#333333", result[8])
+            assert.equal("#111111", result[8])
             assert.equal("#880000", result[9])
             assert.equal("#00ff00", result[10])
             assert.equal("#ffff00", result[11])

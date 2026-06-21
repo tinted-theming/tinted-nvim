@@ -191,7 +191,7 @@ require("tinted-nvim").setup({
         FloatBorder = { fg = palette.base03 },
 
         -- Use color aliases.
-        CursorLine = { bg = "darkest_grey", fg = "foreground" },
+        CursorLine = { bg = "darkest_gray", fg = "foreground" },
 
         -- Use darken / lighten to change a color.
         Search = {
@@ -267,10 +267,10 @@ require("tinted-nvim").setup({
 <details>
 <summary>Complete color alias list</summary>
 <code>background</code><br>
-<code>darkest_grey</code><br>
-<code>dark_grey</code><br>
-<code>grey</code><br>
-<code>bright_grey</code><br>
+<code>darkest_gray</code><br>
+<code>dark_gray</code><br>
+<code>gray</code><br>
+<code>bright_gray</code><br>
 <code>foreground</code><br>
 <code>bright_white</code><br>
 <code>brightest_white</code><br>

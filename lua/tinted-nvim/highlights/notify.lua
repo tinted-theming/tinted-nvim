@@ -9,8 +9,8 @@ function M.build(palette, _aliases, _cfg)
     local ui = palette.ui
     return {
         NotifyERRORBorder = { fg = ui.status.error },
-        NotifyWARNBorder = { fg = pal.magenta.normal },
-        NotifyINFOBorder = { fg = ui.global.foreground.normal },
+        NotifyWARNBorder = { fg = ui.status.warning },
+        NotifyINFOBorder = { fg = ui.status.info },
         NotifyDEBUGBorder = { fg = pal.cyan.normal },
         NotifyTRACEBorder = { fg = pal.cyan.normal },
 

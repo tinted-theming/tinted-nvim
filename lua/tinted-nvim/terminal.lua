@@ -18,35 +18,35 @@ function M.build(palette, cfg)
     -- Defensive: normalize so this works regardless of which shape the caller passed.
     local colors = require("tinted-nvim.colors")
     palette = colors.normalize(palette)
-    local p = palette.palette
+    local pal = palette.palette
 
     local term = {}
 
     -- Standard ANSI colors (0-7)
-    term[0] = p.black.normal
-    term[1] = p.red.normal
-    term[2] = p.green.normal
-    term[3] = p.yellow.normal
-    term[4] = p.blue.normal
-    term[5] = p.magenta.normal
-    term[6] = p.cyan.normal
-    term[7] = p.white.normal
+    term[0] = pal.black.normal
+    term[1] = pal.red.normal
+    term[2] = pal.green.normal
+    term[3] = pal.yellow.normal
+    term[4] = pal.blue.normal
+    term[5] = pal.magenta.normal
+    term[6] = pal.cyan.normal
+    term[7] = pal.white.normal
 
     -- Bright ANSI colors (8-15). For base16 schemes the .bright variants
     -- collapse to .normal per the base16 styling spec; for base24 they are
     -- distinct slots; for tinted8 the builder/scheme decides.
-    term[8] = p.gray.normal -- ANSI Bright Black = base03 per base16 spec
-    term[9] = p.red.bright
-    term[10] = p.green.bright
-    term[11] = p.yellow.bright
-    term[12] = p.blue.bright
-    term[13] = p.magenta.bright
-    term[14] = p.cyan.bright
-    term[15] = p.white.bright
+    term[8] = pal.black.bright -- ANSI Bright Black = base03 per base16 spec
+    term[9] = pal.red.bright
+    term[10] = pal.green.bright
+    term[11] = pal.yellow.bright
+    term[12] = pal.blue.bright
+    term[13] = pal.magenta.bright
+    term[14] = pal.cyan.bright
+    term[15] = pal.white.bright
 
     -- Extended ANSI colors
-    term[16] = p.orange.normal
-    term[17] = p.brown.normal
+    term[16] = pal.orange.normal
+    term[17] = pal.brown.normal
 
     return term
 end

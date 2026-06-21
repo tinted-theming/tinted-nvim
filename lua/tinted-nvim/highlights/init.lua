@@ -76,9 +76,12 @@ local function resolve_color(value, palette)
     end
 
     -- alias
-    local color = aliases.resolve(value, palette)
-    if color then
-        return color
+    local path = aliases.map[value]
+    if path then
+        local color = utils.lookup(palette, path)
+        if color then
+            return color
+        end
     end
 
     error("tinted-nvim: color '" .. value .. "' is not a hex or alias")

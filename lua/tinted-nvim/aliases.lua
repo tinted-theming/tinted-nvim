@@ -4,6 +4,8 @@
 -- the red palette color). Internal highlight modules do NOT consume aliases;
 -- they read the palette tree directly. This file exists for backwards-compat
 -- with user override APIs and for terminal color slot identity.
+--
+local utils = require("tinted-nvim.utils")
 
 local M = {}
 
@@ -12,36 +14,36 @@ local M = {}
 -- or `colors.normalize`, so these paths resolve consistently across all three
 -- scheme systems.
 M.map = {
-    background = "palette.black.normal", -- base00
-    darkest_grey = "palette.black.bright", -- base01
-    dark_grey = "palette.gray.dim", -- base02
-    grey = "palette.gray.normal", -- base03
-    bright_grey = "palette.gray.bright", -- base04 (Light Gray per base16 spec)
-    foreground = "palette.white.normal", -- base05
-    bright_white = "palette.white.dim", -- base06 (Lighter White; uses .dim slot)
+    background = "palette.black.normal",      -- base00
+    darkest_gray = "palette.black.bright",    -- base01
+    dark_gray = "palette.gray.dim",           -- base02
+    gray = "palette.gray.normal",             -- base03
+    bright_gray = "palette.gray.bright",      -- base04 (Light Gray per base16 spec)
+    foreground = "palette.white.normal",      -- base05
+    bright_white = "palette.white.dim",       -- base06 (Lighter White; uses .dim slot)
     brightest_white = "palette.white.bright", -- base07
 
-    red = "palette.red.normal", -- base08
-    bright_red = "palette.red.bright", -- base12 (base24) / base08 (base16, spec-collapsed)
+    red = "palette.red.normal",               -- base08
+    bright_red = "palette.red.bright",        -- base12 (base24) / base08 (base16, spec-collapsed)
 
-    orange = "palette.orange.normal", -- base09
+    orange = "palette.orange.normal",         -- base09
 
-    yellow = "palette.yellow.normal", -- base0A
-    bright_yellow = "palette.yellow.bright", -- base13 / base0A
+    yellow = "palette.yellow.normal",         -- base0A
+    bright_yellow = "palette.yellow.bright",  -- base13 / base0A
 
-    green = "palette.green.normal", -- base0B
-    bright_green = "palette.green.bright", -- base14 / base0B
+    green = "palette.green.normal",           -- base0B
+    bright_green = "palette.green.bright",    -- base14 / base0B
 
-    cyan = "palette.cyan.normal", -- base0C
-    bright_cyan = "palette.cyan.bright", -- base15 / base0C
+    cyan = "palette.cyan.normal",             -- base0C
+    bright_cyan = "palette.cyan.bright",      -- base15 / base0C
 
-    blue = "palette.blue.normal", -- base0D
-    bright_blue = "palette.blue.bright", -- base16 slot / base0D
+    blue = "palette.blue.normal",             -- base0D
+    bright_blue = "palette.blue.bright",      -- base16 slot / base0D
 
-    purple = "palette.magenta.normal", -- base0E
+    purple = "palette.magenta.normal",        -- base0E
     bright_purple = "palette.magenta.bright", -- base17 / base0E
 
-    dark_red = "palette.brown.normal", -- base0F
+    dark_red = "palette.brown.normal",        -- base0F
 }
 
 -- Tree-path → ANSI cterm slot. Used by utils.build_hex_to_cterm_map to attach
@@ -58,10 +60,10 @@ M.map = {
 M.cterm = {
     ["palette.black.normal"] = 0,
     ["palette.black.bright"] = 18, -- base01 (256-color extension)
-    ["palette.gray.dim"] = 19, -- base02
-    ["palette.gray.normal"] = 8, -- base03 = ANSI Bright Black
-    ["palette.gray.bright"] = 20, -- base04 = Light Gray (256-color)
-    ["palette.white.dim"] = 21, -- base06 (256-color)
+    ["palette.gray.dim"] = 19,     -- base02
+    ["palette.gray.normal"] = 8,   -- base03 = ANSI Bright Black
+    ["palette.gray.bright"] = 20,  -- base04 = Light Gray (256-color)
+    ["palette.white.dim"] = 21,    -- base06 (256-color)
     ["palette.white.normal"] = 7,
     ["palette.white.bright"] = 15,
     ["palette.red.normal"] = 1,
@@ -80,24 +82,6 @@ M.cterm = {
     ["palette.magenta.bright"] = 13,
 }
 
----Traverse a dotted path inside a palette table.
----@param palette table
----@param path string Dotted path like "palette.red.normal"
----@return string|nil
-local function lookup(palette, path)
-    local cur = palette
-    for part in path:gmatch("[^.]+") do
-        if type(cur) ~= "table" then
-            return nil
-        end
-        cur = cur[part]
-    end
-    if type(cur) == "string" then
-        return cur
-    end
-    return nil
-end
-
 ---Resolve an alias name to a hex color from the palette.
 ---Normalizes the input palette defensively so this works regardless of which
 ---shape the caller passed (legacy slots, tree, or both).
@@ -110,7 +94,7 @@ function M.resolve(name, palette)
         return nil
     end
     local colors = require("tinted-nvim.colors")
-    return lookup(colors.normalize(palette), path)
+    return utils.lookup(colors.normalize(palette), path)
 end
 
 ---Build a complete alias-to-color lookup table from a palette.
@@ -121,7 +105,7 @@ function M.build(palette)
     local normalized = colors.normalize(palette)
     local out = {}
     for name in pairs(M.map) do
-        local color = lookup(normalized, M.map[name])
+        local color = utils.lookup(normalized, M.map[name])
         if color then
             out[name] = color
         end

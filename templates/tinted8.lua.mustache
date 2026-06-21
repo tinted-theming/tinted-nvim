@@ -14,7 +14,7 @@ return {
         gray = {
             dim = "#{{palette.gray.dim.hex}}",
             normal = "#{{palette.gray.normal.hex}}",
-            -- gray.bright is unused by tinted-nvim highlights; left unmapped.
+            bright = "#{{palette.gray.bright.hex}}",
         },
         white = {
             dim = "#{{palette.white.dim.hex}}",
@@ -59,8 +59,8 @@ return {
             foreground = { normal = "#{{ui.global.foreground.normal.hex}}" },
         },
         cursor = {
-            background = { normal = "#{{ui.cursor.normal.background.hex}}" },
-            foreground = { normal = "#{{ui.cursor.normal.foreground.hex}}" },
+            background = { normal = "#{{ui.cursor.background.normal.hex}}" },
+            foreground = { normal = "#{{ui.cursor.foreground.normal.hex}}" },
         },
         gutter = { foreground = "#{{ui.gutter.foreground.hex}}" },
         border = { normal = "#{{ui.border.normal.hex}}" },

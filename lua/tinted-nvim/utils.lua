@@ -63,8 +63,8 @@ end
 ---Traverse a dotted path inside a palette table.
 ---@param palette table
 ---@param path string Dotted path like "palette.red.normal"
----@return any
-local function lookup_path(palette, path)
+---@return string|nil
+function M.lookup(palette, path)
     local cur = palette
     for part in path:gmatch("[^.]+") do
         if type(cur) ~= "table" then
@@ -72,7 +72,10 @@ local function lookup_path(palette, path)
         end
         cur = cur[part]
     end
-    return cur
+    if type(cur) == "string" then
+        return cur
+    end
+    return nil
 end
 
 ---Build reverse lookup from hex color to ANSI cterm index.
@@ -85,7 +88,7 @@ function M.build_hex_to_cterm_map(palette, cterm_map)
 
     for path, cterm in pairs(cterm_map or {}) do
         if type(cterm) == "number" then
-            local color = lookup_path(palette, path)
+            local color = M.lookup(palette, path)
             if M.is_hex(color) and out[color:lower()] == nil then
                 out[color:lower()] = cterm
             end

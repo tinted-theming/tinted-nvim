@@ -83,7 +83,7 @@ function M.build(palette, _aliases, cfg)
 
     hl.Error = { fg = ui.status.error }
     hl.ErrorMsg = { fg = ui.status.error }
-    hl.WarningMsg = { fg = ui.status.error }
+    hl.WarningMsg = { fg = ui.status.warning }
 
     hl.ModeMsg = { fg = pal.green.normal }
     hl.MoreMsg = { fg = pal.green.normal }
