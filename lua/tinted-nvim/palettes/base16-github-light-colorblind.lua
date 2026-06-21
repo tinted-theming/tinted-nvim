@@ -7,13 +7,13 @@ return {
     base04 = "#6e7781", -- bright_grey
     base05 = "#424a53", -- foreground
     base06 = "#32383f", -- bright_white
-    base07 = "#1f2328", -- brightest_white
-    base08 = "#953800", -- red
+    base07 = "#24292f", -- brightest_white
+    base08 = "#8a4600", -- red
     base09 = "#0550ae", -- orange
     base0A = "#bf8700", -- yellow
     base0B = "#0a3069", -- green
-    base0C = "#116329", -- cyan
+    base0C = "#0550ae", -- cyan
     base0D = "#8250df", -- blue
-    base0E = "#cf222e", -- purple
-    base0F = "#82071e", -- dark_red
+    base0E = "#b35900", -- purple
+    base0F = "#6f3800", -- dark_red
 }
