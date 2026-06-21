@@ -15,8 +15,8 @@ describe("colors", function()
                     colors.resolve(scheme_system, {})
                 end,
                 "tinted-nvim: invalid scheme-system '"
-                    .. scheme_system
-                    .. "' (must start with 'base16-', 'base24-', or 'tinted8-')"
+                .. scheme_system
+                .. "' (must start with 'base16-', 'base24-', or 'tinted8-')"
             )
         end)
 
@@ -130,6 +130,55 @@ describe("colors", function()
 
             local palette = colors.resolve("base16-ayu-dark", cfg)
             assert.is_string(palette.base00)
+        end)
+
+        it("override callback receives palette tree for tinted8 schemes", function()
+            package.preload["tinted-nvim.palettes.tinted8-test"] = function()
+                return dofile("tests/fixtures/tinted8_scheme.lua")
+            end
+
+            local scheme
+            local cfg = {
+                schemes = {
+                    ["tinted8-test"] = {
+                        variant = function(p)
+                            scheme = p
+                            return p.variant
+                        end,
+                    },
+                },
+            }
+
+            colors.resolve("tinted8-test", cfg)
+            package.preload["tinted-nvim.palettes.tinted8-test"] = nil
+
+            assert.is_table(scheme.palette, "tinted8 override callback should have palette tree")
+            assert.is_string(scheme.palette.red.normal,
+                "tinted8 override callback should have palette.red.normal")
+            assert.is_table(scheme.ui, "tinted8 override callback should have ui tree")
+            assert.is_table(scheme.syntax, "tinted8 override callback should have syntax tree")
+        end)
+
+        it("override callback receives palette tree for base16 schemes", function()
+            local received_palette
+            local cfg = {
+                schemes = {
+                    ["base16-ayu-dark"] = {
+                        base00 = function(p)
+                            received_palette = p
+                            return p.base00
+                        end,
+                    },
+                },
+            }
+
+            colors.resolve("base16-ayu-dark", cfg)
+
+            assert.is_table(received_palette.palette, "base16 override callback should have palette tree")
+            assert.is_string(received_palette.palette.red.normal,
+                "base16 override callback should have palette.red.normal")
+            assert.is_table(received_palette.ui, "base16 override callback should have ui tree")
+            assert.is_table(received_palette.syntax, "base16 override callback should have syntax tree")
         end)
 
         it("allows fully user-defined scheme", function()
