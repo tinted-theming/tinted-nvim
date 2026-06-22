@@ -15,8 +15,8 @@ describe("colors", function()
                     colors.resolve(scheme_system, {})
                 end,
                 "tinted-nvim: invalid scheme-system '"
-                .. scheme_system
-                .. "' (must start with 'base16-', 'base24-', or 'tinted8-')"
+                    .. scheme_system
+                    .. "' (must start with 'base16-', 'base24-', or 'tinted8-')"
             )
         end)
 
@@ -153,8 +153,7 @@ describe("colors", function()
             package.preload["tinted-nvim.palettes.tinted8-test"] = nil
 
             assert.is_table(scheme.palette, "tinted8 override callback should have palette tree")
-            assert.is_string(scheme.palette.red.normal,
-                "tinted8 override callback should have palette.red.normal")
+            assert.is_string(scheme.palette.red.normal, "tinted8 override callback should have palette.red.normal")
             assert.is_table(scheme.ui, "tinted8 override callback should have ui tree")
             assert.is_table(scheme.syntax, "tinted8 override callback should have syntax tree")
         end)
@@ -175,8 +174,10 @@ describe("colors", function()
             colors.resolve("base16-ayu-dark", cfg)
 
             assert.is_table(received_palette.palette, "base16 override callback should have palette tree")
-            assert.is_string(received_palette.palette.red.normal,
-                "base16 override callback should have palette.red.normal")
+            assert.is_string(
+                received_palette.palette.red.normal,
+                "base16 override callback should have palette.red.normal"
+            )
             assert.is_table(received_palette.ui, "base16 override callback should have ui tree")
             assert.is_table(received_palette.syntax, "base16 override callback should have syntax tree")
         end)
