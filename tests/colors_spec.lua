@@ -182,6 +182,107 @@ describe("colors", function()
             assert.is_table(received_palette.syntax, "base16 override callback should have syntax tree")
         end)
 
+        it("propagates legacy-slot override to the tree", function()
+            -- A user override on a base slot must flow through to the
+            -- corresponding tinted8 tree leaf. Any consumer reading the tree
+            -- (every internal highlight does, post-migration) must see the
+            -- overridden hex, not the value baked into the on-disk palette.
+            local cfg = {
+                schemes = {
+                    ["base16-ayu-dark"] = {
+                        base08 = "#deadbe",
+                    },
+                },
+            }
+
+            local palette = colors.resolve("base16-ayu-dark", cfg)
+
+            assert.equal("#deadbe", palette.base08, "legacy slot value applied")
+            assert.equal(
+                "#deadbe",
+                palette.palette.red.normal,
+                "tree leaf reflects the legacy override"
+            )
+        end)
+
+        it("propagates tree-block override to legacy slots", function()
+            -- The inverse: when a user replaces a top-level tree block
+            -- (palette/ui/syntax), the corresponding legacy slots derived
+            -- from it must reflect the change.
+            local cfg = {
+                schemes = {
+                    ["base16-ayu-dark"] = {
+                        palette = function(p)
+                            local t = vim.deepcopy(p.palette)
+                            t.red.normal = "#abc123"
+                            return t
+                        end,
+                    },
+                },
+            }
+
+            local palette = colors.resolve("base16-ayu-dark", cfg)
+
+            assert.equal("#abc123", palette.palette.red.normal, "tree leaf applied")
+            assert.equal(
+                "#abc123",
+                palette.base08,
+                "legacy slot reflects the tree override"
+            )
+        end)
+
+        it("preserves both overrides when user touches legacy AND tree", function()
+            -- When the user explicitly overrides BOTH a legacy slot and a tree
+            -- block, both must be preserved verbatim. We do NOT auto-propagate
+            -- across shapes in this case — the user is being explicit and we
+            -- can't tell which side they intended to be canonical for any
+            -- given leaf. Tree leaves the user didn't touch stay at their
+            -- pre-override values (from the on-disk file).
+            local cfg = {
+                schemes = {
+                    ["base16-ayu-dark"] = {
+                        base08 = "#deadbe",
+                        palette = function(p)
+                            local t = vim.deepcopy(p.palette)
+                            t.green.normal = "#abc123"
+                            return t
+                        end,
+                    },
+                },
+            }
+
+            local palette = colors.resolve("base16-ayu-dark", cfg)
+
+            assert.equal("#deadbe", palette.base08, "explicit legacy override preserved")
+            assert.equal(
+                "#abc123",
+                palette.palette.green.normal,
+                "explicit tree override preserved"
+            )
+            -- The legacy override does NOT propagate to palette.red.normal here
+            -- because the user also touched the tree — auto-propagation is
+            -- disabled in the dual-override case.
+            assert.are_not.equal(
+                "#deadbe",
+                palette.palette.red.normal,
+                "dual-override case skips cross-shape propagation"
+            )
+        end)
+
+        it("preserves rendering when no overrides are supplied", function()
+            -- Sanity check: with no overrides, legacy slots and tree leaves
+            -- from the on-disk file both round-trip through resolve without
+            -- any divergence.
+            local plain = colors.resolve("base16-ayu-dark", {})
+            local with_empty_overrides = colors.resolve("base16-ayu-dark", {
+                schemes = { ["base16-ayu-dark"] = {} },
+            })
+
+            assert.equal(plain.base08, with_empty_overrides.base08)
+            assert.equal(plain.palette.red.normal, with_empty_overrides.palette.red.normal)
+            assert.equal(plain.base08, plain.palette.red.normal)
+        end)
+
         it("allows fully user-defined scheme", function()
             local cfg = {
                 schemes = {

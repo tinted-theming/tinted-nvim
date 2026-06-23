@@ -246,11 +246,53 @@ function M.resolve(scheme, config)
     local palette = base and vim.tbl_extend("force", {}, base) or {}
 
     if overrides then
+        -- Build a normalized read-only snapshot for callback context, so
+        -- override functions can reference either legacy slots OR tree paths
+        -- uniformly regardless of the on-disk file's shape. The actual
+        -- `palette` table stays in its raw loaded shape during override
+        -- application.
+        local snapshot = palette
+        if next(palette) ~= nil then
+            snapshot = ensure_legacy_slots(synthesize_tree(palette, system), system)
+        end
+
+        local touched_legacy = false
+        local touched_tree = false
         for key, value in pairs(overrides) do
             if type(value) == "function" then
-                palette[key] = value(palette)
+                palette[key] = value(snapshot)
             else
                 palette[key] = value
+            end
+            if type(key) == "string" then
+                if key:match("^base%x%x$") then
+                    touched_legacy = true
+                elseif key == "palette" or key == "ui" or key == "syntax" then
+                    touched_tree = true
+                end
+            end
+        end
+
+        -- The on-disk palette file may carry BOTH shapes pre-populated
+        -- (post-migration base16/24 templates emit legacy slots AND the tree).
+        -- After overrides, the shape the user touched is the source of truth;
+        -- drop the OTHER shape so the final normalization re-derives it from
+        -- the user's updated values. Without this, "keep"-mode merges would
+        -- preserve the file's stale derived shape and override changes would
+        -- silently fail to propagate.
+        --
+        -- If the user touched BOTH shapes, treat both as explicit: leave both
+        -- in place and let the final synthesis fill ONLY missing leaves. The
+        -- user is responsible for keeping the shapes consistent in this case;
+        -- we don't auto-propagate either direction because we can't tell
+        -- which side they intended to be canonical for any given leaf.
+        if touched_legacy and not touched_tree then
+            palette.palette = nil
+            palette.ui = nil
+            palette.syntax = nil
+        elseif touched_tree and not touched_legacy then
+            for i = 0, 23 do
+                palette[string.format("base%02X", i)] = nil
             end
         end
     end
