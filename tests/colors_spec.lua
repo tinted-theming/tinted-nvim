@@ -198,11 +198,7 @@ describe("colors", function()
             local palette = colors.resolve("base16-ayu-dark", cfg)
 
             assert.equal("#deadbe", palette.base08, "legacy slot value applied")
-            assert.equal(
-                "#deadbe",
-                palette.palette.red.normal,
-                "tree leaf reflects the legacy override"
-            )
+            assert.equal("#deadbe", palette.palette.red.normal, "tree leaf reflects the legacy override")
         end)
 
         it("propagates tree-block override to legacy slots", function()
@@ -224,11 +220,7 @@ describe("colors", function()
             local palette = colors.resolve("base16-ayu-dark", cfg)
 
             assert.equal("#abc123", palette.palette.red.normal, "tree leaf applied")
-            assert.equal(
-                "#abc123",
-                palette.base08,
-                "legacy slot reflects the tree override"
-            )
+            assert.equal("#abc123", palette.base08, "legacy slot reflects the tree override")
         end)
 
         it("preserves both overrides when user touches legacy AND tree", function()
@@ -254,11 +246,7 @@ describe("colors", function()
             local palette = colors.resolve("base16-ayu-dark", cfg)
 
             assert.equal("#deadbe", palette.base08, "explicit legacy override preserved")
-            assert.equal(
-                "#abc123",
-                palette.palette.green.normal,
-                "explicit tree override preserved"
-            )
+            assert.equal("#abc123", palette.palette.green.normal, "explicit tree override preserved")
             -- The legacy override does NOT propagate to palette.red.normal here
             -- because the user also touched the tree — auto-propagation is
             -- disabled in the dual-override case.
