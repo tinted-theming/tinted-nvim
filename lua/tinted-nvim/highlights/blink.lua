@@ -1,46 +1,46 @@
 local M = {}
 
----@param _palette tinted-nvim.Palette
----@param aliases table<string, string>
+---@param palette tinted-nvim.Palette
+---@param _aliases table<string, string>
 ---@param _cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(_palette, aliases, _cfg)
-    local a = aliases
+function M.build(palette, _aliases, _cfg)
+    local pal = palette.palette
     return {
         BlinkCmpMenu = { link = "Pmenu" },
         BlinkCmpMenuSelection = { link = "PmenuSel" },
-        BlinkCmpLabel = { fg = a.bright_grey },
-        BlinkCmpLabelMatch = { fg = a.blue },
+        BlinkCmpLabel = { fg = pal.gray.bright },
+        BlinkCmpLabelMatch = { fg = pal.blue.normal },
         BlinkCmpLabelDetail = { link = "PmenuExtra" },
         BlinkCmpLabelDescription = { link = "PmenuExtra" },
-        BlinkCmpSource = { fg = a.dark_grey },
+        BlinkCmpSource = { fg = pal.gray.dim },
         BlinkCmpMenuBorder = { link = "FloatBorder" },
-        BlinkCmpKindText = { fg = a.green },
-        BlinkCmpKindMethod = { fg = a.blue },
-        BlinkCmpKindFunction = { fg = a.blue },
-        BlinkCmpKindConstructor = { fg = a.blue },
-        BlinkCmpKindField = { fg = a.green },
-        BlinkCmpKindVariable = { fg = a.dark_red },
-        BlinkCmpKindClass = { fg = a.yellow },
-        BlinkCmpKindInterface = { fg = a.yellow },
-        BlinkCmpKindModule = { fg = a.blue },
-        BlinkCmpKindProperty = { fg = a.blue },
-        BlinkCmpKindUnit = { fg = a.green },
-        BlinkCmpKindValue = { fg = a.orange },
-        BlinkCmpKindEnum = { fg = a.yellow },
-        BlinkCmpKindKeyword = { fg = a.purple },
-        BlinkCmpKindSnippet = { fg = a.dark_red },
-        BlinkCmpKindColor = { fg = a.red },
-        BlinkCmpKindFile = { fg = a.blue },
-        BlinkCmpKindReference = { fg = a.red },
-        BlinkCmpKindFolder = { fg = a.blue },
-        BlinkCmpKindEnumMember = { fg = a.cyan },
-        BlinkCmpKindConstant = { fg = a.orange },
-        BlinkCmpKindStruct = { fg = a.blue },
-        BlinkCmpKindEvent = { fg = a.blue },
-        BlinkCmpKindOperator = { fg = a.purple },
-        BlinkCmpKindTypeParameter = { fg = a.dark_red },
-        BlinkCmpKindCopilot = { fg = a.cyan },
+        BlinkCmpKindText = { fg = pal.green.normal },
+        BlinkCmpKindMethod = { fg = pal.blue.normal },
+        BlinkCmpKindFunction = { fg = pal.blue.normal },
+        BlinkCmpKindConstructor = { fg = pal.blue.normal },
+        BlinkCmpKindField = { fg = pal.green.normal },
+        BlinkCmpKindVariable = { fg = pal.brown.normal },
+        BlinkCmpKindClass = { fg = pal.yellow.normal },
+        BlinkCmpKindInterface = { fg = pal.yellow.normal },
+        BlinkCmpKindModule = { fg = pal.blue.normal },
+        BlinkCmpKindProperty = { fg = pal.blue.normal },
+        BlinkCmpKindUnit = { fg = pal.green.normal },
+        BlinkCmpKindValue = { fg = pal.orange.normal },
+        BlinkCmpKindEnum = { fg = pal.yellow.normal },
+        BlinkCmpKindKeyword = { fg = pal.magenta.normal },
+        BlinkCmpKindSnippet = { fg = pal.brown.normal },
+        BlinkCmpKindColor = { fg = pal.red.normal },
+        BlinkCmpKindFile = { fg = pal.blue.normal },
+        BlinkCmpKindReference = { fg = pal.red.normal },
+        BlinkCmpKindFolder = { fg = pal.blue.normal },
+        BlinkCmpKindEnumMember = { fg = pal.cyan.normal },
+        BlinkCmpKindConstant = { fg = pal.orange.normal },
+        BlinkCmpKindStruct = { fg = pal.blue.normal },
+        BlinkCmpKindEvent = { fg = pal.blue.normal },
+        BlinkCmpKindOperator = { fg = pal.magenta.normal },
+        BlinkCmpKindTypeParameter = { fg = pal.brown.normal },
+        BlinkCmpKindCopilot = { fg = pal.cyan.normal },
     }
 end
 

@@ -60,16 +60,35 @@ function M.is_hex(color)
     return type(color) == "string" and color:match("^#%x%x%x%x%x%x$") ~= nil
 end
 
+---Traverse a dotted path inside a palette table.
+---@param palette table
+---@param path string Dotted path like "palette.red.normal"
+---@return string|nil
+function M.lookup(palette, path)
+    local cur = palette
+    for part in path:gmatch("[^.]+") do
+        if type(cur) ~= "table" then
+            return nil
+        end
+        cur = cur[part]
+    end
+    if type(cur) == "string" then
+        return cur
+    end
+    return nil
+end
+
 ---Build reverse lookup from hex color to ANSI cterm index.
+---The cterm_map keys are canonical palette tree paths (e.g. "palette.red.normal").
 ---@param palette tinted-nvim.Palette
 ---@param cterm_map table<string, integer|nil>
 ---@return table<string, integer>
 function M.build_hex_to_cterm_map(palette, cterm_map)
     local out = {}
 
-    for base_key, cterm in pairs(cterm_map or {}) do
+    for path, cterm in pairs(cterm_map or {}) do
         if type(cterm) == "number" then
-            local color = palette[base_key]
+            local color = M.lookup(palette, path)
             if M.is_hex(color) and out[color:lower()] == nil then
                 out[color:lower()] = cterm
             end

@@ -44,11 +44,13 @@ function M.write(scheme_name, palette, highlights, terminal)
         "local set = vim.api.nvim_set_hl",
     }
 
-    -- compile highlights
+    -- compile highlights. We MUST emit set() for every group, including empty
+    -- specs — passing an empty table to nvim_set_hl resets the group to default,
+    -- which is how a colorscheme says "this group is unstyled by us." Skipping
+    -- empty specs causes stale values from a previously-loaded scheme to persist
+    -- across :colorscheme switches.
     for group, spec in pairs(highlights) do
-        if next(spec) ~= nil then
-            table.insert(lines, string.format('set(0, "%s", %s)', group, inspect(spec):gsub("%s+", "")))
-        end
+        table.insert(lines, string.format('set(0, "%s", %s)', group, inspect(spec):gsub("%s+", "")))
     end
 
     -- compile terminal colors

@@ -31,7 +31,7 @@ jobs:
       - name: Check formatting
         run: nix develop .#ci --command just fmt-check
 
-      - name: run lua-language-server check
+      - name: Run lua-language-server check
         run: nix develop .#ci --command just check
 
   test:
@@ -39,6 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install Nix
         uses: cachix/install-nix-action@v27
@@ -53,6 +55,9 @@ jobs:
 
       - name: Run tests
         run: nix develop .#ci --command just test
+
+      - name: Run parity check
+        run: nix develop .#ci --command just verify-parity
 
   # Ensure generated files are not included in PR since these will be built on merge to main
   check-generated:

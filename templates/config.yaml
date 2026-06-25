@@ -13,3 +13,17 @@ base24.lua:
 base24.vim:
   filename: colors/{{ scheme-system }}-{{ scheme-slug }}.vim
   supported-systems: [base24]
+
+tinted8.lua:
+  filename: lua/tinted-nvim/palettes/{{ scheme.system }}-{{ scheme.slug }}.lua
+  supported-systems: [tinted8]
+  supports:
+    tinted8-builder: "~0.2.0"
+    tinted8-styling: "~0.2.0"
+
+tinted8.vim:
+  filename: colors/{{ scheme.system }}-{{ scheme.slug }}.vim
+  supported-systems: [tinted8]
+  supports:
+    tinted8-builder: "~0.2.0"
+    tinted8-styling: "~0.2.0"

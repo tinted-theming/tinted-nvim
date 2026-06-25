@@ -1,16 +1,16 @@
 local M = {}
 
----@param _palette tinted-nvim.Palette
----@param aliases table<string, string>
+---@param palette tinted-nvim.Palette
+---@param _aliases table<string, string>
 ---@param _cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(_palette, aliases, _cfg)
-    local a = aliases
+function M.build(palette, _aliases, _cfg)
+    local ui = palette.ui
     return {
         -- Dashboard
         SnacksDashboardDir = { link = "Directory" },
-        SnacksDashboardFile = { fg = a.white, bold = true },
-        SnacksDashboardDesc = { fg = a.white, bold = true },
+        SnacksDashboardFile = { fg = ui.global.foreground.normal, bold = true },
+        SnacksDashboardDesc = { fg = ui.global.foreground.normal, bold = true },
 
         -- Picker
         SnacksPickerDir = { link = "Directory" },

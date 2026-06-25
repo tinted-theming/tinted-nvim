@@ -9,7 +9,7 @@ function M.build(_palette, aliases, _cfg)
     local hl = {}
 
     -- LSP references
-    hl.LspReferenceText = { bg = a.dark_grey }
+    hl.LspReferenceText = { bg = a.dark_gray }
     hl.LspReferenceRead = { link = "LspReferenceText" }
     hl.LspReferenceWrite = { link = "LspReferenceText" }
 

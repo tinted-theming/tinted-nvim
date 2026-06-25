@@ -1,18 +1,18 @@
 local M = {}
 
----@param _palette tinted-nvim.Palette
----@param aliases table<string, string>
+---@param palette tinted-nvim.Palette
+---@param _aliases table<string, string>
 ---@param _cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(_palette, aliases, _cfg)
-    local a = aliases
+function M.build(palette, _aliases, _cfg)
+    local pal = palette.palette
     return {
         TelescopeNormal = { link = "Normal" },
         TelescopeSelection = { link = "Visual" },
         TelescopeBorder = { link = "FloatBorder" },
-        TelescopeMatching = { fg = a.blue },
-        TelescopeTitle = { fg = a.blue },
-        TelescopeSelectionCaret = { fg = a.dark_red },
+        TelescopeMatching = { fg = pal.blue.normal },
+        TelescopeTitle = { fg = pal.blue.normal },
+        TelescopeSelectionCaret = { fg = pal.brown.normal },
         TelescopePreviewLine = { link = "Visual" },
     }
 end

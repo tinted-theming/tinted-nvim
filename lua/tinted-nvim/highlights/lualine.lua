@@ -1,36 +1,37 @@
 local M = {}
 
----@param _palette tinted-nvim.Palette
----@param aliases table<string, string>
+---@param palette tinted-nvim.Palette
+---@param _aliases table<string, string>
 ---@param _cfg tinted-nvim.Config
 ---@return tinted-nvim.Highlights
-function M.build(_palette, aliases, _cfg)
-    local a = aliases
+function M.build(palette, _aliases, _cfg)
+    local pal = palette.palette
+    local ui = palette.ui
     local hl = {}
 
-    hl.LualineNormalA = { fg = a.background, bg = a.grey, bold = true }
-    hl.LualineNormalB = { fg = a.foreground, bg = a.dark_grey }
-    hl.LualineNormalC = { fg = a.bright_grey, bg = a.darkest_grey }
+    hl.LualineNormalA = { fg = ui.global.background.normal, bg = pal.gray.normal, bold = true }
+    hl.LualineNormalB = { fg = ui.global.foreground.normal, bg = pal.gray.dim }
+    hl.LualineNormalC = { fg = pal.gray.bright, bg = pal.black.bright }
 
-    hl.LualineInsertA = { fg = a.background, bg = a.blue, bold = true }
-    hl.LualineInsertB = { fg = a.foreground, bg = a.dark_grey }
-    hl.LualineInsertC = { fg = a.foreground, bg = a.darkest_grey }
+    hl.LualineInsertA = { fg = ui.global.background.normal, bg = pal.blue.normal, bold = true }
+    hl.LualineInsertB = { fg = ui.global.foreground.normal, bg = pal.gray.dim }
+    hl.LualineInsertC = { fg = ui.global.foreground.normal, bg = pal.black.bright }
 
-    hl.LualineVisualA = { fg = a.background, bg = a.yellow, bold = true }
-    hl.LualineVisualB = { fg = a.foreground, bg = a.dark_grey }
-    hl.LualineVisualC = { fg = a.foreground, bg = a.darkest_grey }
+    hl.LualineVisualA = { fg = ui.global.background.normal, bg = pal.yellow.normal, bold = true }
+    hl.LualineVisualB = { fg = ui.global.foreground.normal, bg = pal.gray.dim }
+    hl.LualineVisualC = { fg = ui.global.foreground.normal, bg = pal.black.bright }
 
-    hl.LualineReplaceA = { fg = a.background, bg = a.red, bold = true }
-    hl.LualineReplaceB = { fg = a.foreground, bg = a.dark_grey }
-    hl.LualineReplaceC = { fg = a.foreground, bg = a.darkest_grey }
+    hl.LualineReplaceA = { fg = ui.global.background.normal, bg = pal.red.normal, bold = true }
+    hl.LualineReplaceB = { fg = ui.global.foreground.normal, bg = pal.gray.dim }
+    hl.LualineReplaceC = { fg = ui.global.foreground.normal, bg = pal.black.bright }
 
-    hl.LualineCommandA = { fg = a.background, bg = a.green, bold = true }
-    hl.LualineCommandB = { fg = a.foreground, bg = a.dark_grey }
-    hl.LualineCommandC = { fg = a.foreground, bg = a.darkest_grey }
+    hl.LualineCommandA = { fg = ui.global.background.normal, bg = pal.green.normal, bold = true }
+    hl.LualineCommandB = { fg = ui.global.foreground.normal, bg = pal.gray.dim }
+    hl.LualineCommandC = { fg = ui.global.foreground.normal, bg = pal.black.bright }
 
-    hl.LualineInactiveA = { fg = a.grey, bg = a.darkest_grey, bold = true }
-    hl.LualineInactiveB = { fg = a.grey, bg = a.darkest_grey }
-    hl.LualineInactiveC = { fg = a.grey, bg = a.darkest_grey }
+    hl.LualineInactiveA = { fg = pal.gray.normal, bg = pal.black.bright, bold = true }
+    hl.LualineInactiveB = { fg = pal.gray.normal, bg = pal.black.bright }
+    hl.LualineInactiveC = { fg = pal.gray.normal, bg = pal.black.bright }
 
     return hl
 end

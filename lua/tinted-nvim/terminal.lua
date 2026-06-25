@@ -1,5 +1,7 @@
--- Build and apply terminal colors from a resolved Base16/Base24 palette.
--- Follows the official Base16/Base24 → ANSI mapping used by tinted.
+-- Build and apply terminal colors from a resolved palette.
+-- Reads from the canonical palette tree (`palette.palette.<color>.<variant>`)
+-- so the same logic works across base16/24/tinted8. ANSI 8 (Bright Black) maps
+-- to `palette.gray.normal` per the base16 spec, which assigns base03 to that role.
 
 local M = {}
 
@@ -13,31 +15,38 @@ function M.build(palette, cfg)
         return nil
     end
 
+    -- Defensive: normalize so this works regardless of which shape the caller passed.
+    local colors = require("tinted-nvim.colors")
+    palette = colors.normalize(palette)
+    local pal = palette.palette
+
     local term = {}
 
-    -- Standard ANSI colors
-    term[0] = palette.base00 -- black
-    term[1] = palette.base08 -- red
-    term[2] = palette.base0B -- green
-    term[3] = palette.base0A -- yellow
-    term[4] = palette.base0D -- blue
-    term[5] = palette.base0E -- magenta
-    term[6] = palette.base0C -- cyan
-    term[7] = palette.base05 -- white
+    -- Standard ANSI colors (0-7)
+    term[0] = pal.black.normal
+    term[1] = pal.red.normal
+    term[2] = pal.green.normal
+    term[3] = pal.yellow.normal
+    term[4] = pal.blue.normal
+    term[5] = pal.magenta.normal
+    term[6] = pal.cyan.normal
+    term[7] = pal.white.normal
 
-    -- Bright ANSI colors
-    term[8] = palette.base03 -- bright black
-    term[9] = palette.base12 or palette.base08 -- bright red
-    term[10] = palette.base14 or palette.base0B -- bright green
-    term[11] = palette.base13 or palette.base0A -- bright yellow
-    term[12] = palette.base16 or palette.base0D -- bright blue
-    term[13] = palette.base17 or palette.base0E -- bright magenta
-    term[14] = palette.base15 or palette.base0C -- bright cyan
-    term[15] = palette.base07 -- bright white
+    -- Bright ANSI colors (8-15). For base16 schemes the .bright variants
+    -- collapse to .normal per the base16 styling spec; for base24 they are
+    -- distinct slots; for tinted8 the builder/scheme decides.
+    term[8] = pal.black.bright -- ANSI Bright Black = base03 per base16 spec
+    term[9] = pal.red.bright
+    term[10] = pal.green.bright
+    term[11] = pal.yellow.bright
+    term[12] = pal.blue.bright
+    term[13] = pal.magenta.bright
+    term[14] = pal.cyan.bright
+    term[15] = pal.white.bright
 
     -- Extended ANSI colors
-    term[16] = palette.base09 -- orange
-    term[17] = palette.base0F -- brown / extra
+    term[16] = pal.orange.normal
+    term[17] = pal.brown.normal
 
     return term
 end
