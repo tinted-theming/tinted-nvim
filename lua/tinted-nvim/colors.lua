@@ -246,15 +246,23 @@ function M.resolve(scheme, config)
     local palette = base and vim.tbl_extend("force", {}, base) or {}
 
     if overrides then
-        -- Build a normalized read-only snapshot for callback context, so
-        -- override functions can reference either legacy slots OR tree paths
-        -- uniformly regardless of the on-disk file's shape. The actual
-        -- `palette` table stays in its raw loaded shape during override
-        -- application.
-        local snapshot = palette
-        if next(palette) ~= nil then
-            snapshot = ensure_legacy_slots(synthesize_tree(palette, system), system)
-        end
+        -- Normalize palette to the canonical dual shape (legacy slots + tree)
+        -- BEFORE applying overrides. This serves two purposes:
+        --   1. Tree blocks the user does NOT touch (e.g. `ui`, `syntax` when
+        --      the user only overrides `palette`) carry derived values, so
+        --      subsequent validation and synthesis have a complete picture
+        --      even when the on-disk file is in old (legacy-only) shape.
+        --   2. The snapshot passed to override callbacks (below) is built
+        --      from the normalized palette, so callbacks see both shapes.
+        palette = synthesize_tree(palette, system)
+        palette = ensure_legacy_slots(palette, system)
+
+        -- Deep-copy a snapshot for callback context. Callbacks may capture
+        -- a reference to this; we later mutate `palette` (drop one shape so
+        -- the final synthesis can re-derive it from the user's updated
+        -- values), and we don't want those mutations to retroactively
+        -- affect what callbacks captured.
+        local snapshot = vim.deepcopy(palette)
 
         local touched_legacy = false
         local touched_tree = false
