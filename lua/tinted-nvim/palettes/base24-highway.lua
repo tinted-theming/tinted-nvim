@@ -51,15 +51,15 @@ return {
             normal = "#c8c5c4",
             bright = "#fefffe",
         },
-        red     = { normal = "#cf0d17", bright = "#ef7d17" },
+        red = { normal = "#cf0d17", bright = "#ef7d17" },
         -- base24 has no bright_orange slot; orange.bright falls back to .normal.
-        orange  = { normal = "#ffca3d", bright = "#ffca3d" },
-        yellow  = { normal = "#4fc2fd", bright = "#fff11f" },
-        green   = { normal = "#128033", bright = "#b1d130" },
-        cyan    = { normal = "#384563", bright = "#5c4f49" },
-        blue    = { normal = "#006ab3", bright = "#4fc2fd" },
+        orange = { normal = "#ffca3d", bright = "#ffca3d" },
+        yellow = { normal = "#4fc2fd", bright = "#fff11f" },
+        green = { normal = "#128033", bright = "#b1d130" },
+        cyan = { normal = "#384563", bright = "#5c4f49" },
+        blue = { normal = "#006ab3", bright = "#4fc2fd" },
         magenta = { normal = "#6a2674", bright = "#de0070" },
-        brown   = { normal = "#67060b" },
+        brown = { normal = "#67060b" },
     },
 
     ui = {
