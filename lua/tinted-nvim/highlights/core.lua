@@ -135,7 +135,7 @@ function M.build(palette, _aliases, cfg)
     }
 
     hl.DiffChange = {
-        bg = { darken = ui.highlight.line.background, amount = 0.5 },
+        bg = ui.highlight.line.background
     }
     hl.DiffDelete = {
         bg = { darken = pal.red.normal, amount = 0.9 },
