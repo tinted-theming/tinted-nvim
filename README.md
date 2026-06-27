@@ -302,6 +302,24 @@ require("tinted-nvim").setup({
 - `require("tinted-nvim").get_palette()` - returns the current Base16/Base24 palette.
 - `require("tinted-nvim").get_palette_aliases()` - returns the palette using color aliases.
 
+## Integrations
+
+### `lualine.nvim`
+
+Aside from setting `highlights.integration.lualine` to `true` in this plugin's setup, you'll also need to set lualine's
+theme to `"tinted"` i.e.:
+
+```lua
+
+require("lualine").setup({
+    options = {
+        theme = "tinted"
+    }
+})
+
+```
+
+
 ## Troubleshooting
 
 - Truecolor support: this plugin is optimized for truecolor terminals. If you
@@ -394,3 +412,4 @@ See [LICENSE].
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 [CONTRIBUTING.md]: https://github.com/tinted-theming/home/blob/main/CONTRIBUTING.md
 [LICENSE]: ./LICENSE
+
