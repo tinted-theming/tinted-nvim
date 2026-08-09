@@ -4,7 +4,7 @@
 -- Do not edit by hand.
 
 return {
-    variant = "light",
+    variant = "dark",
 
     -- Legacy base24 slot keys (kept for backwards compatibility).
     -- New consumers should read the tinted8-shaped keys below.

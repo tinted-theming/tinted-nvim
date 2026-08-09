@@ -15,7 +15,7 @@ return {
     base04 = "#877e86",
     base05 = "#bbb2ad",
     base06 = "#f0e7d5",
-    base07 = "#0a6b7e",
+    base07 = "#f0e7d5",
     base08 = "#99236d",
     base09 = "#e9b8a7",
     base0A = "#38163d",
@@ -49,7 +49,7 @@ return {
             -- not a strict luminance semantic.
             dim = "#f0e7d5",
             normal = "#bbb2ad",
-            bright = "#0a6b7e",
+            bright = "#f0e7d5",
         },
         red = { normal = "#99236d", bright = "#c77171" },
         -- base24 has no bright_orange slot; orange.bright falls back to .normal.
