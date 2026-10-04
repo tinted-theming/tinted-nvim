@@ -10,172 +10,172 @@ return {
     -- Legacy base16 slot keys (kept for backwards compatibility).
     -- New consumers should read the tinted8-shaped keys below.
     base00 = "#ffffff",
-    base01 = "#e7ecf0",
-    base02 = "#acb6c0",
-    base03 = "#88929d",
-    base04 = "#66707b",
-    base05 = "#343b43",
-    base06 = "#20252c",
-    base07 = "#0e1116",
-    base08 = "#702c00",
-    base09 = "#023b95",
-    base0A = "#956400",
-    base0B = "#032563",
-    base0C = "#024c1a",
-    base0D = "#622cbc",
-    base0E = "#a0111f",
-    base0F = "#6e011a",
+    base01 = "#f6f8fa",
+    base02 = "#d1d9e0",
+    base03 = "#818b98",
+    base04 = "#59636e",
+    base05 = "#454c54",
+    base06 = "#25292e",
+    base07 = "#010409",
+    base08 = "#a0111f",
+    base09 = "#702c00",
+    base0A = "#603700",
+    base0B = "#024c1a",
+    base0C = "#1b7c83",
+    base0D = "#0349b4",
+    base0E = "#622cbc",
+    base0F = "#86061d",
 
     -- Named palette colors. base16 has no bright/dim variants,
     -- so .bright falls back to .normal (matches legacy alias behavior).
     palette = {
         black = {
             normal = "#ffffff",
-            bright = "#e7ecf0",
+            bright = "#f6f8fa",
         },
         gray = {
-            dim = "#acb6c0",
-            normal = "#88929d",
+            dim = "#d1d9e0",
+            normal = "#818b98",
             -- base04 ("Light Gray" per base16 spec) lives in gray.bright.
-            bright = "#66707b",
+            bright = "#59636e",
         },
         white = {
             -- base06 ("Lighter White") occupies the white.dim slot — slot identifier,
             -- not a strict luminance semantic.
-            dim = "#20252c",
-            normal = "#343b43",
-            bright = "#0e1116",
+            dim = "#25292e",
+            normal = "#454c54",
+            bright = "#010409",
         },
-        red = { normal = "#702c00", bright = "#702c00" },
-        orange = { normal = "#023b95", bright = "#023b95" },
-        yellow = { normal = "#956400", bright = "#956400" },
-        green = { normal = "#032563", bright = "#032563" },
-        cyan = { normal = "#024c1a", bright = "#024c1a" },
-        blue = { normal = "#622cbc", bright = "#622cbc" },
-        magenta = { normal = "#a0111f", bright = "#a0111f" },
-        brown = { normal = "#6e011a" },
+        red = { normal = "#a0111f", bright = "#a0111f" },
+        orange = { normal = "#702c00", bright = "#702c00" },
+        yellow = { normal = "#603700", bright = "#603700" },
+        green = { normal = "#024c1a", bright = "#024c1a" },
+        cyan = { normal = "#1b7c83", bright = "#1b7c83" },
+        blue = { normal = "#0349b4", bright = "#0349b4" },
+        magenta = { normal = "#622cbc", bright = "#622cbc" },
+        brown = { normal = "#86061d" },
     },
 
     -- UI keys, filled from base16 slots to preserve current rendering.
     ui = {
         global = {
             background = { normal = "#ffffff" },
-            foreground = { normal = "#343b43" },
+            foreground = { normal = "#454c54" },
         },
         cursor = {
-            background = { normal = "#343b43" },
+            background = { normal = "#454c54" },
             foreground = { normal = "#ffffff" },
         },
-        gutter = { foreground = "#acb6c0" },
-        border = { normal = "#88929d" },
+        gutter = { foreground = "#d1d9e0" },
+        border = { normal = "#818b98" },
         chrome = {
             background = {
-                normal = "#acb6c0",
-                dark = "#e7ecf0",
+                normal = "#d1d9e0",
+                dark = "#f6f8fa",
             },
             foreground = {
-                normal = "#343b43",
-                dark = "#66707b",
+                normal = "#454c54",
+                dark = "#59636e",
             },
         },
-        selection = { background = "#e7ecf0" },
+        selection = { background = "#f6f8fa" },
         highlight = {
-            line = { background = "#e7ecf0" },
-            text = { background = "#acb6c0" },
+            line = { background = "#f6f8fa" },
+            text = { background = "#d1d9e0" },
             search = {
-                background = "#e7ecf0",
-                foreground = "#956400",
+                background = "#f6f8fa",
+                foreground = "#603700",
             },
         },
         status = {
-            error = "#702c00",
-            warning = "#023b95",
-            info = "#956400",
-            success = "#032563",
+            error = "#a0111f",
+            warning = "#702c00",
+            info = "#603700",
+            success = "#024c1a",
         },
     },
 
     -- Syntax keys.
     syntax = {
-        comment = "#88929d",
+        comment = "#818b98",
 
         string = {
-            default = "#032563",
-            regexp = "#032563",
-            other = "#032563",
+            default = "#024c1a",
+            regexp = "#024c1a",
+            other = "#024c1a",
         },
 
         constant = {
-            default = "#023b95",
+            default = "#702c00",
             character = {
-                default = "#702c00",
-                escape = "#024c1a",
+                default = "#a0111f",
+                escape = "#1b7c83",
             },
-            language = "#023b95",
+            language = "#702c00",
             numeric = {
-                default = "#023b95",
-                float = "#023b95",
+                default = "#702c00",
+                float = "#702c00",
             },
         },
 
         entity = {
             name = {
-                class = "#956400",
-                type = "#956400",
+                class = "#603700",
+                type = "#603700",
                 ["function"] = {
-                    default = "#622cbc",
-                    constructor = "#622cbc",
+                    default = "#0349b4",
+                    constructor = "#0349b4",
                 },
-                label = "#956400",
-                namespace = "#702c00",
-                tag = "#956400",
+                label = "#603700",
+                namespace = "#a0111f",
+                tag = "#603700",
             },
             other = {
-                ["attribute-name"] = "#956400",
+                ["attribute-name"] = "#603700",
             },
         },
 
         keyword = {
-            default = "#a0111f",
+            default = "#622cbc",
             control = {
-                default = "#a0111f",
-                import = "#622cbc",
-                flow = "#956400",
+                default = "#622cbc",
+                import = "#0349b4",
+                flow = "#603700",
             },
-            operator = "#a0111f",
-            declaration = "#a0111f",
+            operator = "#622cbc",
+            declaration = "#622cbc",
         },
 
         storage = {
-            type = "#a0111f",
-            modifier = "#956400",
+            type = "#622cbc",
+            modifier = "#603700",
         },
 
         variable = {
-            default = "#343b43",
-            parameter = "#343b43",
+            default = "#454c54",
+            parameter = "#454c54",
             other = {
-                property = "#343b43",
+                property = "#454c54",
             },
         },
 
         punctuation = {
-            separator = "#6e011a",
-            section = "#6e011a",
+            separator = "#86061d",
+            section = "#86061d",
         },
 
         markup = {
-            default = "#343b43",
-            heading = "#622cbc",
-            raw = "#023b95",
-            link = "#023b95",
-            list = "#956400",
-            inserted = "#032563",
-            deleted = "#702c00",
+            default = "#454c54",
+            heading = "#0349b4",
+            raw = "#702c00",
+            link = "#702c00",
+            list = "#603700",
+            inserted = "#024c1a",
+            deleted = "#a0111f",
         },
 
         meta = {
-            preprocessor = "#956400",
+            preprocessor = "#603700",
         },
     },
 }
