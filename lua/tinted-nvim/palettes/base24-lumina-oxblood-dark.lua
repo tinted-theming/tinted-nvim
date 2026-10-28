@@ -8,101 +8,101 @@ return {
 
     -- Legacy base24 slot keys (kept for backwards compatibility).
     -- New consumers should read the tinted8-shaped keys below.
-    base00 = "#23171b",
-    base01 = "#291b20",
-    base02 = "#332529",
-    base03 = "#3d2f33",
-    base04 = "#79686d",
-    base05 = "#e4d2d7",
-    base06 = "#b9adb1",
-    base07 = "#e4d2d7",
-    base08 = "#de6961",
-    base09 = "#fca970",
+    base00 = "#200f16",
+    base01 = "#26131b",
+    base02 = "#301c24",
+    base03 = "#3b262e",
+    base04 = "#79616a",
+    base05 = "#e8d6dc",
+    base06 = "#bdacb2",
+    base07 = "#e8d6dc",
+    base08 = "#db6c63",
+    base09 = "#fbac74",
     base0A = "#f9c875",
     base0B = "#7dc797",
-    base0C = "#00bed0",
-    base0D = "#96c3fb",
-    base0E = "#beb5fc",
+    base0C = "#6fcad4",
+    base0D = "#9ac3f8",
+    base0E = "#bfb6f9",
     base0F = "#ddb7ed",
-    base10 = "#160c10",
-    base11 = "#1c1014",
-    base12 = "#e98e86",
+    base10 = "#13060b",
+    base11 = "#19090f",
+    base12 = "#e78f86",
     base13 = "#ffe4b8",
-    base14 = "#98e1b1",
-    base15 = "#76d2df",
-    base16 = "#c0dcff",
+    base14 = "#9ce0b2",
+    base15 = "#8de4ed",
+    base16 = "#c2dcff",
     base17 = "#f2d5ff",
 
     palette = {
         black = {
-            normal = "#23171b",
-            bright = "#291b20",
+            normal = "#200f16",
+            bright = "#26131b",
         },
         gray = {
-            dim = "#332529",
-            normal = "#3d2f33",
+            dim = "#301c24",
+            normal = "#3b262e",
             -- base04 ("Light Gray" per base16 spec) lives in gray.bright.
-            bright = "#79686d",
+            bright = "#79616a",
         },
         white = {
             -- base06 ("Lighter White") occupies the white.dim slot — slot identifier,
             -- not a strict luminance semantic.
-            dim = "#b9adb1",
-            normal = "#e4d2d7",
-            bright = "#e4d2d7",
+            dim = "#bdacb2",
+            normal = "#e8d6dc",
+            bright = "#e8d6dc",
         },
-        red = { normal = "#de6961", bright = "#e98e86" },
+        red = { normal = "#db6c63", bright = "#e78f86" },
         -- base24 has no bright_orange slot; orange.bright falls back to .normal.
-        orange = { normal = "#fca970", bright = "#fca970" },
+        orange = { normal = "#fbac74", bright = "#fbac74" },
         yellow = { normal = "#f9c875", bright = "#ffe4b8" },
-        green = { normal = "#7dc797", bright = "#98e1b1" },
-        cyan = { normal = "#00bed0", bright = "#76d2df" },
-        blue = { normal = "#96c3fb", bright = "#c0dcff" },
-        magenta = { normal = "#beb5fc", bright = "#f2d5ff" },
+        green = { normal = "#7dc797", bright = "#9ce0b2" },
+        cyan = { normal = "#6fcad4", bright = "#8de4ed" },
+        blue = { normal = "#9ac3f8", bright = "#c2dcff" },
+        magenta = { normal = "#bfb6f9", bright = "#f2d5ff" },
         brown = { normal = "#ddb7ed" },
     },
 
     ui = {
         global = {
-            background = { normal = "#23171b" },
-            foreground = { normal = "#e4d2d7" },
+            background = { normal = "#200f16" },
+            foreground = { normal = "#e8d6dc" },
         },
         cursor = {
-            background = { normal = "#e4d2d7" },
-            foreground = { normal = "#23171b" },
+            background = { normal = "#e8d6dc" },
+            foreground = { normal = "#200f16" },
         },
-        gutter = { foreground = "#332529" },
-        border = { normal = "#3d2f33" },
+        gutter = { foreground = "#301c24" },
+        border = { normal = "#3b262e" },
         chrome = {
             background = {
-                normal = "#332529",
-                dark = "#291b20",
+                normal = "#301c24",
+                dark = "#26131b",
             },
             foreground = {
-                normal = "#e4d2d7",
-                dark = "#79686d",
+                normal = "#e8d6dc",
+                dark = "#79616a",
             },
         },
-        selection = { background = "#291b20" },
+        selection = { background = "#26131b" },
         highlight = {
-            line = { background = "#291b20" },
-            text = { background = "#332529" },
+            line = { background = "#26131b" },
+            text = { background = "#301c24" },
             search = {
-                background = "#291b20",
+                background = "#26131b",
                 foreground = "#f9c875",
             },
         },
         status = {
-            error = "#de6961",
-            warning = "#fca970",
+            error = "#db6c63",
+            warning = "#fbac74",
             info = "#f9c875",
             -- DiagnosticOk uses bright_green (base14) in current code; preserve.
-            success = "#98e1b1",
+            success = "#9ce0b2",
         },
     },
 
     syntax = {
-        comment = "#3d2f33",
+        comment = "#3b262e",
 
         string = {
             default = "#7dc797",
@@ -111,15 +111,15 @@ return {
         },
 
         constant = {
-            default = "#fca970",
+            default = "#fbac74",
             character = {
-                default = "#de6961",
-                escape = "#00bed0",
+                default = "#db6c63",
+                escape = "#6fcad4",
             },
-            language = "#fca970",
+            language = "#fbac74",
             numeric = {
-                default = "#fca970",
-                float = "#fca970",
+                default = "#fbac74",
+                float = "#fbac74",
             },
         },
 
@@ -128,11 +128,11 @@ return {
                 class = "#f9c875",
                 type = "#f9c875",
                 ["function"] = {
-                    default = "#96c3fb",
-                    constructor = "#96c3fb",
+                    default = "#9ac3f8",
+                    constructor = "#9ac3f8",
                 },
                 label = "#f9c875",
-                namespace = "#de6961",
+                namespace = "#db6c63",
                 tag = "#f9c875",
             },
             other = {
@@ -141,26 +141,26 @@ return {
         },
 
         keyword = {
-            default = "#beb5fc",
+            default = "#bfb6f9",
             control = {
-                default = "#beb5fc",
-                import = "#96c3fb",
+                default = "#bfb6f9",
+                import = "#9ac3f8",
                 flow = "#f9c875",
             },
-            operator = "#beb5fc",
-            declaration = "#beb5fc",
+            operator = "#bfb6f9",
+            declaration = "#bfb6f9",
         },
 
         storage = {
-            type = "#beb5fc",
+            type = "#bfb6f9",
             modifier = "#f9c875",
         },
 
         variable = {
-            default = "#e4d2d7",
-            parameter = "#e4d2d7",
+            default = "#e8d6dc",
+            parameter = "#e8d6dc",
             other = {
-                property = "#e4d2d7",
+                property = "#e8d6dc",
             },
         },
 
@@ -170,13 +170,13 @@ return {
         },
 
         markup = {
-            default = "#e4d2d7",
-            heading = "#96c3fb",
-            raw = "#fca970",
-            link = "#fca970",
+            default = "#e8d6dc",
+            heading = "#9ac3f8",
+            raw = "#fbac74",
+            link = "#fbac74",
             list = "#f9c875",
             inserted = "#7dc797",
-            deleted = "#de6961",
+            deleted = "#db6c63",
         },
 
         meta = {
