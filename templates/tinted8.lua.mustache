@@ -55,39 +55,39 @@ return {
     -- UI keys (tinted8 spec).
     ui = {
         global = {
-            background = { normal = "#{{ui.global.background.normal.hex}}" },
-            foreground = { normal = "#{{ui.global.foreground.normal.hex}}" },
+            background = { normal = "#{{ui.global.normal.background.default.hex}}" },
+            foreground = { normal = "#{{ui.global.normal.foreground.default.hex}}" },
         },
         cursor = {
-            background = { normal = "#{{ui.cursor.normal.background.hex}}" },
-            foreground = { normal = "#{{ui.cursor.normal.foreground.hex}}" },
+            background = { normal = "#{{ui.cursor.normal.background.default.hex}}" },
+            foreground = { normal = "#{{ui.cursor.normal.foreground.default.hex}}" },
         },
-        gutter = { foreground = "#{{ui.gutter.foreground.hex}}" },
-        border = { normal = "#{{ui.border.normal.hex}}" },
+        gutter = { foreground = "#{{ui.gutter.foreground.default.hex}}" },
+        border = { normal = "#{{ui.border.normal.default.hex}}" },
         chrome = {
             background = {
-                normal = "#{{ui.chrome.background.normal.hex}}",
-                dark = "#{{ui.chrome.background.dark.hex}}",
+                normal = "#{{ui.chrome.normal.background.default.hex}}",
+                dark = "#{{ui.chrome.dark.background.default.hex}}",
             },
             foreground = {
-                normal = "#{{ui.chrome.foreground.normal.hex}}",
-                dark = "#{{ui.chrome.foreground.dark.hex}}",
+                normal = "#{{ui.chrome.normal.foreground.default.hex}}",
+                dark = "#{{ui.chrome.dark.foreground.default.hex}}",
             },
         },
-        selection = { background = "#{{ui.selection.background.hex}}" },
+        selection = { background = "#{{ui.selection.background.default.hex}}" },
         highlight = {
-            line = { background = "#{{ui.highlight.line.background.hex}}" },
-            text = { background = "#{{ui.highlight.text.background.hex}}" },
+            line = { background = "#{{ui.highlight.line.background.default.hex}}" },
+            text = { background = "#{{ui.highlight.text.background.default.hex}}" },
             search = {
-                background = "#{{ui.highlight.search.background.hex}}",
-                foreground = "#{{ui.highlight.search.foreground.hex}}",
+                background = "#{{ui.highlight.search.background.default.hex}}",
+                foreground = "#{{ui.highlight.search.foreground.default.hex}}",
             },
         },
         status = {
-            error = "#{{ui.status.error.hex}}",
-            warning = "#{{ui.status.warning.hex}}",
-            info = "#{{ui.status.info.hex}}",
-            success = "#{{ui.status.success.hex}}",
+            error = "#{{ui.status.error.default.hex}}",
+            warning = "#{{ui.status.warning.default.hex}}",
+            info = "#{{ui.status.info.default.hex}}",
+            success = "#{{ui.status.success.default.hex}}",
         },
     },
 
@@ -98,37 +98,37 @@ return {
 
         string = {
             default = "#{{syntax.string.default.hex}}",
-            regexp = "#{{syntax.string.regexp.hex}}",
-            other = "#{{syntax.string.other.hex}}",
+            regexp = "#{{syntax.string.regexp.default.hex}}",
+            other = "#{{syntax.string.other.default.hex}}",
         },
 
         constant = {
             default = "#{{syntax.constant.default.hex}}",
             character = {
                 default = "#{{syntax.constant.character.default.hex}}",
-                escape = "#{{syntax.constant.character.escape.hex}}",
+                escape = "#{{syntax.constant.character.escape.default.hex}}",
             },
-            language = "#{{syntax.constant.language.hex}}",
+            language = "#{{syntax.constant.language.default.hex}}",
             numeric = {
                 default = "#{{syntax.constant.numeric.default.hex}}",
-                float = "#{{syntax.constant.numeric.float.hex}}",
+                float = "#{{syntax.constant.numeric.float.default.hex}}",
             },
         },
 
         entity = {
             name = {
-                class = "#{{syntax.entity.name.class.hex}}",
+                class = "#{{syntax.entity.name.class.default.hex}}",
                 type = "#{{syntax.entity.name.type.default.hex}}",
                 ["function"] = {
                     default = "#{{syntax.entity.name.function.default.hex}}",
-                    constructor = "#{{syntax.entity.name.function.constructor.hex}}",
+                    constructor = "#{{syntax.entity.name.function.constructor.default.hex}}",
                 },
-                label = "#{{syntax.entity.name.label.hex}}",
-                namespace = "#{{syntax.entity.name.namespace.hex}}",
-                tag = "#{{syntax.entity.name.tag.hex}}",
+                label = "#{{syntax.entity.name.label.default.hex}}",
+                namespace = "#{{syntax.entity.name.namespace.default.hex}}",
+                tag = "#{{syntax.entity.name.tag.default.hex}}",
             },
             other = {
-                ["attribute-name"] = "#{{syntax.entity.other.attribute-name.hex}}",
+                ["attribute-name"] = "#{{syntax.entity.other.attribute-name.default.hex}}",
             },
         },
 
@@ -136,43 +136,43 @@ return {
             default = "#{{syntax.keyword.default.hex}}",
             control = {
                 default = "#{{syntax.keyword.control.default.hex}}",
-                import = "#{{syntax.keyword.control.import.hex}}",
-                flow = "#{{syntax.keyword.control.flow.hex}}",
+                import = "#{{syntax.keyword.control.import.default.hex}}",
+                flow = "#{{syntax.keyword.control.flow.default.hex}}",
             },
-            operator = "#{{syntax.keyword.operator.hex}}",
-            declaration = "#{{syntax.keyword.declaration.hex}}",
+            operator = "#{{syntax.keyword.operator.default.hex}}",
+            declaration = "#{{syntax.keyword.declaration.default.hex}}",
         },
 
         storage = {
-            type = "#{{syntax.storage.type.hex}}",
-            modifier = "#{{syntax.storage.modifier.hex}}",
+            type = "#{{syntax.storage.type.default.hex}}",
+            modifier = "#{{syntax.storage.modifier.default.hex}}",
         },
 
         variable = {
             default = "#{{syntax.variable.default.hex}}",
-            parameter = "#{{syntax.variable.parameter.hex}}",
+            parameter = "#{{syntax.variable.parameter.default.hex}}",
             other = {
-                property = "#{{syntax.variable.other.property.hex}}",
+                property = "#{{syntax.variable.other.object.property.default.hex}}",
             },
         },
 
         punctuation = {
-            separator = "#{{syntax.punctuation.separator.hex}}",
-            section = "#{{syntax.punctuation.section.hex}}",
+            separator = "#{{syntax.punctuation.separator.default.hex}}",
+            section = "#{{syntax.punctuation.section.default.hex}}",
         },
 
         markup = {
             default = "#{{syntax.markup.default.hex}}",
-            heading = "#{{syntax.markup.heading.hex}}",
-            raw = "#{{syntax.markup.raw.hex}}",
-            link = "#{{syntax.markup.link.hex}}",
+            heading = "#{{syntax.markup.heading.default.hex}}",
+            raw = "#{{syntax.markup.raw.default.hex}}",
+            link = "#{{syntax.markup.link.default.hex}}",
             list = "#{{syntax.markup.list.default.hex}}",
-            inserted = "#{{syntax.markup.inserted.hex}}",
-            deleted = "#{{syntax.markup.deleted.hex}}",
+            inserted = "#{{syntax.markup.inserted.default.hex}}",
+            deleted = "#{{syntax.markup.deleted.default.hex}}",
         },
 
         meta = {
-            preprocessor = "#{{syntax.meta.preprocessor.hex}}",
+            preprocessor = "#{{syntax.meta.preprocessor.default.hex}}",
         },
     },
 }
