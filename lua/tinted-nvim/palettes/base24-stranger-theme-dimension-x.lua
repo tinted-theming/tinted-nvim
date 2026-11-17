@@ -16,22 +16,22 @@ return {
     base05 = "#e8d5d5",
     base06 = "#f4e1e1",
     base07 = "#ffffff",
-    base08 = "#ff55aa",
+    base08 = "#ff6b6b",
     base09 = "#ff6b6b",
-    base0A = "#bca89f",
-    base0B = "#8b7355",
-    base0C = "#d19a66",
+    base0A = "#d19a66",
+    base0B = "#8fae7e",
+    base0C = "#7fb5b0",
     base0D = "#c678dd",
-    base0E = "#e06c75",
+    base0E = "#ff55aa",
     base0F = "#d74343",
     base10 = "#141010",
     base11 = "#0a0606",
-    base12 = "#ff73c8",
-    base13 = "#dac6bd",
-    base14 = "#a99173",
-    base15 = "#efb884",
+    base12 = "#ff8989",
+    base13 = "#efb884",
+    base14 = "#adcc9c",
+    base15 = "#9dd3ce",
     base16 = "#e496fb",
-    base17 = "#fe8a93",
+    base17 = "#ff73c8",
 
     palette = {
         black = {
@@ -51,14 +51,14 @@ return {
             normal = "#e8d5d5",
             bright = "#ffffff",
         },
-        red = { normal = "#ff55aa", bright = "#ff73c8" },
+        red = { normal = "#ff6b6b", bright = "#ff8989" },
         -- base24 has no bright_orange slot; orange.bright falls back to .normal.
         orange = { normal = "#ff6b6b", bright = "#ff6b6b" },
-        yellow = { normal = "#bca89f", bright = "#dac6bd" },
-        green = { normal = "#8b7355", bright = "#a99173" },
-        cyan = { normal = "#d19a66", bright = "#efb884" },
+        yellow = { normal = "#d19a66", bright = "#efb884" },
+        green = { normal = "#8fae7e", bright = "#adcc9c" },
+        cyan = { normal = "#7fb5b0", bright = "#9dd3ce" },
         blue = { normal = "#c678dd", bright = "#e496fb" },
-        magenta = { normal = "#e06c75", bright = "#fe8a93" },
+        magenta = { normal = "#ff55aa", bright = "#ff73c8" },
         brown = { normal = "#d74343" },
     },
 
@@ -89,15 +89,15 @@ return {
             text = { background = "#523535" },
             search = {
                 background = "#322e2e",
-                foreground = "#bca89f",
+                foreground = "#d19a66",
             },
         },
         status = {
-            error = "#ff55aa",
+            error = "#ff6b6b",
             warning = "#ff6b6b",
-            info = "#bca89f",
+            info = "#d19a66",
             -- DiagnosticOk uses bright_green (base14) in current code; preserve.
-            success = "#a99173",
+            success = "#adcc9c",
         },
     },
 
@@ -105,16 +105,16 @@ return {
         comment = "#9a7c7c",
 
         string = {
-            default = "#8b7355",
-            regexp = "#8b7355",
-            other = "#8b7355",
+            default = "#8fae7e",
+            regexp = "#8fae7e",
+            other = "#8fae7e",
         },
 
         constant = {
             default = "#ff6b6b",
             character = {
-                default = "#ff55aa",
-                escape = "#d19a66",
+                default = "#ff6b6b",
+                escape = "#7fb5b0",
             },
             language = "#ff6b6b",
             numeric = {
@@ -125,35 +125,35 @@ return {
 
         entity = {
             name = {
-                class = "#bca89f",
-                type = "#bca89f",
+                class = "#d19a66",
+                type = "#d19a66",
                 ["function"] = {
                     default = "#c678dd",
                     constructor = "#c678dd",
                 },
-                label = "#bca89f",
-                namespace = "#ff55aa",
-                tag = "#bca89f",
+                label = "#d19a66",
+                namespace = "#ff6b6b",
+                tag = "#d19a66",
             },
             other = {
-                ["attribute-name"] = "#bca89f",
+                ["attribute-name"] = "#d19a66",
             },
         },
 
         keyword = {
-            default = "#e06c75",
+            default = "#ff55aa",
             control = {
-                default = "#e06c75",
+                default = "#ff55aa",
                 import = "#c678dd",
-                flow = "#bca89f",
+                flow = "#d19a66",
             },
-            operator = "#e06c75",
-            declaration = "#e06c75",
+            operator = "#ff55aa",
+            declaration = "#ff55aa",
         },
 
         storage = {
-            type = "#e06c75",
-            modifier = "#bca89f",
+            type = "#ff55aa",
+            modifier = "#d19a66",
         },
 
         variable = {
@@ -174,13 +174,13 @@ return {
             heading = "#c678dd",
             raw = "#ff6b6b",
             link = "#ff6b6b",
-            list = "#bca89f",
-            inserted = "#8b7355",
-            deleted = "#ff55aa",
+            list = "#d19a66",
+            inserted = "#8fae7e",
+            deleted = "#ff6b6b",
         },
 
         meta = {
-            preprocessor = "#bca89f",
+            preprocessor = "#d19a66",
         },
     },
 }

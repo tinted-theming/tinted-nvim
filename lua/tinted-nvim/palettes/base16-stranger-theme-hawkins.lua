@@ -22,8 +22,8 @@ return {
     base0A = "#ebcb8b",
     base0B = "#a3be8c",
     base0C = "#88c0d0",
-    base0D = "#b48ead",
-    base0E = "#d4a574",
+    base0D = "#81a1c1",
+    base0E = "#b48ead",
     base0F = "#a85f48",
 
     -- Named palette colors. base16 has no bright/dim variants,
@@ -51,8 +51,8 @@ return {
         yellow = { normal = "#ebcb8b", bright = "#ebcb8b" },
         green = { normal = "#a3be8c", bright = "#a3be8c" },
         cyan = { normal = "#88c0d0", bright = "#88c0d0" },
-        blue = { normal = "#b48ead", bright = "#b48ead" },
-        magenta = { normal = "#d4a574", bright = "#d4a574" },
+        blue = { normal = "#81a1c1", bright = "#81a1c1" },
+        magenta = { normal = "#b48ead", bright = "#b48ead" },
         brown = { normal = "#a85f48" },
     },
 
@@ -123,8 +123,8 @@ return {
                 class = "#ebcb8b",
                 type = "#ebcb8b",
                 ["function"] = {
-                    default = "#b48ead",
-                    constructor = "#b48ead",
+                    default = "#81a1c1",
+                    constructor = "#81a1c1",
                 },
                 label = "#ebcb8b",
                 namespace = "#bf616a",
@@ -136,18 +136,18 @@ return {
         },
 
         keyword = {
-            default = "#d4a574",
+            default = "#b48ead",
             control = {
-                default = "#d4a574",
-                import = "#b48ead",
+                default = "#b48ead",
+                import = "#81a1c1",
                 flow = "#ebcb8b",
             },
-            operator = "#d4a574",
-            declaration = "#d4a574",
+            operator = "#b48ead",
+            declaration = "#b48ead",
         },
 
         storage = {
-            type = "#d4a574",
+            type = "#b48ead",
             modifier = "#ebcb8b",
         },
 
@@ -166,7 +166,7 @@ return {
 
         markup = {
             default = "#e8dcc8",
-            heading = "#b48ead",
+            heading = "#81a1c1",
             raw = "#d08770",
             link = "#d08770",
             list = "#ebcb8b",

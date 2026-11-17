@@ -21,8 +21,8 @@ return {
     base0A = "#ebcb8b",
     base0B = "#a3be8c",
     base0C = "#88c0d0",
-    base0D = "#b48ead",
-    base0E = "#d4a574",
+    base0D = "#81a1c1",
+    base0E = "#b48ead",
     base0F = "#a85f48",
     base10 = "#22180e",
     base11 = "#180e04",
@@ -30,8 +30,8 @@ return {
     base13 = "#ffe9a9",
     base14 = "#c1dcaa",
     base15 = "#a6deee",
-    base16 = "#d2accb",
-    base17 = "#f2c392",
+    base16 = "#9fbfdf",
+    base17 = "#d2accb",
 
     palette = {
         black = {
@@ -57,8 +57,8 @@ return {
         yellow = { normal = "#ebcb8b", bright = "#ffe9a9" },
         green = { normal = "#a3be8c", bright = "#c1dcaa" },
         cyan = { normal = "#88c0d0", bright = "#a6deee" },
-        blue = { normal = "#b48ead", bright = "#d2accb" },
-        magenta = { normal = "#d4a574", bright = "#f2c392" },
+        blue = { normal = "#81a1c1", bright = "#9fbfdf" },
+        magenta = { normal = "#b48ead", bright = "#d2accb" },
         brown = { normal = "#a85f48" },
     },
 
@@ -128,8 +128,8 @@ return {
                 class = "#ebcb8b",
                 type = "#ebcb8b",
                 ["function"] = {
-                    default = "#b48ead",
-                    constructor = "#b48ead",
+                    default = "#81a1c1",
+                    constructor = "#81a1c1",
                 },
                 label = "#ebcb8b",
                 namespace = "#bf616a",
@@ -141,18 +141,18 @@ return {
         },
 
         keyword = {
-            default = "#d4a574",
+            default = "#b48ead",
             control = {
-                default = "#d4a574",
-                import = "#b48ead",
+                default = "#b48ead",
+                import = "#81a1c1",
                 flow = "#ebcb8b",
             },
-            operator = "#d4a574",
-            declaration = "#d4a574",
+            operator = "#b48ead",
+            declaration = "#b48ead",
         },
 
         storage = {
-            type = "#d4a574",
+            type = "#b48ead",
             modifier = "#ebcb8b",
         },
 
@@ -171,7 +171,7 @@ return {
 
         markup = {
             default = "#e8dcc8",
-            heading = "#b48ead",
+            heading = "#81a1c1",
             raw = "#d08770",
             link = "#d08770",
             list = "#ebcb8b",

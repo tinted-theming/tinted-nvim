@@ -21,9 +21,9 @@ return {
     base09 = "#de935f",
     base0A = "#f0c674",
     base0B = "#b5bd68",
-    base0C = "#81a2be",
-    base0D = "#b294bb",
-    base0E = "#ff7f2a",
+    base0C = "#8abeb7",
+    base0D = "#81a2be",
+    base0E = "#b294bb",
     base0F = "#b66b37",
 
     -- Named palette colors. base16 has no bright/dim variants,
@@ -50,9 +50,9 @@ return {
         orange = { normal = "#de935f", bright = "#de935f" },
         yellow = { normal = "#f0c674", bright = "#f0c674" },
         green = { normal = "#b5bd68", bright = "#b5bd68" },
-        cyan = { normal = "#81a2be", bright = "#81a2be" },
-        blue = { normal = "#b294bb", bright = "#b294bb" },
-        magenta = { normal = "#ff7f2a", bright = "#ff7f2a" },
+        cyan = { normal = "#8abeb7", bright = "#8abeb7" },
+        blue = { normal = "#81a2be", bright = "#81a2be" },
+        magenta = { normal = "#b294bb", bright = "#b294bb" },
         brown = { normal = "#b66b37" },
     },
 
@@ -109,7 +109,7 @@ return {
             default = "#de935f",
             character = {
                 default = "#cc6666",
-                escape = "#81a2be",
+                escape = "#8abeb7",
             },
             language = "#de935f",
             numeric = {
@@ -123,8 +123,8 @@ return {
                 class = "#f0c674",
                 type = "#f0c674",
                 ["function"] = {
-                    default = "#b294bb",
-                    constructor = "#b294bb",
+                    default = "#81a2be",
+                    constructor = "#81a2be",
                 },
                 label = "#f0c674",
                 namespace = "#cc6666",
@@ -136,18 +136,18 @@ return {
         },
 
         keyword = {
-            default = "#ff7f2a",
+            default = "#b294bb",
             control = {
-                default = "#ff7f2a",
-                import = "#b294bb",
+                default = "#b294bb",
+                import = "#81a2be",
                 flow = "#f0c674",
             },
-            operator = "#ff7f2a",
-            declaration = "#ff7f2a",
+            operator = "#b294bb",
+            declaration = "#b294bb",
         },
 
         storage = {
-            type = "#ff7f2a",
+            type = "#b294bb",
             modifier = "#f0c674",
         },
 
@@ -166,7 +166,7 @@ return {
 
         markup = {
             default = "#f5f5f5",
-            heading = "#b294bb",
+            heading = "#81a2be",
             raw = "#de935f",
             link = "#de935f",
             list = "#f0c674",

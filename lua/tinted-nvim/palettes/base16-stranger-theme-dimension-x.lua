@@ -17,13 +17,13 @@ return {
     base05 = "#e8d5d5",
     base06 = "#f4e1e1",
     base07 = "#ffffff",
-    base08 = "#ff55aa",
+    base08 = "#ff6b6b",
     base09 = "#ff6b6b",
-    base0A = "#bca89f",
-    base0B = "#8b7355",
-    base0C = "#d19a66",
+    base0A = "#d19a66",
+    base0B = "#8fae7e",
+    base0C = "#7fb5b0",
     base0D = "#c678dd",
-    base0E = "#e06c75",
+    base0E = "#ff55aa",
     base0F = "#d74343",
 
     -- Named palette colors. base16 has no bright/dim variants,
@@ -46,13 +46,13 @@ return {
             normal = "#e8d5d5",
             bright = "#ffffff",
         },
-        red = { normal = "#ff55aa", bright = "#ff55aa" },
+        red = { normal = "#ff6b6b", bright = "#ff6b6b" },
         orange = { normal = "#ff6b6b", bright = "#ff6b6b" },
-        yellow = { normal = "#bca89f", bright = "#bca89f" },
-        green = { normal = "#8b7355", bright = "#8b7355" },
-        cyan = { normal = "#d19a66", bright = "#d19a66" },
+        yellow = { normal = "#d19a66", bright = "#d19a66" },
+        green = { normal = "#8fae7e", bright = "#8fae7e" },
+        cyan = { normal = "#7fb5b0", bright = "#7fb5b0" },
         blue = { normal = "#c678dd", bright = "#c678dd" },
-        magenta = { normal = "#e06c75", bright = "#e06c75" },
+        magenta = { normal = "#ff55aa", bright = "#ff55aa" },
         brown = { normal = "#d74343" },
     },
 
@@ -84,14 +84,14 @@ return {
             text = { background = "#523535" },
             search = {
                 background = "#322e2e",
-                foreground = "#bca89f",
+                foreground = "#d19a66",
             },
         },
         status = {
-            error = "#ff55aa",
+            error = "#ff6b6b",
             warning = "#ff6b6b",
-            info = "#bca89f",
-            success = "#8b7355",
+            info = "#d19a66",
+            success = "#8fae7e",
         },
     },
 
@@ -100,16 +100,16 @@ return {
         comment = "#9a7c7c",
 
         string = {
-            default = "#8b7355",
-            regexp = "#8b7355",
-            other = "#8b7355",
+            default = "#8fae7e",
+            regexp = "#8fae7e",
+            other = "#8fae7e",
         },
 
         constant = {
             default = "#ff6b6b",
             character = {
-                default = "#ff55aa",
-                escape = "#d19a66",
+                default = "#ff6b6b",
+                escape = "#7fb5b0",
             },
             language = "#ff6b6b",
             numeric = {
@@ -120,35 +120,35 @@ return {
 
         entity = {
             name = {
-                class = "#bca89f",
-                type = "#bca89f",
+                class = "#d19a66",
+                type = "#d19a66",
                 ["function"] = {
                     default = "#c678dd",
                     constructor = "#c678dd",
                 },
-                label = "#bca89f",
-                namespace = "#ff55aa",
-                tag = "#bca89f",
+                label = "#d19a66",
+                namespace = "#ff6b6b",
+                tag = "#d19a66",
             },
             other = {
-                ["attribute-name"] = "#bca89f",
+                ["attribute-name"] = "#d19a66",
             },
         },
 
         keyword = {
-            default = "#e06c75",
+            default = "#ff55aa",
             control = {
-                default = "#e06c75",
+                default = "#ff55aa",
                 import = "#c678dd",
-                flow = "#bca89f",
+                flow = "#d19a66",
             },
-            operator = "#e06c75",
-            declaration = "#e06c75",
+            operator = "#ff55aa",
+            declaration = "#ff55aa",
         },
 
         storage = {
-            type = "#e06c75",
-            modifier = "#bca89f",
+            type = "#ff55aa",
+            modifier = "#d19a66",
         },
 
         variable = {
@@ -169,13 +169,13 @@ return {
             heading = "#c678dd",
             raw = "#ff6b6b",
             link = "#ff6b6b",
-            list = "#bca89f",
-            inserted = "#8b7355",
-            deleted = "#ff55aa",
+            list = "#d19a66",
+            inserted = "#8fae7e",
+            deleted = "#ff6b6b",
         },
 
         meta = {
-            preprocessor = "#bca89f",
+            preprocessor = "#d19a66",
         },
     },
 }
