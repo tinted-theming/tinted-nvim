@@ -133,6 +133,23 @@ describe("init", function()
             assert.equal("base16-dracula", vim.g.colors_name)
         end)
 
+        it("keeps a single watcher when the plugin is reloaded and set up again", function()
+            tinted.setup(opts(file_a, true))
+
+            -- what a plugin manager's hot reload does
+            reset_modules()
+            tinted = require("tinted-nvim")
+            tinted.setup(opts(file_a, true))
+            vim.wait(100)
+
+            assert.equal(1, handles.open("fs_event"))
+            assert.equal(1, handles.open("timer"))
+
+            vim.fn.writefile({ "base16-dracula" }, file_a)
+            assert.is_true(wait_for_scheme("base16-dracula"))
+            assert.equal("base16-dracula", tinted.get_scheme())
+        end)
+
         it("stops watching when called again with watch disabled", function()
             local watchers, timers = handles.open("fs_event"), handles.open("timer")
 

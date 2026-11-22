@@ -14,13 +14,23 @@ local DEBOUNCE_MS = 50
 local REARM_RETRY_MS = 50
 local REARM_MAX_RETRIES = 40
 
-local state = {
-    last = nil,
-    -- fs_event handle; nil while waiting to re-arm
-    watcher = nil,
-    -- debounce/retry timer; non-nil for as long as we are watching
-    timer = nil,
-}
+-- The watcher state lives in a global rather than in this module, so that it
+-- survives the module being reloaded (`package.loaded` cleared by a plugin
+-- manager's hot reload, for instance). A fresh module-local table would lose
+-- track of the running watcher and start a second one next to it.
+local STATE_KEY = "__tinted_nvim_selector_state"
+
+local state = rawget(_G, STATE_KEY)
+if not state then
+    state = {
+        last = nil,
+        -- fs_event handle; nil while waiting to re-arm
+        watcher = nil,
+        -- debounce/retry timer; non-nil for as long as we are watching
+        timer = nil,
+    }
+    rawset(_G, STATE_KEY, state)
+end
 
 ---@param handle any A libuv handle, or nil.
 local function close(handle)

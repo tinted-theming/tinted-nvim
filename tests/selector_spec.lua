@@ -368,6 +368,30 @@ describe("selector", function()
             assert.equal(before, open_watchers())
         end)
 
+        it("keeps a single watcher when the module is reloaded", function()
+            local seen = {}
+            start({})
+
+            -- what a plugin manager's hot reload does
+            package.loaded["tinted-nvim.selector"] = nil
+            selector = require("tinted-nvim.selector")
+            start(seen)
+
+            assert.equal(1, open_watchers())
+            assert.equal(1, handles.open("timer"))
+
+            -- the reloaded module owns the watcher and can stop it
+            selector.stop()
+            assert.equal(0, open_watchers())
+            assert.equal(0, handles.open("timer"))
+
+            -- and watching works again from the reloaded module
+            start(seen)
+            vim.fn.writefile({ "base16-two" }, file)
+            assert.is_true(wait_for(seen, "base16-two"))
+            assert.same({ "base16-two" }, seen)
+        end)
+
         it("can watch again after stop", function()
             local seen = {}
             start({})
