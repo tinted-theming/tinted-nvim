@@ -9,173 +9,173 @@ return {
 
     -- Legacy base16 slot keys (kept for backwards compatibility).
     -- New consumers should read the tinted8-shaped keys below.
-    base00 = "#24272b",
-    base01 = "#303338",
-    base02 = "#3e4044",
-    base03 = "#636363",
-    base04 = "#8f8f8f",
-    base05 = "#bebebe",
-    base06 = "#fff7ed",
-    base07 = "#fffdfb",
-    base08 = "#ca736c",
-    base09 = "#ba823a",
-    base0A = "#8d9741",
-    base0B = "#47a477",
-    base0C = "#00a2af",
-    base0D = "#5794d0",
-    base0E = "#9481cc",
-    base0F = "#bc73a4",
+    base00 = "#2c2e31",
+    base01 = "#383a3d",
+    base02 = "#484a4d",
+    base03 = "#5e6063",
+    base04 = "#777879",
+    base05 = "#8b8b8b",
+    base06 = "#b4b1ad",
+    base07 = "#efe8dd",
+    base08 = "#ba616a",
+    base09 = "#b3763e",
+    base0A = "#948a1d",
+    base0B = "#4f9158",
+    base0C = "#008986",
+    base0D = "#0081b4",
+    base0E = "#7176ae",
+    base0F = "#9c67a1",
 
     -- Named palette colors. base16 has no bright/dim variants,
     -- so .bright falls back to .normal (matches legacy alias behavior).
     palette = {
         black = {
-            normal = "#24272b",
-            bright = "#303338",
+            normal = "#2c2e31",
+            bright = "#383a3d",
         },
         gray = {
-            dim = "#3e4044",
-            normal = "#636363",
+            dim = "#484a4d",
+            normal = "#5e6063",
             -- base04 ("Light Gray" per base16 spec) lives in gray.bright.
-            bright = "#8f8f8f",
+            bright = "#777879",
         },
         white = {
             -- base06 ("Lighter White") occupies the white.dim slot — slot identifier,
             -- not a strict luminance semantic.
-            dim = "#fff7ed",
-            normal = "#bebebe",
-            bright = "#fffdfb",
+            dim = "#b4b1ad",
+            normal = "#8b8b8b",
+            bright = "#efe8dd",
         },
-        red = { normal = "#ca736c", bright = "#ca736c" },
-        orange = { normal = "#ba823a", bright = "#ba823a" },
-        yellow = { normal = "#8d9741", bright = "#8d9741" },
-        green = { normal = "#47a477", bright = "#47a477" },
-        cyan = { normal = "#00a2af", bright = "#00a2af" },
-        blue = { normal = "#5794d0", bright = "#5794d0" },
-        magenta = { normal = "#9481cc", bright = "#9481cc" },
-        brown = { normal = "#bc73a4" },
+        red = { normal = "#ba616a", bright = "#ba616a" },
+        orange = { normal = "#b3763e", bright = "#b3763e" },
+        yellow = { normal = "#948a1d", bright = "#948a1d" },
+        green = { normal = "#4f9158", bright = "#4f9158" },
+        cyan = { normal = "#008986", bright = "#008986" },
+        blue = { normal = "#0081b4", bright = "#0081b4" },
+        magenta = { normal = "#7176ae", bright = "#7176ae" },
+        brown = { normal = "#9c67a1" },
     },
 
     -- UI keys, filled from base16 slots to preserve current rendering.
     ui = {
         global = {
-            background = { normal = "#24272b" },
-            foreground = { normal = "#bebebe" },
+            background = { normal = "#2c2e31" },
+            foreground = { normal = "#8b8b8b" },
         },
         cursor = {
-            background = { normal = "#bebebe" },
-            foreground = { normal = "#24272b" },
+            background = { normal = "#8b8b8b" },
+            foreground = { normal = "#2c2e31" },
         },
-        gutter = { foreground = "#3e4044" },
-        border = { normal = "#636363" },
+        gutter = { foreground = "#484a4d" },
+        border = { normal = "#5e6063" },
         chrome = {
             background = {
-                normal = "#3e4044",
-                dark = "#303338",
+                normal = "#484a4d",
+                dark = "#383a3d",
             },
             foreground = {
-                normal = "#bebebe",
-                dark = "#8f8f8f",
+                normal = "#8b8b8b",
+                dark = "#777879",
             },
         },
-        selection = { background = "#303338" },
+        selection = { background = "#383a3d" },
         highlight = {
-            line = { background = "#303338" },
-            text = { background = "#3e4044" },
+            line = { background = "#383a3d" },
+            text = { background = "#484a4d" },
             search = {
-                background = "#303338",
-                foreground = "#8d9741",
+                background = "#383a3d",
+                foreground = "#948a1d",
             },
         },
         status = {
-            error = "#ca736c",
-            warning = "#ba823a",
-            info = "#8d9741",
-            success = "#47a477",
+            error = "#ba616a",
+            warning = "#b3763e",
+            info = "#948a1d",
+            success = "#4f9158",
         },
     },
 
     -- Syntax keys.
     syntax = {
-        comment = "#636363",
+        comment = "#5e6063",
 
         string = {
-            default = "#47a477",
-            regexp = "#47a477",
-            other = "#47a477",
+            default = "#4f9158",
+            regexp = "#4f9158",
+            other = "#4f9158",
         },
 
         constant = {
-            default = "#ba823a",
+            default = "#b3763e",
             character = {
-                default = "#ca736c",
-                escape = "#00a2af",
+                default = "#ba616a",
+                escape = "#008986",
             },
-            language = "#ba823a",
+            language = "#b3763e",
             numeric = {
-                default = "#ba823a",
-                float = "#ba823a",
+                default = "#b3763e",
+                float = "#b3763e",
             },
         },
 
         entity = {
             name = {
-                class = "#8d9741",
-                type = "#8d9741",
+                class = "#948a1d",
+                type = "#948a1d",
                 ["function"] = {
-                    default = "#5794d0",
-                    constructor = "#5794d0",
+                    default = "#0081b4",
+                    constructor = "#0081b4",
                 },
-                label = "#8d9741",
-                namespace = "#ca736c",
-                tag = "#8d9741",
+                label = "#948a1d",
+                namespace = "#ba616a",
+                tag = "#948a1d",
             },
             other = {
-                ["attribute-name"] = "#8d9741",
+                ["attribute-name"] = "#948a1d",
             },
         },
 
         keyword = {
-            default = "#9481cc",
+            default = "#7176ae",
             control = {
-                default = "#9481cc",
-                import = "#5794d0",
-                flow = "#8d9741",
+                default = "#7176ae",
+                import = "#0081b4",
+                flow = "#948a1d",
             },
-            operator = "#9481cc",
-            declaration = "#9481cc",
+            operator = "#7176ae",
+            declaration = "#7176ae",
         },
 
         storage = {
-            type = "#9481cc",
-            modifier = "#8d9741",
+            type = "#7176ae",
+            modifier = "#948a1d",
         },
 
         variable = {
-            default = "#bebebe",
-            parameter = "#bebebe",
+            default = "#8b8b8b",
+            parameter = "#8b8b8b",
             other = {
-                property = "#bebebe",
+                property = "#8b8b8b",
             },
         },
 
         punctuation = {
-            separator = "#bc73a4",
-            section = "#bc73a4",
+            separator = "#9c67a1",
+            section = "#9c67a1",
         },
 
         markup = {
-            default = "#bebebe",
-            heading = "#5794d0",
-            raw = "#ba823a",
-            link = "#ba823a",
-            list = "#8d9741",
-            inserted = "#47a477",
-            deleted = "#ca736c",
+            default = "#8b8b8b",
+            heading = "#0081b4",
+            raw = "#b3763e",
+            link = "#b3763e",
+            list = "#948a1d",
+            inserted = "#4f9158",
+            deleted = "#ba616a",
         },
 
         meta = {
-            preprocessor = "#8d9741",
+            preprocessor = "#948a1d",
         },
     },
 }
