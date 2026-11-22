@@ -15,6 +15,7 @@
 - Fix low-contrast highlights from `snacks.nvim`
 - **Selector**: Fix file watchers multiplying on every scheme change when the watched file is replaced (e.g. by `tinty apply`), which made Neovim's memory use grow rapidly ([#49](https://github.com/tinted-theming/tinted-nvim/issues/49))
 - **Selector**: Keep the current scheme, and keep watching, when the watched file is briefly missing while it is being replaced
+- **Selector**: Calling `setup()` again now applies the new `selector` config to the file watcher instead of keeping the first one
 
 ## [1.0.0] - 2026-02-14
 

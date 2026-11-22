@@ -75,6 +75,10 @@ function M.setup(opts)
 
     local cfg = config.options
 
+    -- setup() may be called more than once. Drop any watcher from an earlier
+    -- call so the new config decides what is watched, if anything.
+    selector.stop()
+
     -- Start selector watcher if enabled
     if cfg.selector and cfg.selector.enabled and cfg.selector.watch then
         selector.watch(cfg, function(name)

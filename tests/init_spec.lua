@@ -73,6 +73,83 @@ describe("init", function()
         end)
     end)
 
+    describe("setup with a watched selector file", function()
+        local uv = vim.uv or vim.loop
+        local file_a, file_b
+
+        local function open_handles(kind)
+            local n = 0
+            uv.walk(function(handle)
+                if handle:get_type() == kind and not handle:is_closing() then
+                    n = n + 1
+                end
+            end)
+            return n
+        end
+
+        local function opts(path, watch)
+            return {
+                selector = { enabled = true, mode = "file", path = path, watch = watch },
+            }
+        end
+
+        local function wait_for_scheme(name)
+            return vim.wait(2000, function()
+                return vim.g.colors_name == name
+            end, 10)
+        end
+
+        before_each(function()
+            file_a = vim.fn.tempname()
+            file_b = vim.fn.tempname()
+            vim.fn.writefile({ "base16-nord" }, file_a)
+            vim.fn.writefile({ "base16-nord" }, file_b)
+        end)
+
+        after_each(function()
+            require("tinted-nvim.selector").stop()
+            vim.fn.delete(file_a)
+            vim.fn.delete(file_b)
+        end)
+
+        it("does not stack watchers or timers when called repeatedly", function()
+            local watchers, timers = open_handles("fs_event"), open_handles("timer")
+
+            for _ = 1, 5 do
+                tinted.setup(opts(file_a, true))
+            end
+            tinted.load()
+            tinted.load("base16-dracula")
+
+            assert.equal(watchers + 1, open_handles("fs_event"))
+            assert.equal(timers + 1, open_handles("timer"))
+        end)
+
+        it("watches the new path when called again with a different one", function()
+            tinted.setup(opts(file_a, true))
+            tinted.setup(opts(file_b, true))
+            vim.wait(100)
+
+            vim.fn.writefile({ "base16-dracula" }, file_b)
+            assert.is_true(wait_for_scheme("base16-dracula"))
+
+            -- the old path is no longer watched
+            vim.fn.writefile({ "base16-ashes" }, file_a)
+            vim.wait(300)
+            assert.equal("base16-dracula", vim.g.colors_name)
+        end)
+
+        it("stops watching when called again with watch disabled", function()
+            local watchers, timers = open_handles("fs_event"), open_handles("timer")
+
+            tinted.setup(opts(file_a, true))
+            tinted.setup(opts(file_a, false))
+
+            assert.equal(watchers, open_handles("fs_event"))
+            assert.equal(timers, open_handles("timer"))
+        end)
+    end)
+
     describe("load", function()
         it("errors when setup has not been called", function()
             tinted = require("tinted-nvim")

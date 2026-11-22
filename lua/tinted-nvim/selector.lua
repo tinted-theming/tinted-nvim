@@ -192,6 +192,8 @@ function M.stop()
     close(state.timer)
     state.watcher = nil
     state.timer = nil
+    -- the next watch() may be for a different file
+    state.last = nil
 end
 
 return M
