@@ -74,18 +74,8 @@ describe("init", function()
     end)
 
     describe("setup with a watched selector file", function()
-        local uv = vim.uv or vim.loop
+        local handles = dofile("tests/fixtures/handle_tracker.lua")
         local file_a, file_b
-
-        local function open_handles(kind)
-            local n = 0
-            uv.walk(function(handle)
-                if handle:get_type() == kind and not handle:is_closing() then
-                    n = n + 1
-                end
-            end)
-            return n
-        end
 
         local function opts(path, watch)
             return {
@@ -100,6 +90,9 @@ describe("init", function()
         end
 
         before_each(function()
+            -- drop any watcher an earlier test left behind
+            require("tinted-nvim.selector").stop()
+            handles.install()
             file_a = vim.fn.tempname()
             file_b = vim.fn.tempname()
             vim.fn.writefile({ "base16-nord" }, file_a)
@@ -108,12 +101,13 @@ describe("init", function()
 
         after_each(function()
             require("tinted-nvim.selector").stop()
+            handles.restore()
             vim.fn.delete(file_a)
             vim.fn.delete(file_b)
         end)
 
         it("does not stack watchers or timers when called repeatedly", function()
-            local watchers, timers = open_handles("fs_event"), open_handles("timer")
+            local watchers, timers = handles.open("fs_event"), handles.open("timer")
 
             for _ = 1, 5 do
                 tinted.setup(opts(file_a, true))
@@ -121,8 +115,8 @@ describe("init", function()
             tinted.load()
             tinted.load("base16-dracula")
 
-            assert.equal(watchers + 1, open_handles("fs_event"))
-            assert.equal(timers + 1, open_handles("timer"))
+            assert.equal(watchers + 1, handles.open("fs_event"))
+            assert.equal(timers + 1, handles.open("timer"))
         end)
 
         it("watches the new path when called again with a different one", function()
@@ -140,13 +134,13 @@ describe("init", function()
         end)
 
         it("stops watching when called again with watch disabled", function()
-            local watchers, timers = open_handles("fs_event"), open_handles("timer")
+            local watchers, timers = handles.open("fs_event"), handles.open("timer")
 
             tinted.setup(opts(file_a, true))
             tinted.setup(opts(file_a, false))
 
-            assert.equal(watchers, open_handles("fs_event"))
-            assert.equal(timers, open_handles("timer"))
+            assert.equal(watchers, handles.open("fs_event"))
+            assert.equal(timers, handles.open("timer"))
         end)
     end)
 

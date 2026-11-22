@@ -259,15 +259,10 @@ describe("selector", function()
         local uv = vim.uv or vim.loop
         local dir, target, file
 
-        -- Count fs_event handles that are still open.
+        local handles = dofile("tests/fixtures/handle_tracker.lua")
+
         local function open_watchers()
-            local n = 0
-            uv.walk(function(handle)
-                if handle:get_type() == "fs_event" and not handle:is_closing() then
-                    n = n + 1
-                end
-            end)
-            return n
+            return handles.open("fs_event")
         end
 
         local function cfg()
@@ -306,6 +301,7 @@ describe("selector", function()
         end
 
         before_each(function()
+            handles.install()
             dir = vim.fn.tempname()
             target = dir .. "/artifacts"
             file = target .. "/current_scheme"
@@ -315,6 +311,7 @@ describe("selector", function()
 
         after_each(function()
             selector.stop()
+            handles.restore()
             vim.fn.delete(dir, "rf")
         end)
 
