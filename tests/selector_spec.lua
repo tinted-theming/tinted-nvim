@@ -255,6 +255,155 @@ describe("selector", function()
         end)
     end)
 
+    describe("watch on a live file", function()
+        local uv = vim.uv or vim.loop
+        local dir, target, file
+
+        local handles = dofile("tests/fixtures/handle_tracker.lua")
+
+        local function open_watchers()
+            return handles.open("fs_event")
+        end
+
+        local function cfg()
+            return {
+                default_scheme = "base16-default",
+                selector = { enabled = true, mode = "file", path = file, watch = true },
+            }
+        end
+
+        -- Replace the directory holding the selector file, the way
+        -- `tinty apply` does: build a staging dir, remove the target, rename.
+        -- `gap_ms` holds the file missing for a while in between.
+        local function swap(name, gap_ms)
+            local staging = dir .. "/staging"
+            vim.fn.mkdir(staging, "p")
+            vim.fn.writefile({ name }, staging .. "/current_scheme")
+            vim.fn.delete(target, "rf")
+            if gap_ms then
+                vim.wait(gap_ms)
+            end
+            assert(uv.fs_rename(staging, target))
+        end
+
+        local function start(seen)
+            selector.watch(cfg(), function(name)
+                table.insert(seen, name)
+            end)
+            -- let the event loop register the watcher
+            vim.wait(100)
+        end
+
+        local function wait_for(seen, name)
+            return vim.wait(2000, function()
+                return seen[#seen] == name
+            end, 10)
+        end
+
+        before_each(function()
+            handles.install()
+            dir = vim.fn.tempname()
+            target = dir .. "/artifacts"
+            file = target .. "/current_scheme"
+            vim.fn.mkdir(target, "p")
+            vim.fn.writefile({ "base16-one" }, file)
+        end)
+
+        after_each(function()
+            selector.stop()
+            handles.restore()
+            vim.fn.delete(dir, "rf")
+        end)
+
+        it("reports a change written in place", function()
+            local seen = {}
+            start(seen)
+
+            vim.fn.writefile({ "base16-two" }, file)
+
+            assert.is_true(wait_for(seen, "base16-two"))
+            assert.same({ "base16-two" }, seen)
+        end)
+
+        it("keeps a single watcher when the file is replaced repeatedly", function()
+            local before = open_watchers()
+            local seen = {}
+            start(seen)
+            assert.equal(before + 1, open_watchers())
+
+            local names = { "base16-two", "base16-three", "base16-four", "base16-five" }
+            for _, name in ipairs(names) do
+                swap(name)
+                assert.is_true(wait_for(seen, name))
+                -- let any trailing events settle
+                vim.wait(200)
+                assert.equal(before + 1, open_watchers())
+            end
+
+            assert.same(names, seen)
+        end)
+
+        it("does not fall back to default_scheme while the file is missing", function()
+            local seen = {}
+            start(seen)
+
+            swap("base16-two", 300)
+
+            assert.is_true(wait_for(seen, "base16-two"))
+            assert.same({ "base16-two" }, seen)
+
+            -- the watcher was re-armed on the new file
+            vim.wait(200)
+            vim.fn.writefile({ "base16-three" }, file)
+            assert.is_true(wait_for(seen, "base16-three"))
+        end)
+
+        it("closes the watcher on stop", function()
+            local before = open_watchers()
+            start({})
+            assert.equal(before + 1, open_watchers())
+
+            selector.stop()
+
+            assert.equal(before, open_watchers())
+        end)
+
+        it("keeps a single watcher when the module is reloaded", function()
+            local seen = {}
+            start({})
+
+            -- what a plugin manager's hot reload does
+            package.loaded["tinted-nvim.selector"] = nil
+            selector = require("tinted-nvim.selector")
+            start(seen)
+
+            assert.equal(1, open_watchers())
+            assert.equal(1, handles.open("timer"))
+
+            -- the reloaded module owns the watcher and can stop it
+            selector.stop()
+            assert.equal(0, open_watchers())
+            assert.equal(0, handles.open("timer"))
+
+            -- and watching works again from the reloaded module
+            start(seen)
+            vim.fn.writefile({ "base16-two" }, file)
+            assert.is_true(wait_for(seen, "base16-two"))
+            assert.same({ "base16-two" }, seen)
+        end)
+
+        it("can watch again after stop", function()
+            local seen = {}
+            start({})
+            selector.stop()
+            start(seen)
+
+            vim.fn.writefile({ "base16-two" }, file)
+
+            assert.is_true(wait_for(seen, "base16-two"))
+        end)
+    end)
+
     describe("stop", function()
         it("does not error when no watcher is active", function()
             assert.has_no_error(function()
